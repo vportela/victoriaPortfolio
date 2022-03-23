@@ -1,0 +1,36 @@
+const largeToSmallList = [1, -4, 10, 35, -7, 200, -100, 50, 21, 0]
+
+//expected:
+//Largest numner:200
+//Smallest number: -100
+
+largeToSmallList.forEach(number => {
+  if (number === 200){
+  console.log()
+  }
+   else if (number > 100)
+})
+
+//console.log(number + " is the greatest number")
+
+
+
+
+const largeToSmallList = [1, -4, 10, 35, -7, 200, -100, 50, 21, 0]
+
+//expected:
+//Largest numner:200
+//Smallest number: -100
+
+largeToSmallList.forEach(number => {
+  if (number > 0){
+  console.log()
+  }
+   else if (number > 100)
+})
+
+//console.log(number + " is the greatest number")      
+
+
+
+//ABOVE SOLUTIONS ARE WRONG

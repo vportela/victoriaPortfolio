@@ -1,0 +1,19 @@
+//fizzbuzz
+
+const fizzBuzzNumbers = Array(100).fill(0).map((e, i) => i + 1)
+console.log("fizzBuzzNumbers: ", fizzBuzzNumbers)
+
+
+fizzBuzzNumbers.forEach(number => {
+  if ((number % 15) === 0){
+  	console.log("FIZZBUZZ")
+  } else if ((number % 3) === 0){
+  	console.log("FIZZ")
+  } else if ((number % 5) === 0){
+  	console.log("BUZZ")
+  } else {
+  	console.log(number)
+  }
+})
+
+// completed on 3/8/2022 with emre, being taught by lucas !!! 

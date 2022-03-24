@@ -93,19 +93,19 @@ const listOfUsersRetiringSoon = []
 
 const getUsersRetiringSoon = (listOfUsers) =>{
    
-listOfUsers.forEach(theUserImInteratingOn => {
+    listOfUsers.forEach(theUserImInteratingOn => {
 
-    //console.log("...theUserImInteratingOn ", theUserImInteratingOn)
-    const userAge = theUserImInteratingOn.age
-   // console.log("userAge: ", userAge)
-    
-    if (userAge > 59){
-    	listOfUsersRetiringSoon.push(theUserImInteratingOn)
-      //console.log("list of users who will retire soon", userAges)
-    }
+        //console.log("...theUserImInteratingOn ", theUserImInteratingOn)
+        const userAge = theUserImInteratingOn.age
+        // console.log("userAge: ", userAge)
+        
+        if (userAge > 59){
+            listOfUsersRetiringSoon.push(theUserImInteratingOn)
+            //console.log("list of users who will retire soon", userAges)
+        }
 
-})
-  return listOfUsersRetiringSoon
+    })
+    return listOfUsersRetiringSoon
 }
 const soonToRetire = getUsersRetiringSoon(users)
 console.log("soon to retire", soonToRetire)
@@ -120,18 +120,18 @@ const listOfUsersUnder21 = []
 
 const getUsersUnder21 = (listOfUsers) =>{
    
-listOfUsers.forEach(theUserImInteratingOn => {
+    listOfUsers.forEach(theUserImInteratingOn => {
 
-    //console.log("...theUserImInteratingOn ", theUserImInteratingOn)
-    const userAge = theUserImInteratingOn.age
-   // console.log("userAge: ", userAge)
-    
-    if (userAge <= 21){
-    	listOfUsersUnder21.push(theUserImInteratingOn)
-      //console.log("list of users who will retire soon", userAges)
-    }
+        //console.log("...theUserImInteratingOn ", theUserImInteratingOn)
+        const userAge = theUserImInteratingOn.age
+        // console.log("userAge: ", userAge)
+        
+        if (userAge < 21){
+            listOfUsersUnder21.push(theUserImInteratingOn)
+            //console.log("list of users who will retire soon", userAges)
+        }
 
-})
+    })
   return listOfUsersUnder21
 }
 const cantDrinkBooze = getUsersUnder21(users)
@@ -147,18 +147,18 @@ const listOfUsersBeingUnderpaid = []
 
 const getUsersThatAreUnderpaid = (listOfUsers) =>{
    
-listOfUsers.forEach(theUserImInteratingOn => {
+    listOfUsers.forEach(theUserImInteratingOn => {
 
-    //console.log("...theUserImInteratingOn ", theUserImInteratingOn)
-    const userSalary = theUserImInteratingOn.salary
-   // console.log("userAge: ", userAge)
-    
-    if (userSalary < 30000){
-    	listOfUsersBeingUnderpaid.push(theUserImInteratingOn)
-      //console.log("list of users who will retire soon", userAges)
-    }
+        //console.log("...theUserImInteratingOn ", theUserImInteratingOn)
+        const userSalary = theUserImInteratingOn.salary
+        // console.log("userAge: ", userAge)
 
-})
+        if (userSalary < 30000){
+            listOfUsersBeingUnderpaid.push(theUserImInteratingOn)
+            //console.log("list of users who will retire soon", userAges)
+        }
+
+    })
   return listOfUsersBeingUnderpaid
 }
 const needsARaise = getUsersThatAreUnderpaid(users)
@@ -175,19 +175,18 @@ console.log("-------------------how much is spent on salaries ---------------")
 
 const totalSalaryCost = (listOfUsers) =>{
 	
-  let finalSum = 0
+    let finalSum = 0
 
-listOfUsers.forEach(theUserImInteratingOn => {
-	const userSalary = theUserImInteratingOn.salary
-   finalSum = finalSum + userSalary
+    listOfUsers.forEach(theUserImInteratingOn => {
+        const userSalary = theUserImInteratingOn.salary
+        finalSum = finalSum + userSalary
 
 
-})
-  return finalSum
-}
+    })
+    return finalSum
+    }
 const finalSalaryExpenses = totalSalaryCost(users)
 console.log("final salary cost", finalSalaryExpenses)
-
 
 
 

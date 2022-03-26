@@ -46,7 +46,7 @@ const user1 = {
     lastName: "Zappity",
     age: 100,
     salary: 200000000,
-    favoriteColor: "blue",
+    favoriteColor: "red",
     luckyNumber: 7,
 }
 
@@ -56,7 +56,7 @@ const user2 = {
     age: 63,
     salary: 100000000,
     favoriteColor: "green",
-    luckyNumber: 25,
+    luckyNumber: 7,
 }
 
 const user3 = {
@@ -192,3 +192,19 @@ console.log("final salary cost", finalSalaryExpenses)
 
 
 console.log("-------------------how many people like the color red ---------------")
+
+
+const usersWhoLikeRed = (listOfUsers) => {
+    return listOfUsers.filter(user => user.favoriteColor === "red")
+}
+const redEnjoyers = usersWhoLikeRed(users)
+console.log("these losers otherwise known as 'red enjoyers'", redEnjoyers)
+
+
+console.log("-------------------the only person who's lucky number is 7 ---------------")
+
+const usersWholike7 = (listOfUsers) => {
+    return listOfUsers.filter(user => user.luckyNumber === 7)
+}
+const luckyGuys = usersWholike7(users)[0]
+console.log("this is a very lucky guy", luckyGuys)

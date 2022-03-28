@@ -1,3 +1,49 @@
+/*
+Core concepts:
+if statement
+comparisons
+forEach
+if/else else/if
+switch statement
+*/
+
+
+
+// const stringComparison = "lucas" === "lucas"
+// console.log("stringComparison: ", stringComparison)
+
+// const numberComparison = 100 === "100"
+// console.log("numberComparison ", numberComparison)
+
+// const bolleanComparison = true === false
+// console.log("bolleanComparison ", bolleanComparison)
+
+// const nullComparison = null === undefined
+// console.log("nullComparison ", nullComparison)
+
+// const randomComparison = undefined === false
+// console.log("randomComparison ", randomComparison)
+
+// console.log(" --------------- ")
+
+// ---------------------if statement---------------
+
+if ("lucas" === "victoria") {
+    console.log("this is true!")
+} else {
+  console.log("this is NOT true!!!")  
+}
+
+console.log(" --------------- ")
+
+if (undefined) { 
+    console.log("this is truthy") // truthy
+} else { 
+    console.log("this is falsey!!!")  
+}
+
+//------------ comparisons: do these two things equate? ---------
+
 const comparison = 100 === 100
 console.log("comparison: ", comparison) // this will be true
 
@@ -29,7 +75,7 @@ if (nullComparison) {
 //get a true and a false for each case
 // experiment with things like does it matter if you caps one and not the other or spacing etc
 
-//day 2 homework
+//--------------day 2 homework------------
 
 //"convention" means the common aesthetic generally agreed upon by the coding community about how you should space out and set up code.
 //functions should not have a space, for example console.log() is a function, the () does not have a space between log and ()
@@ -97,6 +143,14 @@ console.log("this is true")
 //usually list variable names end with an S to indicate there are multiple
 
 const colors = ["red", "yellow", "blue", "orange", "pink" ]
+console.log("colors: ", colors)
+
+// the ask: print out every value in the list
+// console.log("colors[0]: ", colors[0])
+// console.log("colors[1]: ", colors[1])
+// console.log("colors[2]: ", colors[2])
+// console.log("colors[3]: ", colors[3])
+
 
 const pet1 = "Bucky"
 const pet2 = "Rocky"
@@ -109,46 +163,31 @@ console.log("pets: ", pets)
 const newList = [pet1, pet2, pet3, 9000, true]
 console.log("newlist: ", newList)
 
-// each thing in a list is called an "index". Indexes always start at 0 so in this case pet 1 (bucky) is index 0, rocky is index 1, etc. 
+// each thing in a list is called an "index". 
+//Indexes always start at 0 so in this case pet 1 (bucky) is index 0, rocky is index 1, etc. 
 
 console.log("newlist index 0: ", newList[0])
 console.log("newlist index 0: ", newList[1])
 
 
 
+//------------------ for each, if/else, equivilency --------------------
+
 
 /* const numbers = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
 
 numbers.forEach(number => console.log("adding 10 to the value: ", number, "which gives me: ", 10 + numbers))
 */
-
-const numbers = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
-
-numbers.forEach(number => {
-	console.log("adding 10 to the value: ", number, "which gives me: ", number + 10)
-})
-
-const numbers = [2, 13, 4, 20, 8, 20, 36, 47, 45, 53]
-
-numbers.forEach(number => {
-	console.log("adding 10 to the value: ", number, "gives me: ", number + 10, "which is ") 
-	if ((number + 10) % 2 === 0){
-		console.log("even")
-	} else {
-		console.log("odd")
-	}
-})
-
-
-if (5 == "5") {
-	console.log("equals")
-}
-if (5 === "5") {
-	console.log("bleh")
-}
-
-
-
+// create a list with at least 10 numbers
+// iterate through all values in the list, and add + 10 to each value
+// expected output: `adding 10 to value: {currentValue}, which gives me: {newNumber}`
+// 1, 5, 20
+// `adding 10 to value: 1, which gives me: 11`
+// `11 is odd`
+// `adding 10 to value: 5, which gives me: 15`
+// `15 is odd`
+// `adding 10 to value: 20, which gives me: 30`
+// `30 is even`
 
 
 
@@ -171,76 +210,72 @@ numbers.forEach(number => {
 console.log("result at the end: ", result )
 
 
-// grading scale
-/*
-Take in a list of grades (0 - 100)
-
-1: tell me the letter grade for each score [in an array]
-2: Give the student (grade) a motivational sentence depending on their LETTER grade
- 2.a: use if/else if/else statements
- 2.b: use a switch statement
-Ex:
-numbers = [0, 100]
-
-expected output: 
-
-1. [[0, "F"], [1, "F"], [2, "F"], ..., [70, "D"], ... [80, "B"], ..., [95, "A"]]
-
-2.
-    A -> 'WOW YOURE AMAZINZ'
-    B -> "...."
-    C -> "...."
-    D -> "something else...."
-    F -> "YOU SUCK...."
-   
-*/
-const numbers = []
-const grades = []
-for (let number = 0; number < 101; number++) {
-    numbers.push(number)
+const result = 300 % 2 // give me the remainder of 300 / 2
+if (result === 0) {
+    console.log("this is even")
 }
-console.log('numbers: ', numbers)
 
-numbers.forEach(number => {
-	if (number <= 50){
-  		grades.push([number,"F"])
-  } else if (number >=51 && number <=69){
-  		grades.push([number,"D"])
-  } else if (number >=70 && number <=79){
-  		grades.push([number,"C"])
-  } else if (number >=80 && number <=89){
-  		grades.push([number,"B"])
-  } else if (number >=90 && number <=100){
-  		grades.push([number,"A"])
-  }
-} ) 
-console.log("grades: " , grades)
+// 3.5 % 2 = // 3.5 / 2 = 1
+// 3.5 - 2 = 1.5
+// 3.5 % 2 = 1.5
 
-/* grades.forEach(numberLetterArray => {
-  if (numberLetterArray[1] === "A"){
-      console.log( numberLetterArray[1], "- wow, u r my little pogchamp ")
-  } else if (numberLetterArray[1] === "B"){
-      console.log(`${numberLetterArray[1]} - pretty poggies`)
-  } else if (numberLetterArray[1] === "C"){
-      console.log(`${numberLetterArray[1]} - average pog`)
-  } else if (numberLetterArray[1] === "D"){
-      console.log(`${numberLetterArray[1]} - hm, pretty unpog`)
-  } else if (numberLetterArray[1] === "F"){
-      console.log(`${numberLetterArray[1]} - f in the chat boys`)
-  } 
+
+
+
+// ------------------------------ more if else statements ----------------
+
+onst favoriteIceCream = "oreos"
+
+if (favoriteIceCream === "chocolate") {
+    console.log("your favorite is chocolate!")
+} else if (favoriteIceCream === "vanilla") {
+    console.log("your favorite is vanilla!")
+} else if (favoriteIceCream === "mint") {
+    console.log("your fave is mint!")
+} 
+
+if (favoriteIceCream === "mint") {
+    console.log("HAHA IT IS DEFEINITELY MINT!")
+} else {
+    console.log("Idk what your fave is....")
+}
+
+
+//--------------------------- switch statements ----------------------
+
+
+console.log("----------- switch ---------------")
+
+switch(favoriteIceCream) {
+    case "chocolate": {
+        console.log("your favorite is chocolate!")
+        break
+    }
+    case "vanilla": {
+        console.log("your favorite is vanilla!")
+        break
+    }
+    case "mint": {
+        console.log("your fave is mint!")
+        break
+    }
+    default: {
+        console.log("Idk what your fave is....")
+    }
+}
+
+
+const grades = [[100, "A"], [80, "B"], [70, "C"]]
+
+grades.forEach(gradeArray => {
+    switch (gradeArray[1]) {
+        case "A": {
+            console.log("YOU GOT AN A!!")
+            break
+        }
+        case "B": {
+            console.log("You got a B...")
+            break
+        }
+    }
 })
-
- */
- const iceCream = "chocolate"
- 
- if(iceCream === "chocolate"){
- 	console.log( "your favorite ice cream is chocolate")
- } else if (iceCream === "vanilla"){
- 	console.log( "your favorite ice cream is vanilla")
- }
- 
- switch(iceCream) {
- 	case "vanilla": {
-  	console.log("your favorite is vanilla!!!")
-  }
- }

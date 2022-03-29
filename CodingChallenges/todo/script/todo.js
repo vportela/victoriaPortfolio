@@ -7,15 +7,32 @@ const todoItems = [
 console.log("todoItems: ", todoItems)
 
 
+
+const item = todoItems.find(item => item.id === 1)
+console.log(item.text)
+
+
+
+
 const toDoText = document.getElementsByClassName("todo-text")
 console.log("toDoText", toDoText)
 toDoText[0].innerText = "poop"
+// toDoText[1].innerText = "da baby"
+
+const rootElement = document.getElementById("main-todo-list")
+console.log("rootElement: ", rootElement)
 
 
-console.log(todoItems[1])
+const divElement = document.createElement("div")
+divElement.className="todo"
+divElement.id="todo-id"
+rootElement.appendChild(divElement)
 
 
-// const headerTitle = document.getElementsByClassName("poop")
-// console.log("headerTitle", headerTitle)
+const spanElement = document.createElement("span")
+spanElement.innerHTML = "this is a new div element"
+spanElement.className="todo-text"
+rootElement.appendChild(spanElement)
+divElement.appendChild(spanElement)
 
-// headerTitle[0].innerText = "hewwo"
+

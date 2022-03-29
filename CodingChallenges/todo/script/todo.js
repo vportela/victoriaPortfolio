@@ -14,6 +14,7 @@ console.log(item.text)
 
 
 
+
 const toDoText = document.getElementsByClassName("todo-text")
 console.log("toDoText", toDoText)
 toDoText[0].innerText = "poop"
@@ -25,12 +26,17 @@ console.log("rootElement: ", rootElement)
 
 const divElement = document.createElement("div")
 divElement.className="todo"
-divElement.id="todo-id"
+//divElement.id="todo-id"
 rootElement.appendChild(divElement)
 
+const inputElement = document.createElement("input")
+inputElement.type="checkbox"
+inputElement.className="todo-checkbox"
+rootElement.appendChild(inputElement)
+divElement.appendChild(inputElement)
 
 const spanElement = document.createElement("span")
-spanElement.innerHTML = "this is a new div element"
+spanElement.innerHTML = item.text
 spanElement.className="todo-text"
 rootElement.appendChild(spanElement)
 divElement.appendChild(spanElement)

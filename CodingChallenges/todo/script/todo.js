@@ -45,7 +45,7 @@ console.log("rootElement: ", rootElement)
 
 const divElement = document.createElement("div")
 divElement.className="todo"
-//divElement.id="todo-id"
+divElement.id="todo-id"
 rootElement.appendChild(divElement)
 
 const inputElement = document.createElement("input")
@@ -114,8 +114,14 @@ divElement4.appendChild(inputElement4)
 const spanElement4 = document.createElement("span")
 spanElement4.innerHTML = item4.text
 spanElement4.className="todo-text"
+spanElement4.className="todo complete"
 rootElement.appendChild(spanElement4)
 divElement4.appendChild(spanElement4)
+
+
+
+
+
 
 
 //css needs: 
@@ -133,11 +139,26 @@ const getTaskCompletionStatus = (listOfArrayObjects) =>{
         //console.log( "completion boolean", completionBoolean)
 
         if (completionBoolean === true) {
-            console.log( "this task is complete!")
-            } else {
-                console.log("this task is NOT complete!")
+            document.getElementsByClassName.addClass("todo complete")
+        //     console.log( "this task is complete!")
+        //     } else {
+        //         console.log("this task is NOT complete!")
         }
     })
     return 
 }
 completeOrIncomplete = getTaskCompletionStatus(todoItems)
+
+// document.getElementsByClassName("todo-checkbox")onclick(function onClickComplete() {
+//     document.getElementsByClassName("todo-text").addClass(".todo.complete")
+// }
+// )
+
+
+    // document.getElementsByClassName("todo-checkbox").click(function() {
+    //     document.getElementsByClassName.addClass("todo complete")
+    // })
+
+
+    //on click change boolean to true
+    //if boolean is true, apply the styles class "todo complete"

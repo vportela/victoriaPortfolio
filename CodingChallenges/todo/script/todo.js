@@ -21,6 +21,11 @@ const item4 = todoItems.find(item => item.id === 4)
 console.log("item 4: ", item4.text)
 
 
+window.onload = onPageLoad();
+
+function onPageLoad () {
+    document.querySelector(".todo-checkbox").checked = true;
+}
 
 
 // const toDoText = document.getElementsByClassName("main-todo-list")
@@ -33,8 +38,6 @@ console.log("item 4: ", item4.text)
 // const mainTodoElement = document.createElement("div")
 // mainTodoElement.id="new-main-todo-list"
 // //mainTodoElement.className="todo-list"
-
-
 
 
 
@@ -51,6 +54,7 @@ rootElement.appendChild(divElement)
 const inputElement = document.createElement("input")
 inputElement.type="checkbox"
 inputElement.className="todo-checkbox"
+inputElement.innerHTML= 
 rootElement.appendChild(inputElement)
 divElement.appendChild(inputElement)
 
@@ -114,7 +118,7 @@ divElement4.appendChild(inputElement4)
 const spanElement4 = document.createElement("span")
 spanElement4.innerHTML = item4.text
 spanElement4.className="todo-text"
-spanElement4.className="todo complete"
+//spanElement4.className="todo complete"
 rootElement.appendChild(spanElement4)
 divElement4.appendChild(spanElement4)
 
@@ -130,6 +134,9 @@ divElement4.appendChild(spanElement4)
 // change appearance
 
 
+const todoComplete = document.getElementsByClassName("todo complete")
+console.log(todoComplete)
+
 const getTaskCompletionStatus = (listOfArrayObjects) =>{
     
 
@@ -139,15 +146,16 @@ const getTaskCompletionStatus = (listOfArrayObjects) =>{
         //console.log( "completion boolean", completionBoolean)
 
         if (completionBoolean === true) {
-            document.getElementsByClassName.addClass("todo complete")
-        //     console.log( "this task is complete!")
+            console.log( "this task is complete!")
+
         //     } else {
         //         console.log("this task is NOT complete!")
         }
     })
-    return 
+    return document.querySelector("todo").addClass("todo complete")
 }
-completeOrIncomplete = getTaskCompletionStatus(todoItems)
+const completeOrIncomplete = getTaskCompletionStatus(todoItems)
+console.log("completeOrIncomplete", completeOrIncomplete)
 
 // document.getElementsByClassName("todo-checkbox")onclick(function onClickComplete() {
 //     document.getElementsByClassName("todo-text").addClass(".todo.complete")

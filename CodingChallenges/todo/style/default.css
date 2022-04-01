@@ -12,7 +12,7 @@ body {
   
   .todo-list {
     background-color: #fff;
-    border: 2px solid #ccc;
+    border: 2px solid #ccc; 
     width: 600px;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;

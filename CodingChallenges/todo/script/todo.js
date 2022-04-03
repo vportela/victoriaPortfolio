@@ -28,9 +28,13 @@ console.log("item 4: ", item4.text)
 // window.onload = onPageLoad();
 
 // function onPageLoad () {
-//     document.getElementsByClassName(".todo-checkbox").checked = true;
+//     const checkboxvar = document.querySelector(".todo-checkbox")
+// console.log("checkbox var", checkboxvar)
+//     checkboxvar.checked = true;
 // }
 
+//const checkboxvar = document.querySelector(".todo-checkbox")
+// console.log("checkbox var", checkboxvar)
 
 //------------ deleted the entire main-todo-list div -------------
 
@@ -43,35 +47,10 @@ if (getDeleted.parentNode) {
     getDeleted.parentNode.removeChild(getDeleted)
 }
 
-
-
 // ------- create a root element to attach divs to main-todo-list------
 
  const rootElement = document.getElementById("main-todo-list")
  console.log("rootElement: ", rootElement)
-
-
-//--------------------creating some structure in html-----------------------
-//create space for the list objects and give each thing an id
-
-//create a div with a class
-//create a ul with an id
-//create li with a class
-
-// const todoListContainer = document.createElement("div")
-// todoListContainer.className="todo"
-// todoListContainer.id="todo-id"
-// rootElement.appendChild(todoListContainer)
-
-// const todoListItem = document.createElement("div")
-// todoListItem.className="item"
-// rootElement.appendChild(todoListItem)
-// todoListContainer.appendChild(todoListItem)
-
-
-
-
-
 
 
 ///--------- todo function ---------------
@@ -80,15 +59,15 @@ const list= document.getElementById("main-todo-list")
 const lineThrough = document.getElementsByClassName("todo complete")
 function addToDo(toDo, id, completed){
 
-
+    //const DONE = completed ? checked : unchecked 
     const LINE = completed ? lineThrough : "";
 
     const item = `
                 <div class="todo">
-                <input type="checkbox" class="todo-checkbox"/>
-                <span class ="todo-text">${toDo}</span>
+                <input type="checkbox" class=".todo-checkbox"/>
+                <span class ="todo-text ${LINE}">${toDo}</span>
                 </div>
-            `;
+            `
     const position = "beforeend";
 
     list.insertAdjacentHTML(position,item)
@@ -98,6 +77,24 @@ addToDo(item.text)
 addToDo(item2.text)
 addToDo(item3.text)
 addToDo(item4.text)
+
+//if the boolean is true, the checkbox should be checked
+
+//if (item.completed === true)
+const taskComplete = item.completed === true
+console.log("task completed:", taskComplete)
+const taskIncomplete = item.completed === false
+console.log("task incomplete", taskIncomplete)
+
+if (item.completed === true) {
+    const checkboxvar = document.querySelector(".todo-checkbox")
+    console.log("checkbox var", checkboxvar)
+    checkboxvar.checked = true;
+}
+
+//-------------------- create checkbox variables
+
+//const CHECKED = document.getElementById("idForCheck")
 
 //--------------- add an item to the list using enter key-------
 

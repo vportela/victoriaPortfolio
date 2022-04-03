@@ -33,8 +33,9 @@ console.log("item 4: ", item4.text)
 //     checkboxvar.checked = true;
 // }
 
-//const checkboxvar = document.querySelector(".todo-checkbox")
+// const checkboxvar = document.querySelector(".todo-checkbox")
 // console.log("checkbox var", checkboxvar)
+// checkboxvar.setAttribute("checked")
 
 //------------ deleted the entire main-todo-list div -------------
 
@@ -57,6 +58,7 @@ if (getDeleted.parentNode) {
 
 const list= document.getElementById("main-todo-list")
 const lineThrough = document.getElementsByClassName("todo complete")
+console.log("linethrough", lineThrough)
 function addToDo(toDo, id, completed){
 
     //const DONE = completed ? checked : unchecked 
@@ -78,21 +80,50 @@ addToDo(item2.text)
 addToDo(item3.text)
 addToDo(item4.text)
 
+//-------------- event listener for checkbox ----------------
+
+function toggleComplete(inputElement){
+    if(inputElement.checked === false) {
+        inputElement.parentElement.classList.remove("todo complete");
+    } else {
+        inputElement.parentElement.classList.add("todo complete");
+    }
+
+}
+
+list.addEventListener("change", function (event){
+        if(event.target.tagName === "input" && event.target.type === "checkbox") {
+            toggleComplete(event.target)
+        }
+})
+
+console.log("main list", list)
+
+
 //if the boolean is true, the checkbox should be checked
 
 //if (item.completed === true)
-const taskComplete = item.completed === true
-console.log("task completed:", taskComplete)
-const taskIncomplete = item.completed === false
-console.log("task incomplete", taskIncomplete)
+// const taskComplete = item.completed === true
+// console.log("task completed:", taskComplete)
+// const taskIncomplete = item.completed === false
+// console.log("task incomplete", taskIncomplete)
 
-if (item.completed === true) {
-    const checkboxvar = document.querySelector(".todo-checkbox")
-    console.log("checkbox var", checkboxvar)
-    checkboxvar.checked = true;
-}
+todoItems.forEach(object => {
+    if (object.completed === true) {
+        console.log(object.completed)
+        list.parentElement.classList.add("completed")
+        //document.getElementsByTagName("input").checked = true;
+        
+    // const checkboxvar = document.querySelector(".todo-checkbox")
+    // console.log("checkbox var", checkboxvar)
+    // checkboxvar.setAttribute("checked")
+}})
 
-//-------------------- create checkbox variables
+
+// function onPageLoad () {
+//     document.querySelector(".todo-checkbox").checked = true;
+// }
+//-------------------- create checkbox variables---------------
 
 //const CHECKED = document.getElementById("idForCheck")
 

@@ -1,8 +1,8 @@
 let todoItems = [
-    { id: 1, text: "Take out trash and recycling", completed: true},
-    { id: 2, text: "Pick up dry cleaning", completed: false},
+    { id: 1, text: "Take out trash and recycling", completed: false},
+    { id: 2, text: "Pick up dry cleaning", completed: true},
     { id: 3, text: "Get oil change", completed: true},
-    { id: 4, text: "Write thank-you notes", completed: false},
+    { id: 4, text: "Write thank-you notes", completed: true},
 ]
 , id=5;
 console.log("todoItems: ", todoItems)
@@ -64,8 +64,8 @@ function addToDo(toDo,id){
     
     
     const todoItem = `
-                <div id=${id} class="todo complete" >
-                <input  type="checkbox" id="checkboxId" onclick="myFunction" class="todo-checkbox"/>
+                <div id=${id} class="todo" >
+                <input  type="checkbox" id="checkboxId" onclick="toggle" class="todo-checkbox"/>
                 <span class ="todo-text" >${toDo}</span>
                 </div>
             `
@@ -78,28 +78,21 @@ addToDo(item2.text, item2.id)
 addToDo(item3.text, item3.id) 
 addToDo(item4.text, item4.id)
 
-//--------------- editing class list instead ----------
 
-// function myFunction(){ 
-//     document.getElementById("checkboxId").checked = true;
-//     }
+let checkboxitem = item.completed = false;
+console.log("default value of boolean is ", checkboxitem)
 
-//MAYBE I CAN CREATE A SWITCH STATEMENT INSTEAD OF AN IF/ELSE?
-//THE SWITCH STATEMENT WILL SWITCH "TODO" WITH "TODO COMPLETE"
-//
-// list.forEach(object => {
-//     if (object.completed === true){ 
-//     const element = document.getElementById("todoDIV");
-//     element.classList.remove("todo_complete");
-//     element.classList.add("todo");
-//     }
-// })
+function toggle(){ 
+    checkboxitem = !checkboxitem;
+    console.log("toggled bool is", checkboxitem);
+    }
+    
 
 
 //-------------- event listener for checkbox ----------------
 
-const listDIV = document.getElementById("1")
-console.log("listDIV", listDIV)
+// const listDIV = document.getElementsByClassName("todo")
+// console.log("listDIV", listDIV)
 
 
 
@@ -134,29 +127,100 @@ console.log("listDIV", listDIV)
 // const taskIncomplete = item.completed === false
 // console.log("task incomplete", taskIncomplete)
 
+// ------------------ completion variables------------------
+const listDIV = document.getElementById("1")
+console.log("listDIV", listDIV)
+const listDIV2 = document.getElementById("2")
+console.log("listDIV", listDIV2)
+const listDIV3 = document.getElementById("3")
+console.log("listDIV", listDIV3)
+const listDIV4 = document.getElementById("4")
+console.log("listDIV", listDIV4)
 
 //--------------------------------completion function for item 1----------
 
+
 const getItemCompletionStatus = (listOfObjects) =>{
 
-    listOfObjects.forEach(taskImIteratingOn => {
-        const completionStatus = taskImIteratingOn.completed
+    //listOfObjects.forEach(taskImIteratingOn => {
+        const completionStatus = listOfObjects.completed
         console.log("completion status before loop", completionStatus)
-        if (completionStatus === false) {
+        if (completionStatus === true) {
             //console.log("completion status", completionStatus)
-        //const checkboxvar = document.getElementsByTagName("input" && "todo-checkbox")
-        //console.log("checkbox var", checkboxvar)
-        console.log("this item is incomplete", completionStatus)
-        listDIV.classList.remove("complete")
-        } if (completionStatus === true) {
+            //const checkboxvar = document.getElementsByTagName("input" && "todo-checkbox")
+            //console.log("checkbox var", checkboxvar)
+            //console.log("this item is incomplete", completionStatus)
             listDIV.classList.add("complete")
-        //}
+        } if (completionStatus === false) {
+            listDIV.classList.remove("complete")
+            }
         //document.getElementsByTagName("input").checked = true;
-        //checkboxvar.setAttribute("checked")
-    }})
-    
+        //checkboxvar.setAttribute("checked") 
 }
-const completeOrNot = getItemCompletionStatus(todoItems)
+const completeOrNot = getItemCompletionStatus(item)
+
+//------------------------- completion function for item 2--------
+const getItem2CompletionStatus = (listOfObjects) =>{
+
+    //listOfObjects.forEach(taskImIteratingOn => {
+        const completionStatus = listOfObjects.completed
+        console.log("completion status before loop", completionStatus)
+        if (completionStatus === true) {
+            //console.log("completion status", completionStatus)
+            //const checkboxvar = document.getElementsByTagName("input" && "todo-checkbox")
+            //console.log("checkbox var", checkboxvar)
+            //console.log("this item is incomplete", completionStatus)
+            listDIV2.classList.add("complete")
+        } if (completionStatus === false) {
+            listDIV2.classList.remove("complete")
+            }
+        //document.getElementsByTagName("input").checked = true;
+        //checkboxvar.setAttribute("checked") 
+}
+const completeOrNot2 = getItem2CompletionStatus(item2)
+
+//------------------------- completion function for item 3--------
+const getItem3CompletionStatus = (listOfObjects) =>{
+
+    //listOfObjects.forEach(taskImIteratingOn => {
+        const completionStatus = listOfObjects.completed
+        console.log("completion status before loop", completionStatus)
+        if (completionStatus === true) {
+            //console.log("completion status", completionStatus)
+            //const checkboxvar = document.getElementsByTagName("input" && "todo-checkbox")
+            //console.log("checkbox var", checkboxvar)
+            //console.log("this item is incomplete", completionStatus)
+            listDIV3.classList.add("complete")
+        } if (completionStatus === false) {
+            listDIV3.classList.remove("complete")
+            }
+        //document.getElementsByTagName("input").checked = true;
+        //checkboxvar.setAttribute("checked") 
+}
+const completeOrNot3 = getItem3CompletionStatus(item3)
+
+//------------------------- completion function for item 4--------
+const getItem4CompletionStatus = (listOfObjects) =>{
+
+    //listOfObjects.forEach(taskImIteratingOn => {
+        const completionStatus = listOfObjects.completed
+        console.log("completion status before loop", completionStatus)
+        if (completionStatus === true) {
+            //console.log("completion status", completionStatus)
+            //const checkboxvar = document.getElementsByTagName("input" && "todo-checkbox")
+            //console.log("checkbox var", checkboxvar)
+            //console.log("this item is incomplete", completionStatus)
+            listDIV4.classList.add("complete")
+        } if (completionStatus === false) {
+            listDIV4.classList.remove("complete")
+            }
+        //document.getElementsByTagName("input").checked = true;
+        //checkboxvar.setAttribute("checked") 
+}
+const completeOrNot4 = getItem4CompletionStatus(item4)
+
+
+
 
 
 

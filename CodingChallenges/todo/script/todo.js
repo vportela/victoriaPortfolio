@@ -1,7 +1,7 @@
 let todoItems = [
     { id: 1, text: "Take out trash and recycling", completed: true},
-    { id: 2, text: "Pick up dry cleaning", completed: true},
-    { id: 3, text: "Get oil change", completed: false},
+    { id: 2, text: "Pick up dry cleaning", completed: false},
+    { id: 3, text: "Get oil change", completed: true},
     { id: 4, text: "Write thank-you notes", completed: false},
 ]
 , id=5;
@@ -58,37 +58,35 @@ if (getDeleted.parentNode) {
 ///--------- todo function ---------------
 
 const list= document.getElementById("main-todo-list")
-const lineThrough = document.getElementsByClassName(".todo complete")
-console.log("linethrough", lineThrough)
-function addToDo(toDo,){
+//const lineThrough = document.getElementsByClassName(".todo complete")
+//console.log("linethrough", lineThrough)
+function addToDo(toDo,id){
     
-  
-    const item = `
-                <div id="todoDIV" class="todo complete">
-                <input  type="checkbox" onclick="myFunction" class="todo-checkbox" checked/>
+    
+    const todoItem = `
+                <div id=${id} class="todo complete" >
+                <input  type="checkbox" id="checkboxId" onclick="myFunction" class="todo-checkbox"/>
                 <span class ="todo-text" >${toDo}</span>
                 </div>
             `
     const position = "beforeend";
 
-    list.insertAdjacentHTML(position,item)
+    list.insertAdjacentHTML(position,todoItem)
 }
-
-addToDo(item.text)
-addToDo(item2.text)
-addToDo(item3.text) 
-addToDo(item4.text)
+addToDo(item.text, item.id)
+addToDo(item2.text, item2.id)
+addToDo(item3.text, item3.id) 
+addToDo(item4.text, item4.id)
 
 //--------------- editing class list instead ----------
 
 // function myFunction(){ 
-//     const todoDIV = document.getElementById("todoDIV");
-//     todoDIV.classList.remove("todo");
-//     }}
+//     document.getElementById("checkboxId").checked = true;
+//     }
 
 //MAYBE I CAN CREATE A SWITCH STATEMENT INSTEAD OF AN IF/ELSE?
 //THE SWITCH STATEMENT WILL SWITCH "TODO" WITH "TODO COMPLETE"
-//I PRAY IT WORKS.
+//
 // list.forEach(object => {
 //     if (object.completed === true){ 
 //     const element = document.getElementById("todoDIV");
@@ -100,8 +98,13 @@ addToDo(item4.text)
 
 //-------------- event listener for checkbox ----------------
 
-const listDIV = document.getElementById("todoDIV")
+const listDIV = document.getElementById("1")
 console.log("listDIV", listDIV)
+
+
+
+// const listDIVClass = document.getElementsByClassName("listdiv")
+// console.log("listDIVClass", listDIVClass)
 
 
 // function toggleComplete(inputElement){
@@ -125,25 +128,36 @@ console.log("listDIV", listDIV)
 
 //if the boolean is true, the checkbox should be checked
 
-//if (item.completed === true)
+// if (item.completed === true)
 // const taskComplete = item.completed === true
 // console.log("task completed:", taskComplete)
 // const taskIncomplete = item.completed === false
 // console.log("task incomplete", taskIncomplete)
 
-todoItems.forEach(userImIteratingOn => {
-        const completionStatus = userImIteratingOn.completed
+
+//--------------------------------completion function for item 1----------
+
+const getItemCompletionStatus = (listOfObjects) =>{
+
+    listOfObjects.forEach(taskImIteratingOn => {
+        const completionStatus = taskImIteratingOn.completed
+        console.log("completion status before loop", completionStatus)
         if (completionStatus === false) {
+            //console.log("completion status", completionStatus)
         //const checkboxvar = document.getElementsByTagName("input" && "todo-checkbox")
         //console.log("checkbox var", checkboxvar)
-        console.log("object(s) completed", userImIteratingOn.completed)
+        console.log("this item is incomplete", completionStatus)
         listDIV.classList.remove("complete")
-        } else {
+        } if (completionStatus === true) {
             listDIV.classList.add("complete")
-        }
+        //}
         //document.getElementsByTagName("input").checked = true;
         //checkboxvar.setAttribute("checked")
-})
+    }})
+    
+}
+const completeOrNot = getItemCompletionStatus(todoItems)
+
 
 
 // function onPageLoad () {

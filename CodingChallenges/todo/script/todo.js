@@ -1,8 +1,8 @@
 let todoItems = [
     { id: 1, text: "Take out trash and recycling", completed: true},
-    { id: 2, text: "Pick up dry cleaning", completed: false},
+    { id: 2, text: "Pick up dry cleaning", completed: true},
     { id: 3, text: "Get oil change", completed: false},
-    { id: 4, text: "Write thank-you notes", completed: true},
+    { id: 4, text: "Write thank-you notes", completed: false},
 ]
 , id=5;
 console.log("todoItems: ", todoItems)
@@ -24,6 +24,7 @@ console.log("item 3: ", item3.text)
 
 const item4 = todoItems.find(item => item.id === 4)
 console.log("item 4: ", item4.text)
+
 
 
 
@@ -63,7 +64,7 @@ function addToDo(toDo,){
     
   
     const item = `
-                <div id="todoDIV" class="todo complete" class="todo" >
+                <div id="todoDIV" class="todo complete">
                 <input  type="checkbox" onclick="myFunction" class="todo-checkbox" checked/>
                 <span class ="todo-text" >${toDo}</span>
                 </div>
@@ -85,18 +86,22 @@ addToDo(item4.text)
 //     todoDIV.classList.remove("todo");
 //     }}
 
+//MAYBE I CAN CREATE A SWITCH STATEMENT INSTEAD OF AN IF/ELSE?
+//THE SWITCH STATEMENT WILL SWITCH "TODO" WITH "TODO COMPLETE"
+//I PRAY IT WORKS.
+// list.forEach(object => {
+//     if (object.completed === true){ 
+//     const element = document.getElementById("todoDIV");
+//     element.classList.remove("todo_complete");
+//     element.classList.add("todo");
+//     }
+// })
 
-todoItems.forEach(object => {
-    if (object.completed === false){ 
-    const element = document.getElementById("todoDIV");
-    element.parentElement.classList.remove("todo complete");
-    }
-})
 
 //-------------- event listener for checkbox ----------------
 
-// const listDIV = document.getElementById("todoDIV")
-// console.log("listDIV", listDIV)
+const listDIV = document.getElementById("todoDIV")
+console.log("listDIV", listDIV)
 
 
 // function toggleComplete(inputElement){
@@ -126,16 +131,19 @@ todoItems.forEach(object => {
 // const taskIncomplete = item.completed === false
 // console.log("task incomplete", taskIncomplete)
 
-todoItems.forEach(object => {
-    if (object.completed === true) {
-        console.log("object(s) completed", object.completed)
-        list.parentElement.classList.add("completed")
+todoItems.forEach(userImIteratingOn => {
+        const completionStatus = userImIteratingOn.completed
+        if (completionStatus === false) {
+        //const checkboxvar = document.getElementsByTagName("input" && "todo-checkbox")
+        //console.log("checkbox var", checkboxvar)
+        console.log("object(s) completed", userImIteratingOn.completed)
+        listDIV.classList.remove("complete")
+        } else {
+            listDIV.classList.add("complete")
+        }
         //document.getElementsByTagName("input").checked = true;
-        
-    // const checkboxvar = document.querySelector(".todo-checkbox")
-    // console.log("checkbox var", checkboxvar)
-    // checkboxvar.setAttribute("checked")
-}})
+        //checkboxvar.setAttribute("checked")
+})
 
 
 // function onPageLoad () {

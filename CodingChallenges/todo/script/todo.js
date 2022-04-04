@@ -7,6 +7,11 @@ let todoItems = [
 , id=5;
 console.log("todoItems: ", todoItems)
 
+//------------------------------
+// const checkboxState1 = (document.querySelector(".todo-checkbox").checked = true)
+// console.log("checkboxstate1", checkboxState1)
+
+
 //-------------- todo items as variables-------------
 const item = todoItems.find(item => item.id === 1)
 console.log("item 1: ", item.text)
@@ -48,26 +53,19 @@ if (getDeleted.parentNode) {
     getDeleted.parentNode.removeChild(getDeleted)
 }
 
-// ------- create a root element to attach divs to main-todo-list------
-
- const rootElement = document.getElementById("main-todo-list")
- console.log("rootElement: ", rootElement)
-
 
 ///--------- todo function ---------------
 
 const list= document.getElementById("main-todo-list")
-const lineThrough = document.getElementsByClassName("todo complete")
+const lineThrough = document.getElementsByClassName(".todo complete")
 console.log("linethrough", lineThrough)
-function addToDo(toDo, id, completed){
-
-    //const DONE = completed ? checked : unchecked 
-    const LINE = completed ? lineThrough : "";
-
+function addToDo(toDo,){
+    
+  
     const item = `
-                <div class="todo">
-                <input type="checkbox" class=".todo-checkbox"/>
-                <span class ="todo-text ${LINE}">${toDo}</span>
+                <div id="todoDIV" class="todo complete" class="todo" >
+                <input  type="checkbox" onclick="myFunction" class="todo-checkbox" checked/>
+                <span class ="todo-text" >${toDo}</span>
                 </div>
             `
     const position = "beforeend";
@@ -77,27 +75,47 @@ function addToDo(toDo, id, completed){
 
 addToDo(item.text)
 addToDo(item2.text)
-addToDo(item3.text)
+addToDo(item3.text) 
 addToDo(item4.text)
+
+//--------------- editing class list instead ----------
+
+// function myFunction(){ 
+//     const todoDIV = document.getElementById("todoDIV");
+//     todoDIV.classList.remove("todo");
+//     }}
+
+
+todoItems.forEach(object => {
+    if (object.completed === false){ 
+    const element = document.getElementById("todoDIV");
+    element.parentElement.classList.remove("todo complete");
+    }
+})
 
 //-------------- event listener for checkbox ----------------
 
-function toggleComplete(inputElement){
-    if(inputElement.checked === false) {
-        inputElement.parentElement.classList.remove("todo complete");
-    } else {
-        inputElement.parentElement.classList.add("todo complete");
-    }
+// const listDIV = document.getElementById("todoDIV")
+// console.log("listDIV", listDIV)
 
-}
 
-list.addEventListener("change", function (event){
-        if(event.target.tagName === "input" && event.target.type === "checkbox") {
-            toggleComplete(event.target)
-        }
-})
+// function toggleComplete(inputElement){
+//     console.log("input element", inputElement)
+//     if(inputElement.checked === false) {
+//         inputElement.parentElement.classList.remove("todo complete");
+//     } else {
+//         inputElement.parentElement.classList.add("todo complete");
+//     }
 
-console.log("main list", list)
+// }
+
+// listDIV.addEventListener("change", function (event){
+//         if(event.target.tagName === "input" && event.target.type === "checkbox") {
+//             toggleComplete(event.target)
+//         }
+// })
+
+// console.log("main list", list)
 
 
 //if the boolean is true, the checkbox should be checked
@@ -110,7 +128,7 @@ console.log("main list", list)
 
 todoItems.forEach(object => {
     if (object.completed === true) {
-        console.log(object.completed)
+        console.log("object(s) completed", object.completed)
         list.parentElement.classList.add("completed")
         //document.getElementsByTagName("input").checked = true;
         

@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="App">
       <h1 id="website-footer" className="App">Let's Talk.</h1>
-      {/* put button for an email call to action */}
+      <h6> this will be a button</h6>
     </footer>
   );
 }

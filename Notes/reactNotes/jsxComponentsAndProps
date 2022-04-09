@@ -1,0 +1,38 @@
+JSX looks like HTML but it is not. 
+
+its important to note that you cannot render more than 1 jsx element at a time.
+
+for example having an <h1></h1> and a seperate <p></p> element is not allowed. 
+however, if you wrap these two in a <div></div> it is ok.
+
+
+- User-Defined Components must be Capitalized !!!!!
+- Props are set to true by default 
+- Spread Attributes
+
+# Components and Props
+
+
+What is the purpose of having seperate component files? whats the benefit?
+- components let you split UI into independent, reusable pieces, and think about each piece in isolation.
+- lets you focus on one thing at a time
+- probably helps you track down oopsies if you are only working on one component at a time
+- conceptually components are like JS functions. They accept arbitrary inputs (called props) and return React elements that describe what should appear on the screen.
+
+
+what is a "props argument"?
+
+
+In the documentation: 
+it mentions  that you can use ES6 to define a component. But we are confused on how exactly the example works. because render() is empty. so does props pass in through there? where does it come from?
+
+
+Always write component names with capital letters, react treats components with lowercase letters as DOM tags.
+
+<div /> is an html tag
+but <Welcome /> is a component
+
+
+if something is gonna be reused multiple times like a comment, or avatar etc it should be a component so it is easy to reuse. Also if it is complicted like a feedstory, comment, or and app it is likely it should be in its own component.
+
+!!!! All react components must be pure functions. you should not be changing the inputs. 

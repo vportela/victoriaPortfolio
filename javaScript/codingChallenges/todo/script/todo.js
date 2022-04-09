@@ -1,6 +1,6 @@
 let todoItems = [
-    { id: 1, text: "Take out trash and recycling", completed: false},
-    { id: 2, text: "Pick up dry cleaning", completed: true},
+    { id: 1, text: "Take out trash and recycling", completed: true},
+    { id: 2, text: "Pick up dry cleaning", completed: false},
     { id: 3, text: "Get oil change", completed: true},
     { id: 4, text: "Write thank-you notes", completed: true},
 ]
@@ -62,7 +62,7 @@ const list= document.getElementById("main-todo-list")
 //console.log("linethrough", lineThrough)
 function addToDo(toDo,id){
     
-    
+    //interpolating
     const todoItem = `
                 <div id=${id} class="todo" >
                 <input  type="checkbox" id="checkboxId" onclick="toggle" class="todo-checkbox"/>
@@ -79,13 +79,15 @@ addToDo(item3.text, item3.id)
 addToDo(item4.text, item4.id)
 
 
-let checkboxitem = item.completed = false;
-console.log("default value of boolean is ", checkboxitem)
+//-------------- checkbox toggle function (in progress) --------
 
-function toggle(){ 
-    checkboxitem = !checkboxitem;
-    console.log("toggled bool is", checkboxitem);
-    }
+// let checkboxitem = item.completed = false;
+// console.log("default value of boolean is ", checkboxitem)
+
+// function toggle(){ 
+//     checkboxitem = !checkboxitem;
+//     console.log("toggled bool is", checkboxitem);
+//     }
     
 
 

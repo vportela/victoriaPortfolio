@@ -1,13 +1,13 @@
 import React from 'react';
 
 const Likes = (props) => (
-    <div>
-        <div>
+    
+        <div className='likes-list'>
             <h3>Likes:</h3>
-            {props.likes.map(likes => <p key={likes}>{likes}</p>)}
+            {props.likes.map(likes => <ul key={likes}>{likes}</ul>)}
         </div>
     
-    </div>
+    
   );
 
 export default Likes;

@@ -1,12 +1,16 @@
 import React from 'react';
-
+import Logo from './Logo.js'
 
 const Footer = () => {
   return (
-    <footer className="App">
-      <h1 id="website-footer" className="App">Let's Talk.</h1>
-      <h6> this will be a button</h6>
+    <footer className="footer">
+      <Logo/>
+      <div className='footer-content'>    
+        <h1 className='footer-text'>Wanna work together?</h1>
+        <button className="footer-button">Let's Talk</button>
+      </div>
     </footer>
+
   );
 }
 

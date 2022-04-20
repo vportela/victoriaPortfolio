@@ -7,24 +7,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.footer-text {
-  color: white;
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
-.footer-button {
-  background-color: #1ea8e3;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  /* display: inline-block; */
-  font-size: 16px;
-  height: 60px;
-}
-
-
-
-
-
-
-
-
-

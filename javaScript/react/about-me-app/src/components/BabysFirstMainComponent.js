@@ -5,7 +5,6 @@ import Likes from './Likes.js';
 import Footer from './Footer.js';
 import Dislikes from './Dislikes.js';
 import Navigation from './Navigation.js';
-import MyFriend2 from './Myfriend2';
 
 
 
@@ -23,27 +22,24 @@ const friends = [
 
 const MainComponent = (props) => (
   <div>
-    <Navigation
-    />
-    <Intro
-    />
-    <Likes
-    likes={likes}
-    />
-    <Dislikes
-    dislikes={dislikes}
-    />
-    <h2> Using MyFriend3</h2>
-    {friends.map(myFriend => {
-      return (
-        <MyFriend2
-          friend={myFriend}
-    />
-      )
-    })}
+    <Navigation/>
+    <div style={{backgroundColor: "pink", display: "flex"}}>
+      <div style={{backgroundColor: "red", width: "30%"}}>
+        <Intro/>
+      </div>
+      <div style={{backgroundColor: "orange", width: "30%", display:"flex"}}>
+        <Likes
+          likes={likes}
+        />
+        <Dislikes
+          dislikes={dislikes}
+        /> 
+      </div>
+    </div>
     
-    <Footer
-    />
+  
+   
+    <Footer/>
     
   </div>
 )

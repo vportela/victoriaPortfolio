@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Dislikes = (props) => (
-    <div className="dislikes_list" >
+    <div>
          <h3>Dislikes:</h3>
             {props.dislikes.map(dislikes => <li key={dislikes}>{dislikes}</li>)}
     

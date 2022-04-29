@@ -27,16 +27,12 @@ const App = () => {
 
   const [matchResult, setMatchResult] = useState('')
   const [matchResultColor, setMatchResultColor] = useState("black")
-//---------------------------------------------------------this is actively a mess pls do not percieve : ) ----------------------    
+
   const handleFighterPick = (fighterAttack)=> {
     const randomNumber = Math.floor(Math.random() * 3);
     console.log("randomNumber", randomNumber)
 
-    // if(randomNumber === 0){
-    //   setCpuAttack("Rock")
-    // } if (randomNumber === 1){
-    //   setCpuAttack("Paper")
-    // }
+   
     const cpuAttack = randomNumber === 0 ? "Rock" : randomNumber === 1 ? "Paper" : "Scissors" 
 
     if (fighterAttack === "Rock" && cpuAttack === "Rock" ) {
@@ -48,21 +44,19 @@ const App = () => {
       } else if (fighterAttack==="Rock" && cpuAttack === "Scissors") {
         setMatchResultColor("green")
         setMatchResult(`You picked ${fighterAttack}, CPU picked ${cpuAttack}, result: You Win!`)
-      };
-    if (fighterAttack === "Paper" && cpuAttack === "Paper" ) {
+      } else if (fighterAttack === "Paper" && cpuAttack === "Paper" ) {
         setMatchResultColor("blue")
         setMatchResult(`You picked ${fighterAttack}, CPU picked ${cpuAttack}, result: TIE`)
-      } else if (fighterAttack === "Paper" &&cpuAttack === "Scissors") {
+      } else if (fighterAttack === "Paper" && cpuAttack === "Scissors") {
         setMatchResultColor("red")
         setMatchResult(`You picked ${fighterAttack}, CPU picked ${cpuAttack}, result: You Lose : (`)
       } else if (fighterAttack === "Paper" && cpuAttack === "Rock") {
         setMatchResultColor("green")
         setMatchResult(`You picked ${fighterAttack}, CPU picked ${cpuAttack}, result: You Win!`)
-      }
-    if (fighterAttack === "Scissors" && cpuAttack === "Scissors" ) {
+      } else if (fighterAttack === "Scissors" && cpuAttack === "Scissors" ) {
         setMatchResultColor("blue")
         setMatchResult(`You picked ${fighterAttack}, CPU picked ${cpuAttack}, result: TIE`)
-      } else if (fighterAttack === "Scissors" &&cpuAttack === "Rock") {
+      } else if (fighterAttack === "Scissors" && cpuAttack === "Rock") {
         setMatchResultColor("red")
         setMatchResult(`You picked ${fighterAttack}, CPU picked ${cpuAttack}, result: You Lose : (`)
       } else if (fighterAttack === "Scissors" && cpuAttack === "Paper") {
@@ -96,8 +90,37 @@ const App = () => {
   // if rock === rock you tie, if rock 
 // in the case of cpu attack === 0 switch result to rock, if cpu attack === 1 switch result
 // to paper, if cpu attack === 2 switch result to scissors
-// if randomNumber === 0, set cpu.attack: to "Rock" then if fighter attack === cpu.attack it's a tie
-// if fighter === rock
+// clean up code with switch statements 
+
+const [userChoice,setUserChoice] = useState(null)
+
+const handleClick = (value) => {
+
+  
+  setUserChoice(`it's ${value}`)
+}
+
+const choices = [
+  {
+    id: 1,
+    src: "rock.jpeg",
+    text: "Rock"
+  },
+  {
+    id: 2,
+    src: "paper.jpeg",
+    text: "Paper"
+  },
+  {
+    id: 3,
+    src: "scissors.jpeg",
+    text: "Scissors"
+  }
+]
+
+// {images.map((imgSrc, index) => (<img src={imgSrc.src} key={index} alt="choices"/>))}
+
+
 
   return (
     <div>
@@ -135,7 +158,20 @@ const App = () => {
           <h3>Choose your fighter</h3>
         </div>
 
+        {/* ------------------------------ */}
+
+        <h1>click me!</h1>
+          {choices.map((choice) => 
+            <div key={choice.id} onClick= {() => handleClick(choice.text)}>
+             <img src={choice.src}/>
+            </div>
+          )}
+            <h2>{userChoice}</h2>
+         
+          {/* ------------------------------ */}
         <div style={{display: "flex", justifyContent: "center"}}>
+
+      
 
           <div onClick={() => handleFighterPick("Rock")} >
             <img src="rock.jpeg"/>

@@ -74,29 +74,42 @@ function App() {
 
 //if your state changes, your ui rerenders. keep this in mind. big hint! 
 
-  const [itemsRemaining, setItemsRemaining] = useState(todos.length)
-  const [check, setCheck] = useState("")
-  const handleCheckClick = (todoItem, e) => {
-    const checked = e.target.checked
+
+  const [itemsRemaining, setItemsRemaining] = useState(todos.filter(todo => todo.complete === false).length)
+ 
+
+  const handleChange = (todoItem) => {
+    // console.log("e.target.checked", e.target.checked)
+    // console.log("id",todoItem.id)
+    
     const completeStatus = todoItem.complete 
+
     if (completeStatus === false){
       // todoItem.complete = true //this is a field of the object, not a property
       // todoItem.class = "todo complete"
       //.find the object whos id that matches the todoItem id, thats how you know which one to change.
      const newTodos = todos.map(todo => {
       //  console.log("todo.id", todo.id)
+      // console.log("e.target.checked inside newTodos .map", e.target.checked)
        if(todo.id === todoItem.id) {
-         return {...todo, complete: true, objectClass: "todo complete"}
+        // console.log("e.target.checked after if statement", e.target.checked)
+         return {...todo, complete: true, objectClass: "todo complete", }
+         
        }
        return todo
+       
       });
       //you could do 4 each and push the result
       //you can use .map which will give you a new array
       //newTodos has to be a new array
       //react update previous state of array of objects
       setTodos(newTodos)
-      setCheck("checked")
-      const todosRemaining = newTodos.filter(todo => todo.complete === false).length
+
+      const todosRemaining = newTodos.filter(todo => todo.complete === false).length //filter goes through the array of objects (like .map), creates a new array with all the items that return "true" in the function.
+      //in this particular case, when todo.complete===false it is technically true as far as the .filter is concerned and it will add that todo to the array it is creating.
+      //.filter returns an array, when .length is added, you are saying for that new array .filter created, give me the length (number of things in array)
+      
+      //look up how reduce works. .filter and .map is using reduce under the hood (kinda), look it up.
       console.log("todo items remaining", todosRemaining)
       setItemsRemaining(todosRemaining)
       
@@ -141,25 +154,7 @@ function App() {
 
     e.target.addingTodoItem.value=""
   }
-  const [hideOrShowItems, setHideOrShowItems] = useState("Hide completed items")
-  const handleHideShowClick = (e) => {
-
-    if(hideOrShowItems === "Hide completed items"){
-      setHideOrShowItems("Show completed items")
-    } else if (hideOrShowItems === "Show completed items"){
-      setHideOrShowItems("Hide completed items")
-    }
-
-    const remainingItems = todos.filter(todos => {
-      if(todos.complete === false) {
-        console.log("remainingItems",todos)
-
-      }
-    })
-    // console.log("hiddenItems",hiddenItems)
-  }
-  
-
+  const [hideItems, setHideItems] = useState(false)
 
   // a class will be repeated, so if they all have the same class name, it will happen to all of them.
   //so changing the class name like this, is not the answer you think it is.
@@ -171,12 +166,17 @@ function App() {
       <div className="app">
         <h1>Things to do</h1>
         <div id="main-todo-list" className="todo-list">
-        {todos.map((item) => 
+          
+         {/* .filter returns a new array with all the things that return "true"
+         so when item.completed is equal to the opposite of hide items, .map the resulting array.
+         this is how it will show the completed or incomplete. */}
+        {todos.filter((item) => !hideItems || item.complete === !hideItems).map((item) => 
           <div className={item.objectClass} id={item.id} key={item.id * 2} > 
-            <input type="checkbox" className="todo-checkbox" onClick= {(e) => handleCheckClick(item, e)}/>
+            <input type="checkbox" className="todo-checkbox" checked={item.complete} onChange= {() => handleChange(item)}/>
             <span className="todo-text">{item.text}</span>
           </div>
         )}
+        
           
         </div>
         <form onSubmit={(e) => handleSubmit(e)}>
@@ -184,7 +184,7 @@ function App() {
         </form>
         
         <p><span id="remaining-count">{itemsRemaining}</span> items remain</p>
-        <button onClick={(e) => handleHideShowClick(e)}>{hideOrShowItems}</button>
+        <button onClick={(e) => setHideItems(!hideItems)}>{hideItems ? "Show completed items" : "Hide completed items"}</button>
       </div>
   </div>
   );

@@ -2,24 +2,20 @@ import logo from './logo.svg';
 import './App.css';
 import React, { useState } from 'react';
 
-
-
+//stwetch goals
+//1. no empty strings allowed to become todo items!!!! must have text ** prevent!!! if you enter this it wont work!!
+//2. no entries that are just spaces, allowed. *** prevent~!!!! (if you google this the right way, it will be the first response)
+//3. no empty spaces before or after the word ** let them do this, but make it so the empty spaces are /actually/ removed upon rendering in the list. 
+//!!! not trying to prevent the user from putting these in.
+//this are changes to make to the field once they are entered. 
+//4. set a prevention (aslo called validation) a max length of 100 characters.
+// ^^^^ users cannot put in a field more than 100 characters
 //show all the to do list items
 //make a checkbox appear checked on load
 //make css appear when checked === true
 
 
-// an object with the text, checked boolean. 
-//have it display the text, and if boolean === true, apply CSS.
-// on click (checkmark) run an anon function which calls a function that handles click
-//function will check boolean, if true mark false, and if false mark true + add css styles.
 
-//e.target.checked
-//----------------- baby steps
-// when checked === true, add "todo complete" class
-//when checked === false, change class to "todo"
-//when checked, console log the id of each item
-// make style change happen when checked && id matches?
 
 function App() {
 
@@ -126,22 +122,31 @@ function App() {
       const todosRemaining = newTodos.filter(todo => todo.complete === false).length
       // console.log("todo items remaining", todosRemaining)
       setItemsRemaining(todosRemaining)
+      //when you change state, it causes react to look for where that variable is being used and forces react to rerender that part of the dom.
     }
 
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
+  
+    const lastInArray = todos[todos.length - 1]
+    console.log("lastInArray", lastInArray.id)
     
-   const lastInArray = todos[todos.length - 1]
-   console.log("lastInArray", lastInArray.id)
-
+      if(e.target.addingTodoItem.value === "" || e.target.addingTodoItem.value.match(/^ *$/)) {
+        console.log("NO EMPTY STRING ALLOWED")
+      } else if (
+        e.target.addingTodoItem.value.length > 100
+      ){ 
+        console.log("STRING TOO LONG")
+      } else {
+      
     setTodos(
       [ 
         ...todos, 
         {
           id: lastInArray.id + 1,
-          text: e.target.addingTodoItem.value,  //you would obv do an e.target.value type thing here not hard code a string
+          text: e.target.addingTodoItem.value.trim(),  //you would obv do an e.target.value type thing here not hard code a string
           complete: false,
           objectClass: "todo"
         }
@@ -153,6 +158,27 @@ function App() {
     setItemsRemaining(todosRemaining)
 
     e.target.addingTodoItem.value=""
+    
+    }
+  
+
+    // setTodos(
+    //   [ 
+    //     ...todos, 
+    //     {
+    //       id: lastInArray.id + 1,
+    //       text: e.target.addingTodoItem.value,  //you would obv do an e.target.value type thing here not hard code a string
+    //       complete: false,
+    //       objectClass: "todo"
+    //     }
+    //   ]
+    // )
+    // const todosRemaining = todos.filter(todo => todo.complete === false).length+1
+    // // console.log("todo items remaining", todosRemaining)
+    // // console.log("todos", todos)
+    // setItemsRemaining(todosRemaining)
+
+    // e.target.addingTodoItem.value=""
   }
   const [hideItems, setHideItems] = useState(false)
 
@@ -170,7 +196,7 @@ function App() {
          {/* .filter returns a new array with all the things that return "true"
          so when item.completed is equal to the opposite of hide items, .map the resulting array.
          this is how it will show the completed or incomplete. */}
-        {todos.filter((item) => !hideItems || item.complete === !hideItems).map((item) => 
+        {todos.map((item) => !(item.complete === true && hideItems) &&
           <div className={item.objectClass} id={item.id} key={item.id * 2} > 
             <input type="checkbox" className="todo-checkbox" checked={item.complete} onChange= {() => handleChange(item)}/>
             <span className="todo-text">{item.text}</span>
@@ -188,6 +214,6 @@ function App() {
       </div>
   </div>
   );
-}
+} 
 
 export default App;

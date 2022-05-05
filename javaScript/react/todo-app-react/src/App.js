@@ -48,25 +48,6 @@ function App() {
     ]
   )
 
-  //-------------- this could actually be good for creating new todos with an onsubmit in the input
-  // the ...todos keeps the old todo items and when the event triggers the function it will add these new
-  //objects into the array which is pretty sick.
-  // setTodos(
-  //   [ ...todos, {
-  //     id: 4,
-  //     text: "poop",  //you would obv do an e.target.value type thing here not hard code a string
-  //     complete: false,
-  //     class: "todo"
-  //   }
-  //   ]
-  // )
-
-// items remaining baby steps-----------------
-// on click HandleCheckClick recieves the item that was clicked.
-// if that item's complete status is false, update complete:true and objectClass:"todo complete" using .map
-// on click, after the if statements, filter through new todos and see which ones are true
-// items with complete: true will add to the counter (idk how yet)
-
 
 //if your state changes, your ui rerenders. keep this in mind. big hint! 
 
@@ -124,7 +105,6 @@ function App() {
       setItemsRemaining(todosRemaining)
       //when you change state, it causes react to look for where that variable is being used and forces react to rerender that part of the dom.
     }
-
   }
 
   const handleSubmit = (e) => {
@@ -133,12 +113,13 @@ function App() {
     const lastInArray = todos[todos.length - 1]
     console.log("lastInArray", lastInArray.id)
     
-      if(e.target.addingTodoItem.value === "" || e.target.addingTodoItem.value.match(/^ *$/)) {
+      if(e.target.addingTodoItem.value === "" || e.target.addingTodoItem.value.trim() === "") {
         console.log("NO EMPTY STRING ALLOWED")
+        setErrorMessage(" Please enter a valid task")
       } else if (
-        e.target.addingTodoItem.value.length > 100
-      ){ 
+        e.target.addingTodoItem.value.length > 100){ 
         console.log("STRING TOO LONG")
+        setErrorMessage(" Task cannot be over 100 characters")
       } else {
       
     setTodos(
@@ -156,30 +137,32 @@ function App() {
     // console.log("todo items remaining", todosRemaining)
     // console.log("todos", todos)
     setItemsRemaining(todosRemaining)
-
     e.target.addingTodoItem.value=""
     
-    }
-  
+      }
+   }
+   const [secondErrorMessage, setSecondErrorMessage] = useState("")
+   const [errorMessage, setErrorMessage] = useState("")
+   const handleFormChange = (e) => {
+    console.log("e.target on change", e.target.value)
 
-    // setTodos(
-    //   [ 
-    //     ...todos, 
-    //     {
-    //       id: lastInArray.id + 1,
-    //       text: e.target.addingTodoItem.value,  //you would obv do an e.target.value type thing here not hard code a string
-    //       complete: false,
-    //       objectClass: "todo"
-    //     }
-    //   ]
-    // )
-    // const todosRemaining = todos.filter(todo => todo.complete === false).length+1
-    // // console.log("todo items remaining", todosRemaining)
-    // // console.log("todos", todos)
-    // setItemsRemaining(todosRemaining)
-
-    // e.target.addingTodoItem.value=""
+    e.target.value.trim() === "" ? setSecondErrorMessage(" New todos must contain valid characters") : setSecondErrorMessage("");
+    e.target.value.length > 10 ? setErrorMessage(" New Todo cannot be over 100 characters") : setErrorMessage("")
+  //   if(e.target.value.length > 10){ 
+  //   console.log("TASK TOO LONG")
+  //   setErrorMessage("Task cannot be over 100 characters")
+  // } else if ( e.target.value.length < 10){
+  //   console.log("message is under max character length")
+  //   setErrorMessage("")
+  // } else if(e.target.value.trim() === ""){
+  //     console.log("empty entry")
+  //     setErrorMessage("New Todos must contain valid characters")
+  //   } else{ 
+  //     setErrorMessage("")
+  //   } 
   }
+
+
   const [hideItems, setHideItems] = useState(false)
 
   // a class will be repeated, so if they all have the same class name, it will happen to all of them.
@@ -205,8 +188,9 @@ function App() {
         
           
         </div>
-        <form onSubmit={(e) => handleSubmit(e)}>
-        <input type="text" placeholder="New todo" name="addingTodoItem"/>
+        <form  onSubmit={(e) => handleSubmit(e)}>
+        <input onChange={(e) => handleFormChange(e)} type="text" placeholder="New todo" name="addingTodoItem"/>
+        <p style={{color:"red"}}>{errorMessage}{secondErrorMessage}</p>
         </form>
         
         <p><span id="remaining-count">{itemsRemaining}</span> items remain</p>

@@ -75,10 +75,10 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("ive been clicked")
+    // console.log("ive been clicked")
     const lastInArray = initialVideos[initialVideos.length - 1]
-    console.log(e.target.videoTitle.value)
-    console.log(e)
+    // console.log(e.target.videoTitle.value)
+    // console.log(e)
     setVideos(
       [ 
         {
@@ -102,8 +102,12 @@ function App() {
 
   // on load, upload form is hidden
   //when nav + button is clicked, show upload form
-  const showHide = () => {
-    console.log("ive been clicked")
+  const [hideForm, setHideForm] = useState(true)
+  const showHide = (hideForm) => {
+    // console.log("ive been clicked")
+    if (hideForm === true) {
+      // console.log("form is true")
+    }
   }
 
 
@@ -119,7 +123,7 @@ function App() {
         <button>Search</button>
         </div>
         <div>
-          <button onClick={showHide}>+</button>
+          <button onClick={showHide(hideForm)}>+</button>
         </div>
         
 

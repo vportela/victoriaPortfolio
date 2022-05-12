@@ -26,24 +26,28 @@ function App() {
         text: "Take out trash and recycling",
         complete: true,
         objectClass: "todo complete",
+        createdAt: new Date("2022-05-04T11:30:00-04:00"),
       },
       {
         id: 2,
         text: "Pick up dry cleaning",
         complete: false,
-        objectClass: "todo"
+        objectClass: "todo",
+        createdAt: new Date("2022-05-05T12:30:00-04:00"),
       },
       {
         id: 3,
         text: "Get oil change",
         complete: false,
-        objectClass: "todo"
+        objectClass: "todo",
+        createdAt: new Date("2022-05-05T01:30:00-04:00"),
       },
       {
         id: 4,
         text: "Write thank-you notes",
         complete: false,
-        objectClass: "todo"
+        objectClass: "todo",
+        createdAt: new Date("2022-05-05T05:30:00-04:00"),
       },
     ]
   )
@@ -60,7 +64,7 @@ function App() {
     // console.log("id",todoItem.id)
     
     const completeStatus = todoItem.complete 
-
+console.log("time created", todoItem.createdAt)
     if (completeStatus === false){
       // todoItem.complete = true //this is a field of the object, not a property
       // todoItem.class = "todo complete"
@@ -109,7 +113,8 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
+  // console.log("date", Date())
+
     const lastInArray = todos[todos.length - 1]
     console.log("lastInArray", lastInArray.id)
     
@@ -129,10 +134,12 @@ function App() {
           id: lastInArray.id + 1,
           text: e.target.addingTodoItem.value.trim(),  //you would obv do an e.target.value type thing here not hard code a string
           complete: false,
-          objectClass: "todo"
+          objectClass: "todo",
+          createdAt: new Date()
         }
       ]
     )
+   
     const todosRemaining = todos.filter(todo => todo.complete === false).length+1
     // console.log("todo items remaining", todosRemaining)
     // console.log("todos", todos)
@@ -147,7 +154,7 @@ function App() {
     console.log("e.target on change", e.target.value)
 
     e.target.value.trim() === "" ? setSecondErrorMessage(" New todos must contain valid characters") : setSecondErrorMessage("");
-    e.target.value.length > 10 ? setErrorMessage(" New Todo cannot be over 100 characters") : setErrorMessage("")
+    e.target.value.length > 100 ? setErrorMessage(" New Todo cannot be over 100 characters") : setErrorMessage("")
   //   if(e.target.value.length > 10){ 
   //   console.log("TASK TOO LONG")
   //   setErrorMessage("Task cannot be over 100 characters")
@@ -160,6 +167,10 @@ function App() {
   //   } else{ 
   //     setErrorMessage("")
   //   } 
+  }
+
+  const handleDateClick = () => {
+    console.log("date these entries if u dare")
   }
 
 
@@ -180,7 +191,7 @@ function App() {
          so when item.completed is equal to the opposite of hide items, .map the resulting array.
          this is how it will show the completed or incomplete. */}
         {todos.map((item) => !(item.complete === true && hideItems) &&
-          <div className={item.objectClass} id={item.id} key={item.id * 2} > 
+          <div className={item.objectClass} id={item.id} key={item.id * 2} onClick={() => handleChange(item)} > 
             <input type="checkbox" className="todo-checkbox" checked={item.complete} onChange= {() => handleChange(item)}/>
             <span className="todo-text">{item.text}</span>
           </div>
@@ -195,6 +206,7 @@ function App() {
         
         <p><span id="remaining-count">{itemsRemaining}</span> items remain</p>
         <button onClick={(e) => setHideItems(!hideItems)}>{hideItems ? "Show completed items" : "Hide completed items"}</button>
+        <button onClick={(e) => handleDateClick()}>Sort items by date</button>
       </div>
   </div>
   );

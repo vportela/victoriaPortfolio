@@ -114,9 +114,15 @@ function App() {
   return (
     <div className="App">
       <div >
-        <nav style={{display:"flex", flexDirection:"row", justifyContent: "space-between", alignItems: "center",
-          padding: " 5px 2%"  
-        }}>
+        <nav 
+          style={{
+            display:"flex", 
+            flexDirection:"row", 
+            justifyContent: "space-between", 
+            alignItems: "center",
+            padding: " 5px 2%"  
+          }}
+        >
         <div><h1>YouToob</h1></div>
         <div>
         <input/>
@@ -141,7 +147,11 @@ function App() {
         </form>
         {/* <img src={imageURL}/> */}
         {videos.map((video) => 
-           <div id={video.id} key={video.id} className='video-and-description' style={{display: "flex", padding:"5px 2%"}}>
+           <div 
+            key={video.id} 
+            className='video-and-description' 
+            style={{display: "flex", padding:"5px 2%"}}
+           >
            <img src={video.thumbnail}/>
            
            <div style={{padding: "5px 2%"}}>

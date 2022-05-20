@@ -3,8 +3,11 @@ import React, { useEffect, useState } from 'react';
 import CustomizeThumbnail from "./images/customize-thumbnail.png"
 import ReactPlayer from "react-player";
 import { url } from 'inspector';
-// import newVideo from "./video/newVideo.mp4"
 
+// ----------------- baby steps -------------
+// deleting a video:
+// add a button that when clicked, marks that item false, filters through the array, and removes it
+// giving back the new array with the deleted thing
 
 type MyVideo = {
 
@@ -84,19 +87,14 @@ function App() {
     let userName = customTarget.userName.value;
     console.log("videoFilePath", videoFilePath)
     console.log("videos", videos)
-    const lastInArray = videos[0]
-    //it cant be the last in the array because you are spreading underneath the new object, so your "last"
-    //id is always going to be 1 so, you get repeating ids
-    //you need to find the beginning of the array and basically do that whole shebang but with
-    //the first one 
-
+    const firstInArray = videos[0]
     
-    console.log("lastInArray", lastInArray)
+    console.log("lastInArray", firstInArray)
     
     setVideos(
       [ 
         {
-          id: lastInArray.id + 1,
+          id: firstInArray.id + 1,
           url: videoFilePath,
           title: videoTitle,
           description: videoDescription,
@@ -129,6 +127,13 @@ function App() {
   }
 
 
+
+  const handleDelete = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, video: MyVideo) => {
+    console.log("delete button has been clicked!")
+    console.log("e", e)
+    console.log("video.id", video.id)
+    setVideos(videos.filter((video2) => video2.id !== video.id))
+  }
 
   
   return (
@@ -184,6 +189,7 @@ function App() {
              <h4>{video.title}</h4>
              <p> {video.description}</p>
              <h5>{video.user}</h5>
+             <button onClick={(e) => handleDelete(e, video)} >Delete Video</button>
            </div>
          </div>
         )}

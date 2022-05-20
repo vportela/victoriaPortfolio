@@ -13,6 +13,7 @@ type MyVideo = {
   description:string,
   user:string,
   likes: number,
+  dislikes: number
 }
 
 
@@ -24,6 +25,7 @@ const initialVideos: MyVideo[] = [
     description: "A minimal, cozy and pastel aesthetic iOS setup for a more focused and calming digital experience.",
     user: "maisyleigh",
     likes: 3,
+    dislikes: 0,
   },
   // {
   //   url:"https://www.youtube.com/watch?v=sellkoKeucE&t=1s",
@@ -70,7 +72,6 @@ function App() {
   const [videos, setVideos] = useState<MyVideo[]>(initialVideos)
   // const [imageURL, setImageURL] = useState<string>("")
   const [videoFilePath, setVideoFilePath] = useState<string | undefined>(undefined)
-  const [newLike, setNewLike] = useState<number>(0)
  
   
 //the data type must be respected by your setter function as well. 
@@ -98,7 +99,8 @@ function App() {
           title: videoTitle,
           description: videoDescription,
           user: userName,
-          likes: 0
+          likes: 0,
+          dislikes: 0
         },
         ...videos, 
       ]
@@ -151,14 +153,26 @@ function App() {
       });
     console.log("newLikesMap", newLikesMap)
 
-    setVideos(newLikesMap)
-//ok so .map always returns an array, and newLike's type is a number so they are incompatible
-//perhaps a hacky solution is to create an array, and every time the button is clicked a new number
-//is added to the array? and then you get the length of that array to get the likes. 
+    setVideos(newLikesMap)   
+  }
 
-//when there is a single video i can make it work correctly. When there are multiple videos I have trouble making
-//it change only one because all the video.likes in the .map share the same state so when i change one, i change all.
-    
+  const handleDislike = (clickedVideo: MyVideo) => {
+    console.log("clickedVideo", clickedVideo)
+
+    const newLikesMap = videos.map(video => {
+       if(video.id === clickedVideo.id) {
+        return {
+          ...video, 
+          dislikes: clickedVideo.dislikes + 1 
+        }
+         
+       }
+       return video
+       
+      });
+    console.log("newLikesMap", newLikesMap)
+
+    setVideos(newLikesMap)   
   }
   
   return (
@@ -215,8 +229,9 @@ function App() {
              <p> {video.description}</p>
              <h5>{video.user}</h5>
              <h5>Likes {video.likes} </h5>
+             <h5>Dislikes {video.dislikes}</h5>
              <button onClick={() => handleLike(video)} >Like!</button>
-             <button>Dislike!</button>
+             <button onClick={() => handleDislike(video)}>Dislike!</button>
              <hr></hr>
              <button onClick={(e) => handleDelete(video)} >Delete Video</button>
            </div>

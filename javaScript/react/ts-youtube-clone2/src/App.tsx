@@ -4,10 +4,6 @@ import CustomizeThumbnail from "./images/customize-thumbnail.png"
 import ReactPlayer from "react-player";
 import { url } from 'inspector';
 
-// ----------------- baby steps -------------
-// deleting a video:
-// add a button that when clicked, marks that item false, filters through the array, and removes it
-// giving back the new array with the deleted thing
 
 type MyVideo = {
 
@@ -16,6 +12,7 @@ type MyVideo = {
   title:string,
   description:string,
   user:string,
+  likes: number,
 }
 
 
@@ -26,22 +23,23 @@ const initialVideos: MyVideo[] = [
     title: "What's On My iPhone | How to Customize Your iOS HomeScreen with Pastel App Icons and Widgets (iOS15)",
     description: "A minimal, cozy and pastel aesthetic iOS setup for a more focused and calming digital experience.",
     user: "maisyleigh",
+    likes: 3,
   },
   // {
   //   url:"https://www.youtube.com/watch?v=sellkoKeucE&t=1s",
   //   id: 2,
-  //   thumbnail: "./images/cat-thumbnail.png",
   //   title: "Tuesday vibes ~ lofi hip hop radio - music to put you in a better mood",
   //   description: "Tuesday vibes ~ lofi hip hop radio - music to put you in a better mood-https://youtu.be/sellkoKeucE",
   //   user: "TONY'S RELAXATION (LoFi & CHILL)",
+  //   likes: 5,
   // },
   //  {
   //   url:"https://www.youtube.com/watch?v=zJN3Kg0d4vM&t=1s",
   //   id: 3,
-  //   thumbnail: "pastel-wax-thumbnail.png",
   //   title: "Pastel Color Wax Sealing🍡Araland",
   //   description: "Hi guys!🤗 It's been a while since I did a wax sealing video.Thank you for waiting💞",
   //   user: "ARA LAND",
+  //   likes: 5,
   // },
   // {
   //   id: 4,
@@ -72,6 +70,7 @@ function App() {
   const [videos, setVideos] = useState<MyVideo[]>(initialVideos)
   // const [imageURL, setImageURL] = useState<string>("")
   const [videoFilePath, setVideoFilePath] = useState<string | undefined>(undefined)
+  const [newLike, setNewLike] = useState<number>(0)
  
   
 //the data type must be respected by your setter function as well. 
@@ -98,7 +97,8 @@ function App() {
           url: videoFilePath,
           title: videoTitle,
           description: videoDescription,
-          user: userName,  
+          user: userName,
+          likes: 0
         },
         ...videos, 
       ]
@@ -108,15 +108,15 @@ function App() {
     userName=""
   }
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleVideoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     // const customTarget = e.target as FormValues; //casting 
     const files = e.target.files
     // const firstFile = files ? files[0] : null
     if (files) {
       const firstFile = files[0]
-      console.log("firstFile", firstFile)
+      // console.log("firstFile", firstFile)
       const url = URL.createObjectURL(firstFile)
-      console.log("url",url)
+      // console.log("url",url)
       setVideoFilePath(url)
     }
 
@@ -128,13 +128,38 @@ function App() {
 
 
 
-  const handleDelete = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, video: MyVideo) => {
-    console.log("delete button has been clicked!")
-    console.log("e", e)
-    console.log("video.id", video.id)
+  const handleDelete = (video: MyVideo) => {
+    // console.log("delete button has been clicked!")
+    // console.log("e", e)
+    // console.log("video.id", video.id)
     setVideos(videos.filter((video2) => video2.id !== video.id))
   }
 
+  const handleLike = (clickedVideo: MyVideo) => {
+    console.log("clickedVideo", clickedVideo)
+
+    const newLikesMap = videos.map(video => {
+       if(video.id === clickedVideo.id) {
+        return {
+          ...video, 
+          likes: clickedVideo.likes + 1 
+        }
+         
+       }
+       return video
+       
+      });
+    console.log("newLikesMap", newLikesMap)
+
+    setVideos(newLikesMap)
+//ok so .map always returns an array, and newLike's type is a number so they are incompatible
+//perhaps a hacky solution is to create an array, and every time the button is clicked a new number
+//is added to the array? and then you get the length of that array to get the likes. 
+
+//when there is a single video i can make it work correctly. When there are multiple videos I have trouble making
+//it change only one because all the video.likes in the .map share the same state so when i change one, i change all.
+    
+  }
   
   return (
     <div className="App">
@@ -164,7 +189,7 @@ function App() {
           type='file' 
           accept='video/mp4' 
           name='newVideo'
-          onChange={(e)=> handleImageChange(e)}
+          onChange={(e)=> handleVideoUpload(e)}
         />
         <button>Upload new video</button>
        </form>
@@ -189,7 +214,11 @@ function App() {
              <h4>{video.title}</h4>
              <p> {video.description}</p>
              <h5>{video.user}</h5>
-             <button onClick={(e) => handleDelete(e, video)} >Delete Video</button>
+             <h5>Likes {video.likes} </h5>
+             <button onClick={() => handleLike(video)} >Like!</button>
+             <button>Dislike!</button>
+             <hr></hr>
+             <button onClick={(e) => handleDelete(video)} >Delete Video</button>
            </div>
          </div>
         )}

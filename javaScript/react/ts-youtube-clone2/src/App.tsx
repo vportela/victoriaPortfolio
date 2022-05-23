@@ -24,39 +24,27 @@ const initialVideos: MyVideo[] = [
     title: "What's On My iPhone | How to Customize Your iOS HomeScreen with Pastel App Icons and Widgets (iOS15)",
     description: "A minimal, cozy and pastel aesthetic iOS setup for a more focused and calming digital experience.",
     user: "maisyleigh",
-    likes: 3,
+    likes: 9876,
     dislikes: 0,
   },
-  // {
-  //   url:"https://www.youtube.com/watch?v=sellkoKeucE&t=1s",
-  //   id: 2,
-  //   title: "Tuesday vibes ~ lofi hip hop radio - music to put you in a better mood",
-  //   description: "Tuesday vibes ~ lofi hip hop radio - music to put you in a better mood-https://youtu.be/sellkoKeucE",
-  //   user: "TONY'S RELAXATION (LoFi & CHILL)",
-  //   likes: 5,
-  // },
-  //  {
-  //   url:"https://www.youtube.com/watch?v=zJN3Kg0d4vM&t=1s",
-  //   id: 3,
-  //   title: "Pastel Color Wax Sealing🍡Araland",
-  //   description: "Hi guys!🤗 It's been a while since I did a wax sealing video.Thank you for waiting💞",
-  //   user: "ARA LAND",
-  //   likes: 5,
-  // },
-  // {
-  //   id: 4,
-  //   thumbnail: "ghibli-thumbnail.png",
-  //   title: "Best studio ghibli piano relaxing music 🎶 Spirited Away, Castle in the Sky, Howl's Moving Castle,...",
-  //   description: "Best studio ghibli piano relaxing music 🎶 Spirited Away, Castle in the Sky, Howl's Moving Castle,...",
-  //   user: "Robert E Fuller",
-  // },
-  // {
-  //   id: 5,
-  //   thumbnail: "owl-thumbnail.png",
-  //   title: "Little Owl Reveals First Egg 🦉🥚 on Camera",
-  //   description: "I have little owls nesting in one of my boxes. Here is the first egg. Keep watching to see dad deliver a meal to his hungry mate.",
-  //   user: "Robert E Fuller",
-  // },
+  {
+    url:"https://www.youtube.com/watch?v=sellkoKeucE&t=1s",
+    id: 2,
+    title: "Tuesday vibes ~ lofi hip hop radio - music to put you in a better mood",
+    description: "Tuesday vibes ~ lofi hip hop radio - music to put you in a better mood-https://youtu.be/sellkoKeucE",
+    user: "TONY'S RELAXATION (LoFi & CHILL)",
+    likes: 500,
+    dislikes: 0,
+  },
+   {
+    url:"https://www.youtube.com/watch?v=zJN3Kg0d4vM&t=1s",
+    id: 3,
+    title: "Pastel Color Wax Sealing🍡Araland",
+    description: "Hi guys!🤗 It's been a while since I did a wax sealing video.Thank you for waiting💞",
+    user: "ARA LAND",
+    likes: 374578,
+    dislikes: 0,
+  },
 ]
 
 type FormValues = { 
@@ -65,13 +53,30 @@ type FormValues = {
   userName: {value: string}
 } & EventTarget
 
+type CommentValue = {
+  id: number,
+  user: string,
+  text: string
+} 
+
+const initialComments: CommentValue[] = [
+  {
+    id: 1,
+    user: "TunaParty",
+    text: "nice",
+  },
+] 
+
+//------ baby steps adding comments ------
+// each video has a comment section starting with 0 comments
+// add comment when button is clicked
 
 
 function App() {
   
   const [videos, setVideos] = useState<MyVideo[]>(initialVideos)
-  // const [imageURL, setImageURL] = useState<string>("")
   const [videoFilePath, setVideoFilePath] = useState<string | undefined>(undefined)
+  const [comments, setNewComments] = useState<CommentValue[]>(initialComments)
  
   
 //the data type must be respected by your setter function as well. 
@@ -121,19 +126,11 @@ function App() {
       // console.log("url",url)
       setVideoFilePath(url)
     }
-
-    // console.log("firstFile", firstFile)
-    //how to convert file to blob or media source
-    
-    // console.log("e.target.file[0]",e.target.files[0])
   }
 
 
 
   const handleDelete = (video: MyVideo) => {
-    // console.log("delete button has been clicked!")
-    // console.log("e", e)
-    // console.log("video.id", video.id)
     setVideos(videos.filter((video2) => video2.id !== video.id))
   }
 
@@ -173,6 +170,12 @@ function App() {
     console.log("newLikesMap", newLikesMap)
 
     setVideos(newLikesMap)   
+  }
+
+  const handleAddComment = (e:React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    console.log("e.target.value", e.target)
+
   }
   
   return (
@@ -234,6 +237,28 @@ function App() {
              <button onClick={() => handleDislike(video)}>Dislike!</button>
              <hr></hr>
              <button onClick={(e) => handleDelete(video)} >Delete Video</button>
+             <hr></hr>
+             
+             {comments.map((comment) =>
+             <div key={comment.id}>
+              <h3>Comments</h3>
+              <div>
+                <div>
+                  <h4 style={{color: "grey"}}>{comments ? "" : "No Comments"}</h4>
+                  
+                  <h4>{comment.user}</h4>
+                  <p>{comment.text}</p>
+                </div>
+                <form>
+                  <input type="text" name='commentSection'></input>
+                  <button onSubmit={(e) => handleAddComment(e)}>Add comment</button>
+                </form>
+               
+             </div>
+           </div>
+             
+             )}
+             
            </div>
          </div>
         )}

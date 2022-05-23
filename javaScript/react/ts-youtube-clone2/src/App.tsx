@@ -27,24 +27,24 @@ const initialVideos: MyVideo[] = [
     likes: 9876,
     dislikes: 0,
   },
-  {
-    url:"https://www.youtube.com/watch?v=sellkoKeucE&t=1s",
-    id: 2,
-    title: "Tuesday vibes ~ lofi hip hop radio - music to put you in a better mood",
-    description: "Tuesday vibes ~ lofi hip hop radio - music to put you in a better mood-https://youtu.be/sellkoKeucE",
-    user: "TONY'S RELAXATION (LoFi & CHILL)",
-    likes: 500,
-    dislikes: 0,
-  },
-   {
-    url:"https://www.youtube.com/watch?v=zJN3Kg0d4vM&t=1s",
-    id: 3,
-    title: "Pastel Color Wax Sealing🍡Araland",
-    description: "Hi guys!🤗 It's been a while since I did a wax sealing video.Thank you for waiting💞",
-    user: "ARA LAND",
-    likes: 374578,
-    dislikes: 0,
-  },
+  // {
+  //   url:"https://www.youtube.com/watch?v=sellkoKeucE&t=1s",
+  //   id: 2,
+  //   title: "Tuesday vibes ~ lofi hip hop radio - music to put you in a better mood",
+  //   description: "Tuesday vibes ~ lofi hip hop radio - music to put you in a better mood-https://youtu.be/sellkoKeucE",
+  //   user: "TONY'S RELAXATION (LoFi & CHILL)",
+  //   likes: 500,
+  //   dislikes: 0,
+  // },
+  //  {
+  //   url:"https://www.youtube.com/watch?v=zJN3Kg0d4vM&t=1s",
+  //   id: 3,
+  //   title: "Pastel Color Wax Sealing🍡Araland",
+  //   description: "Hi guys!🤗 It's been a while since I did a wax sealing video.Thank you for waiting💞",
+  //   user: "ARA LAND",
+  //   likes: 374578,
+  //   dislikes: 0,
+  // },
 ]
 
 type FormValues = { 
@@ -53,17 +53,26 @@ type FormValues = {
   userName: {value: string}
 } & EventTarget
 
-type CommentValue = {
+type CommentValues = {
+  commentSection: {value: string}
+} & EventTarget
+
+type MyComment = {
   id: number,
   user: string,
   text: string
 } 
 
-const initialComments: CommentValue[] = [
+const initialComments: MyComment[] = [
   {
     id: 1,
     user: "TunaParty",
     text: "nice",
+  },
+  {
+    id: 2,
+    user: "TunaParty",
+    text: "niceeee",
   },
 ] 
 
@@ -76,7 +85,7 @@ function App() {
   
   const [videos, setVideos] = useState<MyVideo[]>(initialVideos)
   const [videoFilePath, setVideoFilePath] = useState<string | undefined>(undefined)
-  const [comments, setNewComments] = useState<CommentValue[]>(initialComments)
+  const [comments, setNewComments] = useState<MyComment[]>(initialComments)
  
   
 //the data type must be respected by your setter function as well. 
@@ -172,9 +181,29 @@ function App() {
     setVideos(newLikesMap)   
   }
 
-  const handleAddComment = (e:React.FormEvent<HTMLButtonElement>) => {
+  const handleAddComment = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log("e.target.value", e.target)
+    console.log("e.target", e.target)
+    console.log("e", e)
+    const customTarget = e.target as CommentValues; //casting 
+    console.log("customTarget", customTarget)
+    let commentSectionVar = customTarget.commentSection.value
+    console.log("comment value", commentSectionVar)
+    const firstInArray = comments[0]
+
+    setNewComments(
+      [
+        {
+          id: firstInArray.id + 1,
+          user: "TunaParty",
+          text: commentSectionVar
+        },
+       
+          ...comments
+       
+      
+      ]
+    )
 
   }
   
@@ -239,25 +268,28 @@ function App() {
              <button onClick={(e) => handleDelete(video)} >Delete Video</button>
              <hr></hr>
              
-             {comments.map((comment) =>
-             <div key={comment.id}>
+             
+             <div>
               <h3>Comments</h3>
               <div>
                 <div>
                   <h4 style={{color: "grey"}}>{comments ? "" : "No Comments"}</h4>
-                  
-                  <h4>{comment.user}</h4>
-                  <p>{comment.text}</p>
+                  {comments.map((comment) =>
+                  <div key={comment.id}>
+                    <h4>{comment.user}</h4>
+                    <p>{comment.text}</p>
+                  </div>
+                  )}
                 </div>
-                <form>
+                <form onSubmit={(e) => handleAddComment(e)}>
                   <input type="text" name='commentSection'></input>
-                  <button onSubmit={(e) => handleAddComment(e)}>Add comment</button>
+                  <button>Add comment</button>
                 </form>
                
              </div>
            </div>
              
-             )}
+             
              
            </div>
          </div>

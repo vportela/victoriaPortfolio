@@ -1,0 +1,106 @@
+what is an API? 
+
+it stands for 
+
+what is an interface?
+    Basically it is like an object (radio for example) that a user can control certain things
+    like a radio has knobs to change the channels but you can't get all up inside it. 
+    or a car has a gas pedal but a driver cannot decide how much fuel gets injected into the engine
+    at any given time, they can just press the gas pedal.
+
+    They don't need to know what is happening under the hood when they press the gas ped
+    al. 
+    They just need to know that when they press the gas pedal, the car goes. 
+    the hidden info is "abstracted" 
+
+    interfaces define the way a user interacts with a product whether it is physical or digital.
+    they dont need to understand the implementation.
+
+    Ui is made for users to use the application
+    API is for developers to extend their applications
+
+    programming languages use API's, for example if you want to make your text all uppercase you would use .upper (or something like that)
+    and then it would make all your text uppercase for you instead of you having to do it from scratch. it's doing shit under the hood
+    that you dont need to understand to make your life easier. 
+    they hlep oyu avoid recreating the wheel. 
+
+    REST - representational state transfer - a remote API
+    graphQL is also a remote api
+
+    remote API is done via the internet, often because your device's local memory cant store all that data.
+    like soundhound will listen to a song and identify it by calling a web based API in order to parse thorugh 
+    every song in it's library.
+
+    Google translate's camera translation function also uses this kind of method. 
+
+    protocol- a contract that defines HOW to communicate instead of WHAT to communicate like an API
+    
+
+    requirements for an API to be considered restful: 
+
+        - client-server architecture
+        - Statelessness
+        - Layered System
+        - Cacheability
+        - Uniform Design
+        - Code on demand
+
+    CRUD - Create Read Update Delete
+
+
+    -------------- from christopher
+
+    request - response api -> most web API's
+
+
+    define how a user is going to talk to an API. 
+    use fetch to talk to API
+    normally people use JSON to send data
+    form url encoded - > the browser takes the form data and it turns it into this url type code that sends to the server 
+
+    replit is a good website for testing things out
+
+---------------------------------------------------
+
+
+    const express = require('express);
+
+    const app = express()
+    const port = 3000
+
+
+//req means request
+//res means response
+    app.get('/', (req, res) => {     --------this is an HTTP request handler. so it must be a get request and it must be "/" 
+        console.dir(req.cookies);
+        res.cookie("test", "victoria")
+        res.send(`${req.hostname} <br> hello world!`)
+    })
+
+    app.post("login", (req, res) => { -------- this is kinda like a filter, only osmething that matches this criteria 
+        res.send("invalid login" )
+    })
+
+app.listen(port, () => { 
+    console.log(`example app listening on port ${port}`)
+})
+
+--------------------------------------------------------------------
+    express lets you define a path and set a function
+
+    fetch - you can tell it that you want to do a post fetch 
+    fetch is how you send a request
+
+
+    fetch can be awaited - question for lucas
+
+    fetch makes a request and then you get a response
+
+
+    how do i, in the response, set a cookie.
+    you can use a cookie which takes a key-value pair
+
+    res.cookie will let you get a name 
+    whenever you send info to the browswer, you include the cookie in the fetch. 
+
+    you can request req.cookies.name 

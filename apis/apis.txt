@@ -104,3 +104,93 @@ app.listen(port, () => {
     whenever you send info to the browswer, you include the cookie in the fetch. 
 
     you can request req.cookies.name 
+
+
+
+------the syntax we are going to write in is typescript.------
+typescript: superset of JS that makes javascript typesafe.
+it is just typesafe JS. 
+
+react: a framework that allows you to write easier html/rednder stuff
+
+
+----- framework is NODE -------------
+node is not a different language
+
+-------framework/dependency is EXPRESS ---------
+
+express allows you to create APIs 
+
+created repository
+created blank project
+added dependencies
+    - node
+    -typescript
+scripts to build and run application 
+
+added axios to frontend which allows you to make API calls
+from the front end react app.
+
+API's are just functions on a URL
+they only execute when you are on that URL
+
+so instead of manually calling a function 
+you have it ready to go and anyone can call 
+that API or function when they are on that url 
+
+
+
+first thing is you have to have a server which can
+listen to requests
+
+app.listen is listening for port 5000
+
+you can add API's to the server which is what you did
+on line 5. 
+
+
+
+so when you have your registration
+you click the register button 
+which does an onclick/submit and in that onclick submit
+you would call the API
+
+request in the API would recieve the inputted data values
+like username, email etc. 
+create a user object or something and then 
+once you are done manipulating the data, you send it back
+to the front end with the response.
+
+once you have the response you will redirect the user to /login 
+or another new URL
+
+
+most common HTTP request methods i will use are : 
+get and post
+get will get data
+post will create data
+
+so when you are creating a user, you are creating a post request
+
+when you are loggin a user in you create a post request because 
+you are authenticating the users login
+
+you handle the posts with get, the front end just displays the back end data
+
+-----------------
+
+useEffect is a lifecycle hook that refeshes every time 
+something in a component changes
+
+promise is a wrapper around any other data type
+you can have a promise of a string etc 
+promises allow you to have async code (code that does not run in order, like JS) 
+
+
+get the #2 thing to work but with the API
+so get users to post messages using the API 
+make it so that when you first get into the app you see posts from the user,
+when you type something and click button, make it so the change happens
+on the API NOT on the front end. 
+
+------------------these are ur goals-----------------

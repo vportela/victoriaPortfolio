@@ -1,0 +1,25 @@
+Getters and Setters notes: 
+
+Getters & Setters are used to protect your data when creating classes.
+
+in an instance, a getter returns the value of the instance and the Setter
+sets/updates value.
+
+getter gets, setter sets. pretty simple.
+
+First letter of the variable must be capitalized.
+
+public class Vehicle { 
+    private String color; 
+
+    //Getter
+    public String getColor() { 
+        return color;
+    }
+
+    //Setter
+    public void setColor(String c) { 
+        this.color = c;
+    }
+}
+

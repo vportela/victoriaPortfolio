@@ -6,6 +6,8 @@ in an instance, a getter returns the value of the instance and the Setter
 sets/updates value.
 
 getter gets, setter sets. pretty simple.
+They also help with validation but helping you control how variables are accessed and updated
+in the code.
 
 First letter of the variable must be capitalized.
 
@@ -23,3 +25,10 @@ public class Vehicle {
     }
 }
 
+
+public static void main (String[] args) { 
+    Vehicle v1 = new Vehicle();
+    v1.setColor("Red);
+    System.out.println(v1.getColor());
+}
+//outputs "Red"

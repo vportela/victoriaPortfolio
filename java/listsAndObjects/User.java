@@ -78,4 +78,13 @@ public class User {
     public void setLuckyNumber(Integer luckyNumber) { 
         this.luckyNumber = luckyNumber;
     }
+
+    public String toString() {
+      return "Room: {name: " + name
+          + ", age: " + age
+          + ", job: " + job
+          + ", salary: " + salary
+          + ", owners: " + favoriteColor 
+          + ", lucky number: " +luckyNumber +"}";
+  }
 }

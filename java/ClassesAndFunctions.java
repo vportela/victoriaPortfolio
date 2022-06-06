@@ -20,8 +20,9 @@ public class ClassesAndFunctions {
         System.out.println(ourColor);
 
         System.out.println("-------CALLING MY STATIC CLASS ---------");
-
+    //    MyStaticClass myStaticClass1 = new MyStaticClass(); 
         MyStaticClass.printFavoriteColor();
+        // myStaticClass1.printFavoriteColor(); 
 
         List<String> ourNames = List.of("emre", "daniel", "lucas", "june");
         Boolean result = MyStaticClass.areNamesTheSameLength(ourNames);

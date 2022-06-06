@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class MyStaticClass {
+public class MyStaticClass {  
 
     public static void printFavoriteColor(){
         System.out.println("my favorite color is pink");

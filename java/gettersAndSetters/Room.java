@@ -6,19 +6,21 @@ public class Room {
     private String use;
     private Integer closets;
     private String color;
-    private List<String> owners;
+    private List<Owner> owners;
+    // private List<Test> test;
 
     //make all fields private
     //make getters and setters for them
     //getter and setter for owners list
     // List<String> Owner = List.of("bob", "tom", "jerry");
 
-    public Room() {
-        
-    }
     // public List<String> Owner() { 
     //     return this.owners;
     // }
+
+    public Room() { 
+
+    }
 
     //get list of owners to work with getters and setters List<Owners>
     // do the coding challenge with the list of objects 
@@ -29,12 +31,13 @@ public class Room {
 //what is the point of the constructor? - you need it to instantiate the object/s 
 //you cannot have an object without instantiating a class.
 //an object is an instantiated class. 
-    public Room(String name, String use, Integer closets, String color, List<String> owners) {
+    public Room(String name, String use, Integer closets, String color, List<Owner> owners) {
         this.name = name;
         this.use = use;
         this.closets = closets;
         this.color = color;
         this.owners = owners;
+        // this.test = test;
     }
 
     
@@ -74,11 +77,39 @@ public class Room {
 
 
 //     //owner
-    public List<String> getOwnerList(){ 
+    public List<Owner> getOwnerList(){ 
         return this.owners;
     }
-    public void setOwnerList(List<String> owners) { 
+    public void setOwnerList(List<Owner> owners) { 
         this.owners = owners;
     }
+
+    // //test
+    // public List<Test> getTest(){ 
+    //     return this.test;
+    // }
+
+    // public void setTest(List<Test> test) { 
+    //     this.test = test;
+    // }
+
+    //Static in a method means you do not need to instanciate a class in order to call the method, you can call it directly.
+
+    //method overwriting = a method that already exists, and you are overruling what it does.
+    //so this will make the object in my house.java return the string "hello world".
+    // public String toString() {
+    //     return "hello world";
+    // }
+
+    public String toString() {
+        return "Room: {name: " + name
+            + ", use: " + use
+            + ", closets: " + closets
+            + ", color: " + color
+            + ", owners: " + owners + "}";
+    }
+
 }
 //Owner list needs to have it's own file. 
+
+

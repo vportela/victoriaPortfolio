@@ -9,9 +9,10 @@ public class Post {
 
     }
 
-    public Post(Integer id, String text) { 
+    public Post(Integer id, String text, Integer userId) { 
         this.id = id; 
         this.text = text;
+        this.userId = userId;
     }
     
     public Integer getId() { 
@@ -26,6 +27,13 @@ public class Post {
     }
     public void setText(String text) { 
         this.text = text;
+    }
+
+    public Integer getUserId() { 
+        return this.userId;
+    }
+    public void setUserId(Integer userId) { 
+        this.userId = userId;
     }
 
     public String toString() { 

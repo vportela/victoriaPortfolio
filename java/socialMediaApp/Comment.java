@@ -6,12 +6,12 @@ public class Comment {
     
 
     public Comment() { 
-
     }
 
-    public Comment(Integer id, String text) { 
+    public Comment(Integer id, String text, Integer postId) { 
         this.id = id; 
         this.text = text;
+        this.postId = postId;
     }
     
     public Integer getId() { 
@@ -26,6 +26,13 @@ public class Comment {
     }
     public void setText(String text) { 
         this.text = text;
+    }
+
+    public Integer getPostId() { 
+        return this.postId;
+    }
+    public void setPostId(Integer postId) { 
+        this.postId = postId;
     }
 
     public String toString() { 

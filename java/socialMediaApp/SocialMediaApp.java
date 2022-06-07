@@ -4,22 +4,23 @@ public class SocialMediaApp {
     
     public static void main(String[] args) {
 
-        Post post1 = new Post(1, "this is a post");
-        Post post2 = new Post(2, "the sky is blue");
-        Post post3 = new Post(3, "why do humans not have tails");
-        Post post4 = new Post(4, "if only i were a fish");
-        Post post5 = new Post(5, "these are song lyrics");
-        Post post6 = new Post(6, "beep boop bop");
+        Post post1 = new Post(1, "beep bop boop", 1);
+        Post post2 = new Post(2, "the sky is blue", 2);
+        Post post3 = new Post(3, "if only i were a fish", 2);
+        Post post4 = new Post(4, "why do humans not have tails", 3);
+        Post post5 = new Post(5, "zzzZZZzzz", 3);
+        Post post6 = new Post(6, "meow meow i am a catte", 3);
 
-        // Comment comment1 = new Comment(1, "wow great post");
-        // Comment comment2 = new Comment(1, "making a comment on this post");
-        // Comment comment3 = new Comment(1, "very helpful to leave comments");
-        // Comment comment4 = new Comment(1, "i am not a cat");
-        // Comment comment5 = new Comment(1, "i'm a little teapot");
-        // Comment comment6 = new Comment(1, "boop boop beep beep");
-        // Comment comment7 = new Comment(1, "meow meow");
-        // Comment comment8 = new Comment(1, "brb dyin");
-        // Comment comment9 = new Comment(1, "this sucks");
+        Comment comment1 = new Comment(1, "wow great post", 3);
+        Comment comment2 = new Comment(2, "making a comment on this post", 1);
+        Comment comment3 = new Comment(3, "wow so insightful", 2);
+        Comment comment4 = new Comment(4, "i am not a cat", 4);
+        Comment comment5 = new Comment(5, "i'm a little teapot", 6);
+        Comment comment6 = new Comment(6, "boop boop beep beep", 1);
+        Comment comment7 = new Comment(7, "meow meow", 6);
+        Comment comment8 = new Comment(8, "brb dyin", 2);
+        Comment comment9 = new Comment(9, "this sucks", 4);
+        Comment comment10 = new Comment(10, "cat nap", 3);
 
 
         List<Post> user1Posts = List.of(post1);
@@ -38,9 +39,9 @@ public class SocialMediaApp {
 
 
 
-        User user1 = new User(1, "victoria", "portela", "victoria@gmail.com", user1Posts);
-        User user2 = new User(2, "maria", "sanches", "maria@gmail.com", user2Posts);
-        User user3 = new User(3, "nieve", "paws", "pawPWR@gmail.com", user3Posts);
+        User user1 = new User(1, "victoria", "portela", "victoria@gmail.com");
+        User user2 = new User(2, "maria", "sanches", "maria@gmail.com");
+        User user3 = new User(3, "nieve", "paws", "pawPWR@gmail.com");
 
         List<User> users = List.of(user1, user2, user3);
         System.out.println(users);

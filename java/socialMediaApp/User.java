@@ -6,18 +6,20 @@ public class User {
     private String firstName;
     private String lastName;
     private String email;
-    private List<Post> posts;
-    private List<Comment> comments;
+    // private List<Post> posts;
+
+    
 
     public User() { 
 
     }
 
-        public User(Integer id, String firstName, String lastName, String email) { 
+        public User(Integer id, String firstName, String lastName, String email, List<Post> posts) { 
             this.id = id;
             this.firstName = firstName;
             this.lastName = lastName;
             this.email = email;
+            this.posts = posts;
         }
 
         //id
@@ -53,12 +55,19 @@ public class User {
             this.email = email;
         }
 
+        public List<Post> getPostList(){
+            return this.posts;
+        }
+        public void setPostList(List<Post> posts) { 
+            this.posts = posts;
+        }
+
         public String toString() { 
             return "User: {id: " + id
             + ", first name: " + firstName
             + ", last name: " + lastName
             + ", email: " + email 
             + ", posts: " + posts
-            + ", comments:" + comments + "}";
+            + "}";
         }
 }

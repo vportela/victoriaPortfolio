@@ -2,6 +2,8 @@ public class Post {
 
     private Integer id;
     private String text;
+    private Integer userId;
+    // private List<Comment> comments;
 
     public Post() { 
 

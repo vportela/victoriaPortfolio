@@ -84,7 +84,7 @@ public class User {
           + ", age: " + age
           + ", job: " + job
           + ", salary: " + salary
-          + ", owners: " + favoriteColor 
-          + ", lucky number: " +luckyNumber +"}";
+          + ", favoriteColor: " + favoriteColor 
+          + ", luckyNumber: " +luckyNumber +"}";
   }
 }

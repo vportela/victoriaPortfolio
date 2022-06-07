@@ -1,7 +1,21 @@
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class SocialMediaApp {
     
+    private static Integer getUser1Posts(List<Post> posts) { 
+        Integer user1Posts = posts.stream().filter(post -> post.getUserId() == 1).collect(Collectors.toList()).size();
+        return user1Posts; 
+    }
+
+    private static List<Comment> getCommentsOnUser1Posts(List<Comment> comments) { 
+        List<Comment> user1PostsComments = comments.stream().filter(comment -> comment.getPostId() == 1).collect(Collectors.toList());
+        return user1PostsComments; 
+    }
+
+
     public static void main(String[] args) {
 
         Post post1 = new Post(1, "beep bop boop", 1);
@@ -23,19 +37,13 @@ public class SocialMediaApp {
         Comment comment10 = new Comment(10, "cat nap", 3);
 
 
-        List<Post> user1Posts = List.of(post1);
-        List<Post> user2Posts = List.of(post2, post3);
-        List<Post> user3Posts = List.of(post4, post5, post6);
-
-        // System.out.println("user3posts" + user3Posts);
-        // List<Comment> post1Comments = List.of(comment1,comment2);
-        // List<Comment> post2Comments = List.of(comment3,comment4);
-        // List<Comment> post3Comments = List.of(comment5);
-        // List<Comment> post4Comments = List.of(comment6);
-        // List<Comment> post5Comments = List.of(comment7,comment8);
-        // List<Comment> post6Comments = List.of(comment9);
+        List<Post> posts = List.of(post1,post2,post3,post4,post5,post6);
+        System.out.println("list of posts: " + posts);
 
 
+        List<Comment> comments = List.of(comment1, comment2, comment3, comment4, comment5, comment6
+            , comment7, comment8, comment9, comment10);
+        System.out.println("list of comments: " + comments);
 
 
 
@@ -45,6 +53,12 @@ public class SocialMediaApp {
 
         List<User> users = List.of(user1, user2, user3);
         System.out.println(users);
+
+        Integer user1Posts = getUser1Posts(posts);
+        List<Comment> user1PostComments = getCommentsOnUser1Posts(comments);
+        System.out.println("---------User 1---------");
+        System.out.println("Posts: " + user1Posts);
+        System.out.println("User1 post 1 has 2 comments: " + user1PostComments);
 
         
     }

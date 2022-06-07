@@ -37,6 +37,7 @@ public class Comment {
 
     public String toString() { 
         return "Comment: {id: " + id
-        + ", text: " + text + "}";
+        + ", text: " + text 
+        + ", postId " + postId + "}";
     }
 }

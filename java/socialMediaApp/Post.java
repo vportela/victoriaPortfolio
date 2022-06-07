@@ -3,7 +3,6 @@ public class Post {
     private Integer id;
     private String text;
     private Integer userId;
-    // private List<Comment> comments;
 
     public Post() { 
 
@@ -38,6 +37,7 @@ public class Post {
 
     public String toString() { 
         return "Post: {id: " + id
-        + ", text: " + text + "}";
+        + ", text: " + text 
+        + ", userId " + userId + "}";
     }
 }

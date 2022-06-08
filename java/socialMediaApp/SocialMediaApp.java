@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,10 +18,12 @@ public class SocialMediaApp {
         List<Comment> user1AllComments = comments.stream().filter(comment -> comment.getUserId() == userId).collect(Collectors.toList());
         return user1AllComments; 
     }
-    private static List<Comment> getAllCommentsOnUser1Posts(List<Comment> comments) { 
-        List<Comment> allCommentsReceivedByUser1 = comments.stream().filter(comment -> comment.getPostId() == 1).collect(Collectors.toList());
-        return allCommentsReceivedByUser1; 
+    private static List<Post> getAllCommentsRecievedByUser(List<Post> posts, Integer userId) { 
+        List<Post> allReceivedComments = posts.stream().filter(post -> post.getUserId() == userId).collect(Collectors.toList());
+        return allReceivedComments; 
     }
+
+
     private static void getAllPostsUser1CommentedOn(List<Comment> comments) { 
         comments.forEach(comment -> {
             if (comment.getUserId() == 1) { 
@@ -54,6 +57,7 @@ public class SocialMediaApp {
 
         Comment comment5 = new Comment(5, "i'm a little teapot", post3.getId(), user1.getId());
         Comment comment6 = new Comment(6, "boop boop beep beep", post3.getId(), user3.getId());
+        // i checked how many posts a user has created, then checked how many comments were on each post.
 
         Comment comment7 = new Comment(7, "meow meow", post4.getId(), user1.getId());
         Comment comment8 = new Comment(8, "brb dyin", post4.getId(), user2.getId());
@@ -87,48 +91,46 @@ public class SocialMediaApp {
         System.out.println("User3 has " + user3PostAmount + " posts");
 
         System.out.println("---------2: All comments by individual post----------");
-        List<Comment> user1Post1Comments = getPostComments(comments, post1.getId());
-        System.out.println("User1 post1 has 2 comments: " + user1Post1Comments);
-        List<Comment> user1Post2Comments = getPostComments(comments, post2.getId());
-        System.out.println("User1 post2 has 2 comments: " + user1Post2Comments);
-
-        List<Comment> user2Post1Comments = getPostComments(comments, post3.getId());
-        System.out.println("User2 post1 has 2 comments: " + user2Post1Comments);
-        List<Comment> user2Post2Comments = getPostComments(comments, post4.getId());
-        System.out.println("User2 post2 has 2 comments: " + user2Post2Comments);
-
-        List<Comment> user3Post1Comments = getPostComments(comments, post5.getId());
-        System.out.println("User2 post1 has 2 comments: " + user3Post1Comments);
-        List<Comment> user3Post2Comments = getPostComments(comments, post6.getId());
-        System.out.println("User2 post2 has 2 comments: " + user3Post2Comments);
-        // TODO: ask if it makes more sense for it to be user2's first post 2nd post, 
-            //TODO: or if it is better to have consistency with what post id it is
+        posts.forEach(post -> { 
+            List<Comment> postComments = getPostComments(comments, post.getId());
+            System.out.println("All comments on post  " + post.getId() + " : " + postComments);
+        });
 
         System.out.println("---------3: All comments that a user has made----------");
-        List<Comment> user1AllComments = getAllUserComments(comments, user1.getId());
-        System.out.println("All comments made by User1: " + user1AllComments);
+        users.forEach(user -> { 
+            List<Comment> userComments = getAllUserComments(comments, user.getId());
+            System.out.println("All comments made by user " + user.getId() + " : " + userComments);
+        });
 
-        List<Comment> user2AllComments = getAllUserComments(comments, user2.getId());
-        System.out.println("All comments made by User2: " + user2AllComments);
+        System.out.println("---------4: All comments that a user has recieved----------");
+        user1Posts.forEach(post -> {
+            List<Comment> user1PostComments = getPostComments(comments, post.getId());
+            System.out.println("All comments user " + post.getUserId() + " recieved: " + user1PostComments);
+        });
 
-        List<Comment> user3AllComments = getAllUserComments(comments, user3.getId());
-        System.out.println("All comments made by User3: " + user3AllComments);
-
-
-
-
+        List<Comment> user2CommentsReceived = new ArrayList<>();
+        user2Posts.forEach(post -> { 
+            List<Comment> user2PostComments = getPostComments(comments, post.getId());
+            user2CommentsReceived.addAll(user2PostComments);
+            // System.out.println("All comments user " + post.getUserId() + " recieved: " + userCommentsReceived);
+        });
+        System.out.println("userCommentsReceived" + user2CommentsReceived);
 
        
-        // List<Comment> user1AllComments = AllUser1Comments(comments);
-        // List<Comment> allCommentsReceivedByUser1 = getAllCommentsOnUser1Posts(comments);
-        // List<Comment> allCommentsMadeByUser1 = getAllCommentsMadeByUser1(comments);
-        System.out.println("---------User 1---------");
-        // System.out.println("Posts: " + user1PostAmount);
-        // System.out.println("User1 post 1 has 2 comments: " + user1PostComments);
-        // System.out.println("All comments made by User1: " + user1AllComments);
-        // System.out.println("All comments received by User1: " + allCommentsReceivedByUser1);
-        // System.out.println("All comments made by User1: " + allCommentsMadeByUser1);
-        // getAllPostsUser1CommentedOn(comments);
+        //a comment is left on a post by a user, the post has a userId for who created it.
+        //example: user3 (comment.getUserId()) leaves a comment on post2 (comment.getPostId() || post.getId()), which was
+        //created by user1 (post.getUserId()).
+
+        //for every user, 
+
+
+
+
+        // List<Comment> user1AllReceivedComments = getAllCommentsRecievedByUser(comments, post1.getUserId());
+        // System.out.println("All comments received by User1: " + user1AllReceivedComments);
+        // //need to get the comments from user1posts which we already have all the posts made by user1. 
+
+
         
     }
 }

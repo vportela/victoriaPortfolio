@@ -9,20 +9,21 @@ public class SocialMediaApp {
         Integer user1Posts = posts.stream().filter(post -> post.getUserId() == 1).collect(Collectors.toList()).size();
         return user1Posts; 
     }
-
     private static List<Comment> getCommentsOnUser1Posts(List<Comment> comments) { 
         List<Comment> user1PostsComments = comments.stream().filter(comment -> comment.getPostId() == 1).collect(Collectors.toList());
         return user1PostsComments; 
     }
-
     private static List<Comment> getAllUser1Comments(List<Comment> comments) { 
         List<Comment> user1AllComments = comments.stream().filter(comment -> comment.getUserId() == 1).collect(Collectors.toList());
         return user1AllComments; 
     }
-
     private static List<Comment> getAllCommentsOnUser1Posts(List<Comment> comments) { 
         List<Comment> allCommentsReceivedByUser1 = comments.stream().filter(comment -> comment.getPostId() == 1).collect(Collectors.toList());
         return allCommentsReceivedByUser1; 
+    }
+    private static List<Comment> getAllCommentsMadeByUser1(List<Comment> comments) { 
+        List<Comment> allCommentsMadeByUser1 = comments.stream().filter(comment -> comment.getId() == 1).collect(Collectors.toList());
+        return allCommentsMadeByUser1; 
     }
 
 
@@ -70,11 +71,13 @@ public class SocialMediaApp {
         List<Comment> user1PostComments = getCommentsOnUser1Posts(comments);
         List<Comment> user1AllComments = getAllUser1Comments(comments);
         List<Comment> allCommentsReceivedByUser1 = getAllCommentsOnUser1Posts(comments);
+        List<Comment> allCommentsMadeByUser1 = getAllCommentsMadeByUser1(comments);
         System.out.println("---------User 1---------");
         System.out.println("Posts: " + user1Posts);
         System.out.println("User1 post 1 has 2 comments: " + user1PostComments);
         System.out.println("All comments made by User1: " + user1AllComments);
         System.out.println("All comments received by User1: " + allCommentsReceivedByUser1);
+        System.out.println("All comments made by User1: " + allCommentsMadeByUser1);
 
         
     }

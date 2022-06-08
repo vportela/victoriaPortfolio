@@ -48,7 +48,6 @@ public class SocialMediaApp {
         Post post5 = new Post(5, "zzzZZZzzz", user3.getId());
         Post post6 = new Post(6, "meow meow i am a catte", user3.getId());
 
-        //i know there is a better way to connect the comments to an author just let me live for now. 
         Comment comment1 = new Comment(1, "wow great post", post1.getId(), user2.getId());
         Comment comment2 = new Comment(2, "making a comment on this post", post1.getId(), user3.getId());
 
@@ -58,6 +57,8 @@ public class SocialMediaApp {
         Comment comment5 = new Comment(5, "i'm a little teapot", post3.getId(), user1.getId());
         Comment comment6 = new Comment(6, "boop boop beep beep", post3.getId(), user3.getId());
         // i checked how many posts a user has created, then checked how many comments were on each post.
+
+        //go through the comments, see who 
 
         Comment comment7 = new Comment(7, "meow meow", post4.getId(), user1.getId());
         Comment comment8 = new Comment(8, "brb dyin", post4.getId(), user2.getId());
@@ -116,12 +117,18 @@ public class SocialMediaApp {
         });
         System.out.println("userCommentsReceived" + user2CommentsReceived);
 
-       
-        //a comment is left on a post by a user, the post has a userId for who created it.
-        //example: user3 (comment.getUserId()) leaves a comment on post2 (comment.getPostId() || post.getId()), which was
-        //created by user1 (post.getUserId()).
+        List<Comment> user3CommentsReceived = new ArrayList<>();
+        user3Posts.forEach(post -> { 
+            List<Comment> user3PostComments = getPostComments(comments, post.getId());
+            user3CommentsReceived.addAll(user3PostComments);
+            // System.out.println("All comments user " + post.getUserId() + " recieved: " + userCommentsReceived);
+        });
+        System.out.println("userCommentsReceived" + user3CommentsReceived);
 
-        //for every user, 
+        System.out.println("---------5: All posts that a user has commented on----------");
+
+        // TODO: finish number 5
+    
 
 
 

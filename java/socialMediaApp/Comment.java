@@ -3,19 +3,17 @@ public class Comment {
     private Integer id;
     private String text;
     private Integer postId;
-    private String firstName;
-    
-    // TODO: fix the firstName field to actually be a userID because that shit is currently busted af.
-    
+    private Integer userId;   
 
     public Comment() { 
     }
 
-    public Comment(Integer id, String text, Integer postId, String firstName) { 
+    public Comment(Integer id, String text, Integer postId, Integer userId) { 
         this.id = id; 
         this.text = text;
         this.postId = postId;
-        this.firstName = firstName;
+        this.userId = userId;
+    
     }
     
     public Integer getId() { 
@@ -38,17 +36,17 @@ public class Comment {
     public void setPostId(Integer postId) { 
         this.postId = postId;
     }
-    public String getFirstName() { 
-        return this.firstName;
+    public Integer getUserId() { 
+        return this.userId;
     }
-    public void setFirstName(String firstName) { 
-        this.firstName = firstName;
+    public void setUserId(Integer userId) { 
+        this.userId = userId;
     }
 
     public String toString() { 
         return "Comment: {id: " + id
         + ", text: " + text 
         + ", postId " + postId 
-        + ", firstName " + firstName + "}";
+        + ", userId " + userId + "}";
     }
 }

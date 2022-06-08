@@ -16,7 +16,7 @@ public class SocialMediaApp {
     }
 
     private static List<Comment> getAllUser1Comments(List<Comment> comments) { 
-        List<Comment> user1AllComments = comments.stream().filter(comment -> comment.getFirstName() == "victoria").collect(Collectors.toList());
+        List<Comment> user1AllComments = comments.stream().filter(comment -> comment.getUserId() == 1).collect(Collectors.toList());
         return user1AllComments; 
     }
 
@@ -30,25 +30,25 @@ public class SocialMediaApp {
         List<User> users = List.of(user1, user2, user3);
         System.out.println(users);
 
-// TODO: don't hardcode the foreign keys. 
+
         Post post1 = new Post(1, "beep bop boop", user1.getId());
-        Post post2 = new Post(2, "the sky is blue", 2);
-        Post post3 = new Post(3, "if only i were a fish", 2);
-        Post post4 = new Post(4, "why do humans not have tails", 3);
-        Post post5 = new Post(5, "zzzZZZzzz", 3);
-        Post post6 = new Post(6, "meow meow i am a catte", 3);
+        Post post2 = new Post(2, "the sky is blue", user2.getId());
+        Post post3 = new Post(3, "if only i were a fish", user2.getId());
+        Post post4 = new Post(4, "why do humans not have tails", user3.getId());
+        Post post5 = new Post(5, "zzzZZZzzz", user3.getId());
+        Post post6 = new Post(6, "meow meow i am a catte", user3.getId());
 
         //i know there is a better way to connect the comments to an author just let me live for now. 
-        Comment comment1 = new Comment(1, "wow great post", 3, users.get(0).getFirstName());
-        Comment comment2 = new Comment(2, "making a comment on this post", 1, users.get(0).getFirstName());
-        Comment comment3 = new Comment(3, "mreowwwww", 2, users.get(2).getFirstName());
-        Comment comment4 = new Comment(4, "i am not a cat", 4, users.get(0).getFirstName());
-        Comment comment5 = new Comment(5, "i'm a little teapot", 6, users.get(1).getFirstName());
-        Comment comment6 = new Comment(6, "boop boop beep beep", 1, users.get(1).getFirstName());
-        Comment comment7 = new Comment(7, "meow meow", 6, users.get(0).getFirstName());
-        Comment comment8 = new Comment(8, "brb dyin", 2, users.get(2).getFirstName());
-        Comment comment9 = new Comment(9, "this sucks", 4, users.get(2).getFirstName());
-        Comment comment10 = new Comment(10, "cat nap", 3, users.get(2).getFirstName());
+        Comment comment1 = new Comment(1, "wow great post", 3, user1.getId());
+        Comment comment2 = new Comment(2, "making a comment on this post", 1, user2.getId());
+        Comment comment3 = new Comment(3, "mreowwwww", 2, user3.getId());
+        Comment comment4 = new Comment(4, "i am not a cat", 4, user1.getId());
+        Comment comment5 = new Comment(5, "i'm a little teapot", 6, user2.getId());
+        Comment comment6 = new Comment(6, "boop boop beep beep", 1, user2.getId());
+        Comment comment7 = new Comment(7, "meow meow", 6, user1.getId());
+        Comment comment8 = new Comment(8, "brb dyin", 2, user3.getId());
+        Comment comment9 = new Comment(9, "this sucks", 4, user3.getId());
+        Comment comment10 = new Comment(10, "cat nap", 3, user3.getId());
 
 //if comment.postId == 1 && post.userId == 1 then the user who 
         List<Post> posts = List.of(post1,post2,post3,post4,post5,post6);

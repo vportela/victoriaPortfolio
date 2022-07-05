@@ -92,6 +92,12 @@ public class MyFirstController {
         return animalList;
     }
 
+    @GetMapping("animals_2")
+    public List<String> getAnimals() {
+        System.out.println("getting animal list from animals");
+        return animals();
+    }
+
     @GetMapping("carsCarsCars")
     public List<Car> carList() {
         System.out.println("getting list of cars");
@@ -130,15 +136,32 @@ public class MyFirstController {
 
     @PostMapping("good-dog")
     public String printDog(@RequestBody String bork) {
-        System.out.println("saying hello to good dog");
+        System.out.println("saying hello to good dog" + "..." + "dog says " + bork);
         return "dog says: " + bork;
     }
 
     @PostMapping("happyBirthday")
     public Integer printDog(@RequestBody Integer birthday) {
-        System.out.println("printing birthday");
+        System.out.println("printing birthday" + birthday);
         return birthday;
     }
+
+    @PostMapping("dogSize")
+    public Boolean isDogBig(@RequestBody Boolean bigOrSmall) {
+        System.out.println("This dog is big: " + bigOrSmall);
+        return bigOrSmall;
+    }
+
+    @PostMapping("manyDogs")
+    public List<String> allTheDogs(@RequestBody  String allDogs) {
+        List<String> dog = List.of(allDogs);
+        System.out.println("List of all dogs: " + allDogs);
+        return dog;
+    }
+    //this one had a weird issue, i cant figure out how to get the list to actually be a list?
+    //i could only get it to come back as a single string in the end which isnt correct.
+    //i tried returning type list<string> in a few ways but all of them met with errors.
+    //current solution isnt right but it gives the appearance of the desired result.
 
 
 

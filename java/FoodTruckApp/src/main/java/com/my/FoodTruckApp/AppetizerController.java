@@ -40,8 +40,18 @@ public class AppetizerController {
         return appetizerById.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
+    //locate the post by the id
+    //remove the post with the matching id
+    //add
+
     @PutMapping("menu/{id}")
-    Appetizer changePrice(@RequestBody Appetizer requestBody, @PathVariable Integer id) {
+    public Appetizer changePrice(@RequestBody Appetizer requestBody, @PathVariable Integer id) {
+
+//        Optional<Appetizer> appetizerById = appetizers.stream().filter(appetizer -> appetizer.getId().equals(id)).findFirst();
+        Appetizer appetizerDetails = appetizers.get(id);
+        appetizerDetails.setPrice(requestBody.getPrice());
+
+        return appetizerDetails;
 
     }
 

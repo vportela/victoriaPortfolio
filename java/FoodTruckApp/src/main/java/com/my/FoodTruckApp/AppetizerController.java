@@ -24,9 +24,7 @@ public class AppetizerController {
 
         return appetizers;
     }
-// ToDo: change put to allow you to change all fields except for id.
-    // ToDo: create a patch that lets you change a specific field.
-    //ToDo: PUT should require you to update the entire object, not just a field.
+
     //RESTful API, have conventions or patterns.
     //they should return JSON, and recieve JSON
     //use HTTP methods
@@ -62,7 +60,7 @@ public class AppetizerController {
     //add
 
     @PutMapping("appetizers/{id}")
-    public Appetizer changePrice(@RequestBody Appetizer requestBody, @PathVariable Integer id) {
+    public Appetizer changeAppetizer(@RequestBody Appetizer requestBody, @PathVariable Integer id) {
 
         Optional<Appetizer> optionalAppetizerById = appetizers.stream().filter(appetizer -> appetizer.getId().equals(id)).findFirst();
 
@@ -71,9 +69,23 @@ public class AppetizerController {
             foundAppetizer.setPrice(requestBody.getPrice());
             foundAppetizer.setDescription(requestBody.getDescription());
             foundAppetizer.setTitle(requestBody.getTitle());
-            // trying to return the found appetizer with the updated price
+            // trying to return the found appetizer with all of the allowed fields updated
             return foundAppetizer;
         } //if the Optional does not exist, throw the error code not found.
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+    }
+
+    @PatchMapping("appetizers/{id}")
+    public Appetizer changePrice(@RequestBody Appetizer requestBody, @PathVariable Integer id) {
+        //find app by it's id
+        Optional<Appetizer> optionalAppetizerById = appetizers.stream().filter(appetizer -> appetizer.getId().equals(id)).findFirst();
+        //change optional appetizer into just Appetizer so you can set things.
+        if (optionalAppetizerById.isPresent()) {
+            Appetizer foundAppetizer = optionalAppetizerById.get();
+            foundAppetizer.setPrice(requestBody.getPrice());
+            // trying to return the found appetizer with the updated price
+            return foundAppetizer;
+        }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 

@@ -1,9 +1,11 @@
 package com.my.FoodTruckApp;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.xml.validation.Validator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -64,15 +66,36 @@ public class AppetizerController {
 
         Optional<Appetizer> optionalAppetizerById = appetizers.stream().filter(appetizer -> appetizer.getId().equals(id)).findFirst();
 
+//        ValidationUtils.rejectIfEmpty();
         if (optionalAppetizerById.isPresent()) {
             Appetizer foundAppetizer = optionalAppetizerById.get();
             foundAppetizer.setPrice(requestBody.getPrice());
             foundAppetizer.setDescription(requestBody.getDescription());
             foundAppetizer.setTitle(requestBody.getTitle());
+
+            if(requestBody.getPrice() == null) {
+                System.out.println("price is null");
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+            } if (requestBody.getDescription() == null) {
+                System.out.println("description is null");
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+            } if (requestBody.getTitle() == null) {
+                System.out.println("title is null");
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+            }
+
             // trying to return the found appetizer with all of the allowed fields updated
             return foundAppetizer;
         } //if the Optional does not exist, throw the error code not found.
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+
+        //if a field is missing from the new data, throw an exception.
+        //how do you know if a field is missing? -- it is null
+
+        //possible option, if you have a "safe appetizer" type of thing that only gives access to the fields you
+        //want to be able to change, and then if the arguments don't match, you throw the exception.
+
+
     }
 
     @PatchMapping("appetizers/{id}")

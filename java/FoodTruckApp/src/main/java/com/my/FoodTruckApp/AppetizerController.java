@@ -105,8 +105,31 @@ public class AppetizerController {
         //change optional appetizer into just Appetizer so you can set things.
         if (optionalAppetizerById.isPresent()) {
             Appetizer foundAppetizer = optionalAppetizerById.get();
-            foundAppetizer.setPrice(requestBody.getPrice());
+
             // trying to return the found appetizer with the updated price
+
+            if(requestBody.getPrice() == null) {
+                System.out.println("found app before set price" + foundAppetizer);
+                return foundAppetizer;
+            } foundAppetizer.setPrice(requestBody.getPrice());
+            System.out.println("found app after set price" + foundAppetizer);
+
+            //this way doesnt work because if this if statement returns, it stops.
+            // if it runs the else (aka makes the change), it continues to the next if statement because
+            //there was technically no return, but then it will stop once that one returns something.
+
+            if(requestBody.getTitle() == null) {
+                System.out.println("title before change" + foundAppetizer);
+                return foundAppetizer;
+            } foundAppetizer.setTitle(requestBody.getTitle());
+            System.out.println("title after change" + foundAppetizer);
+
+//            if(requestBody.getDescription() == null) {
+//                System.out.println("title before change" + foundAppetizer);
+//                return foundAppetizer;
+//            } foundAppetizer.setDescription(requestBody.getDescription());
+//            System.out.println("title after change" + foundAppetizer);
+
             return foundAppetizer;
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);

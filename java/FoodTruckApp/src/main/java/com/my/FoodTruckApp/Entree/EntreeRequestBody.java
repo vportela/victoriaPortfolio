@@ -10,6 +10,5 @@ import lombok.NoArgsConstructor;
 public class EntreeRequestBody {
     private String entreeSize;
     private String entreeFlavor;
-    private String entreePairedMeal;
     private Integer entreePrice;
 }

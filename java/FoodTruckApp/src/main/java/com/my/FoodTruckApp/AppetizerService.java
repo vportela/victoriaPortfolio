@@ -1,37 +1,37 @@
 package com.my.FoodTruckApp;
 
-import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-@Data
+@RequiredArgsConstructor
 public class AppetizerService {
+//    private  final Appetizer appetizer1 = new Appetizer(1,"chicken skewer", "yummy chicken on a stick", 4);
+//    private  final Appetizer appetizer2 = new Appetizer(2,"pork taco", "Delicious little pocket of pork joy", 8);
+//
+//    private  final Appetizer appetizer3 = new Appetizer(3,"mango pie", "hot mango pie", 70);
+//    ArrayList<Appetizer> appetizers = new ArrayList<>(Arrays.asList(appetizer1,appetizer2, appetizer3));
+    private final AppetizerRepository appetizerRepository;
 
-    public String testingService() {
+//    public AppetizerService(AppetizerRepository appetizerRepository) {
+//        this.appetizerRepository = appetizerRepository;
+//    }
 
-        System.out.println("this is the AppetizerService, hewwo");
-        String testing = "testing the app service";
-        return testing;
-    }
-
-    private  final Appetizer appetizer1 = new Appetizer(1,"chicken skewer", "yummy chicken on a stick", 4);
-    private  final Appetizer appetizer2 = new Appetizer(2,"pork taco", "Delicious little pocket of pork joy", 8);
-
-    private  final Appetizer appetizer3 = new Appetizer(3,"mango pie", "hot mango pie", 70);
-    ArrayList<Appetizer> appetizers = new ArrayList<>(Arrays.asList(appetizer1,appetizer2, appetizer3));
-
+//    public AppetizerService(AppetizerRepository appetizerRepository) {
+//
+//        this.appetizerRepository = appetizerRepository;
+//    }
     //------------------------GETTING LIST OF APPS-------------------------
 
     public List<Appetizer> getAppetizers() {
+        List<Appetizer> appetizers = appetizerRepository.getAllAppetizers();
         System.out.println("getting the appetizer menu" + appetizers);
 
         return appetizers;
@@ -39,8 +39,9 @@ public class AppetizerService {
 
     // -------------------------------CREATE APP----------------------------
 
-    @PostMapping("/appetizers")
+
     public Appetizer createItem(@RequestBody @NotNull Appetizer requestBody) {
+        List<Appetizer> appetizers = appetizerRepository.getAllAppetizers();
         System.out.println("creating an appetizer with requestBody: " + requestBody);
         //add this new appetizer to the appetizers ArrayList<Appetizer>
         Integer id = appetizers.get(appetizers.size() - 1).getId() + 1;
@@ -57,21 +58,22 @@ public class AppetizerService {
 
     //-------------GET APPS BY ID --------------
 
-    @GetMapping("/appetizers/{id}")
-    public Appetizer getAppetizerById(@PathVariable Integer id) {
-        System.out.println("Getting appetizer by id: " + id);
 
+    public Optional<Appetizer> getAppetizerById(@PathVariable Integer id) {
+        System.out.println("Getting appetizer by id: " + id);
+        List<Appetizer> appetizers = appetizerRepository.getAllAppetizers();
         Optional<Appetizer> appetizerById = appetizers.stream().filter(appetizer -> appetizer.getId().equals(id)).findFirst();
 
-        return appetizerById.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return appetizerById;
     }
 
     // --------------------CHANGING/UPDATING AN APP BY ID ------------
 
 
-    @PutMapping("appetizers/{id}")
+
     public Appetizer changeAppetizer(@RequestBody Appetizer requestBody, @PathVariable Integer id) {
 
+        List<Appetizer> appetizers = appetizerRepository.getAllAppetizers();
         Optional<Appetizer> optionalAppetizerById = appetizers.stream().filter(appetizer -> appetizer.getId().equals(id)).findFirst();
 
 //        ValidationUtils.rejectIfEmpty();
@@ -109,8 +111,11 @@ public class AppetizerService {
     //-------------------- PATCHING ---------------------
 
 
-    @PatchMapping("appetizers/{id}")
+
     public Appetizer changePrice(@RequestBody Appetizer requestBody, @PathVariable Integer id) {
+
+        List<Appetizer> appetizers = appetizerRepository.getAllAppetizers();
+
         //find app by it's id
         Optional<Appetizer> optionalAppetizerById = appetizers.stream().filter(appetizer -> appetizer.getId().equals(id)).findFirst();
         //change optional appetizer into just Appetizer so you can set things.

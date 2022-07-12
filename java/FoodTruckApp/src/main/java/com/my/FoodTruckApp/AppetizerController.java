@@ -1,5 +1,7 @@
 package com.my.FoodTruckApp;
 
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.ValidationUtils;
@@ -13,16 +15,14 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequiredArgsConstructor // will only use fields that are final (aka being used once)
 public class AppetizerController {
+//    @Autowired
+    private final AppetizerService appetizerService;
 
-    @Autowired
-    private AppetizerService appetizerService;
-
-    @GetMapping("/dependencyInjection")
-    public String testingDependencyInjection() {
-
-        return appetizerService.testingService();
-    }
+//    public AppetizerController(AppetizerService appetizerService) {
+//        this.appetizerService = appetizerService;
+//    }
 
     @GetMapping("/appetizers")
         public List<Appetizer> getAppetizers() {
@@ -43,7 +43,7 @@ public class AppetizerController {
     public Appetizer getAppetizerById(@PathVariable Integer id) {
 
 
-        return appetizerService.getAppetizerById(id);
+        return appetizerService.getAppetizerById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
 //    //locate the post by the id

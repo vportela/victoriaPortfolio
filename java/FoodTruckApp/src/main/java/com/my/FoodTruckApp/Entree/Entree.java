@@ -11,6 +11,5 @@ public class Entree {
     private Integer id;
     private String size;
     private String flavor;
-    private String pairedMeal;
     private Integer price;
 }

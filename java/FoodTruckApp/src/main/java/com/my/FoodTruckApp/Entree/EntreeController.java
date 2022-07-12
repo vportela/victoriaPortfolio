@@ -7,34 +7,33 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.ArrayList;
 
 
-@RestController //API CALL, have to go to POSTMAN and call this API; recieving the API calls is the main job of the controller; creates endpoints with URLS
-@RequiredArgsConstructor //looks for all fields but only uses final (required) fields
+@RestController
+@RequiredArgsConstructor
 public class EntreeController {
 
-    private final EntreeService entreeService; //if you want an instance of the service, we ask Spring for it through the private variable, we can use this to tell spring to INJECT it
-    //will look through all the variables and see if they have a DEPENDENCY on the service
+    private final EntreeService entreeService;
 
-    @GetMapping("/entrees") //GET ALL ENTREES IN LIST
+    @GetMapping("/entrees")
     public ArrayList<Entree> getListOfEntrees() {
-        return entreeService.getListOfEntrees(); //getting instance of the service and calling the method
+        return entreeService.getListOfEntrees();
     }
 
-    //------------------------create an entree through POST and add to list-------------------------------------------
+    //--------------------------CREATE ENTREE-------------------------------
     @PostMapping("/entrees")
     public Entree createEntree(@RequestBody EntreeRequestBody entreeRequestBody) {
-        return entreeService.createEntree(entreeRequestBody); //entreeRequestBody is the raw JSON we input on PostMan
+        return entreeService.createEntree(entreeRequestBody);
     }
-    //------------------------get entree by ID-------------------------------------------
+    //------------------------ENTREE BY ID------------------------------
     @GetMapping("/entrees/{id}")
     public Entree getEntreeById(@PathVariable Integer id) {
         return entreeService.getEntreeById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
-    //------------------------PUTMAPPING must enter all fields-------------------------------------------
+    //------------------------PUTMAPPING------------------------------
     @PutMapping("/entrees/{id}")
     public Entree changeObject(@RequestBody Entree requestBody, @PathVariable Integer id) {
         return entreeService.changeObject(requestBody, id);
     }
-    //------------------------PATCHMAPPING one or multiple fields-------------------------------------------
+    //------------------------PATCHMAPPING-----------------------------------
     @PatchMapping("/entrees/{id}")
     public Entree changeField(@RequestBody Entree requestBody, @PathVariable Integer id) {
         return entreeService.changeField(requestBody, id);

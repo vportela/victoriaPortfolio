@@ -1,4 +1,4 @@
-package com.my.FoodTruckApp;
+package com.my.FoodTruckApp.Appetizer;
 
 import org.springframework.stereotype.Repository;
 

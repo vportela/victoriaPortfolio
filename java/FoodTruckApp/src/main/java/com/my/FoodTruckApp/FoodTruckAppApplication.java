@@ -1,5 +1,6 @@
 package com.my.FoodTruckApp;
 
+import com.my.FoodTruckApp.Appetizer.Appetizer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

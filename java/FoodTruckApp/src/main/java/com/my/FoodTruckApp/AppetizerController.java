@@ -36,6 +36,7 @@ public class AppetizerController {
     //so the URL here should be appetizers. It needs to be self-explanatory and related to the model/class.
     @PostMapping("/appetizers")
     public Appetizer createItem(@RequestBody Appetizer requestBody) {
+
         return appetizerService.createItem(requestBody);
     }
 

@@ -9,7 +9,9 @@ import lombok.NoArgsConstructor;
 @Data
 public class Entree {
     private Integer id;
-    private String size;
-    private String flavor;
+    private String title;
+    private String description;
     private Integer price;
+
+
 }

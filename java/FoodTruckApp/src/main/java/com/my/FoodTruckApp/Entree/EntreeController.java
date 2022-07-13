@@ -20,7 +20,7 @@ public class EntreeController {
 
     //--------------------------CREATE ENTREE-------------------------------
     @PostMapping("/entrees")
-    public Entree createEntree(@RequestBody EntreeRequestBody requestBody) {
+    public Entree createEntree(@RequestBody Entree requestBody) {
         return entreeService.createEntree(requestBody);
     }
     //------------------------ENTREE BY ID------------------------------

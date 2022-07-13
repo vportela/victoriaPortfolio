@@ -1,6 +1,7 @@
 package com.my.FoodTruckApp.Entree;
 
 import lombok.RequiredArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,16 +23,16 @@ public class EntreeService {
         return entrees;
     }
     //---------------------------------------------------------------------------------------------------------------------------------
-    public Entree createEntree(@RequestBody EntreeRequestBody requestBody) {
+    public Entree createEntree(@RequestBody Entree requestBody) {
         ArrayList<Entree> entrees = entreeRepository.getAllEntrees();
         System.out.println("Creating an entree with requestBody: " + requestBody);
         Integer id = entrees.get(entrees.size() - 1).getId() + 1;
 
         Entree entree = new Entree(
             id,
-            requestBody.getEntreeSize(),
-            requestBody.getEntreeFlavor(),
-            requestBody.getEntreePrice()
+            requestBody.getTitle(),
+            requestBody.getDescription(),
+            requestBody.getPrice()
         );
         entrees.add(entree);
         return entree;
@@ -52,24 +53,24 @@ public class EntreeService {
 
         if (optionalEntreeById.isPresent()) {
             Entree foundEntree = optionalEntreeById.get();
+            foundEntree.setTitle(requestBody.getTitle());
+            foundEntree.setDescription(requestBody.getDescription());
             foundEntree.setPrice(requestBody.getPrice());
-            foundEntree.setFlavor(requestBody.getFlavor());
-            foundEntree.setSize(requestBody.getSize());
 
             if (requestBody.getPrice() == null) {
                 System.out.println("The price is null");
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-            } if (requestBody.getFlavor() == null) {
+            } if (requestBody.getTitle() == null) {
                 System.out.println("The flavor is null");
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-            }  if (requestBody.getSize() == null) {
+            }  if (requestBody.getDescription() == null) {
                 System.out.println("The size is null");
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
             }
-            return foundEntree; //if app existed AND all field requirements were met
+            return foundEntree;
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        // throwing exception if no item by id exists
+
     }
     public Entree changeField(@RequestBody Entree requestBody, @PathVariable Integer id) {
         ArrayList<Entree> entrees = entreeRepository.getAllEntrees();
@@ -86,18 +87,18 @@ public class EntreeService {
             foundEntree.setPrice(requestBody.getPrice());
             System.out.println("after change" + foundEntree);
 
-            if (requestBody.getFlavor() == null) {
+            if (requestBody.getTitle() == null) {
                 System.out.println("before change" + foundEntree);
                 return foundEntree;
             }
-            foundEntree.setFlavor(requestBody.getFlavor());
+            foundEntree.setTitle(requestBody.getTitle());
             System.out.println("after change" + foundEntree);
 
-            if (requestBody.getSize() == null) {
+            if (requestBody.getDescription() == null) {
                 System.out.println("before change" + foundEntree);
                 return foundEntree;
             }
-            foundEntree.setSize(requestBody.getSize());
+            foundEntree.setDescription(requestBody.getDescription());
             System.out.println("after change" + foundEntree);
 
         }

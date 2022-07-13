@@ -20,8 +20,8 @@ public class EntreeController {
 
     //--------------------------CREATE ENTREE-------------------------------
     @PostMapping("/entrees")
-    public Entree createEntree(@RequestBody EntreeRequestBody entreeRequestBody) {
-        return entreeService.createEntree(entreeRequestBody);
+    public Entree createEntree(@RequestBody EntreeRequestBody requestBody) {
+        return entreeService.createEntree(requestBody);
     }
     //------------------------ENTREE BY ID------------------------------
     @GetMapping("/entrees/{id}")
@@ -37,5 +37,10 @@ public class EntreeController {
     @PatchMapping("/entrees/{id}")
     public Entree changeField(@RequestBody Entree requestBody, @PathVariable Integer id) {
         return entreeService.changeField(requestBody, id);
+    }
+
+    @DeleteMapping("/entrees/{id}")
+    public void deleteField(@RequestBody Entree requestBody, @PathVariable Integer id) {
+        entreeService.deleteField(requestBody, id);
     }
 }

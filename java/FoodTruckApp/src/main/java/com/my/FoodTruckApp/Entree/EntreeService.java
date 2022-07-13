@@ -22,16 +22,16 @@ public class EntreeService {
         return entrees;
     }
     //---------------------------------------------------------------------------------------------------------------------------------
-    public Entree createEntree(@RequestBody EntreeRequestBody entreeRequestBody) {
+    public Entree createEntree(@RequestBody EntreeRequestBody requestBody) {
         ArrayList<Entree> entrees = entreeRepository.getAllEntrees();
-        System.out.println("Creating an entree with requestBody: " + entreeRequestBody);
+        System.out.println("Creating an entree with requestBody: " + requestBody);
         Integer id = entrees.get(entrees.size() - 1).getId() + 1;
 
         Entree entree = new Entree(
-                id,
-                entreeRequestBody.getEntreeSize(),
-                entreeRequestBody.getEntreeFlavor(),
-                entreeRequestBody.getEntreePrice()
+            id,
+            requestBody.getEntreeSize(),
+            requestBody.getEntreeFlavor(),
+            requestBody.getEntreePrice()
         );
         entrees.add(entree);
         return entree;
@@ -102,6 +102,14 @@ public class EntreeService {
 
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+
+    }
+
+    public void deleteField(@RequestBody Entree requestBody, @PathVariable Integer id) {
+        ArrayList<Entree> entrees = entreeRepository.getAllEntrees();
+        System.out.println("deleting Entree by Id: " + id);
+        entrees.removeIf(entree -> entree.getId().equals(id));
+
 
     }
 }

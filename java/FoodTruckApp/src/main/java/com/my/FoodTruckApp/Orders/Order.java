@@ -18,9 +18,6 @@ public class Order {
 
 }
 
-// ToDO: just make order API return something like hello
-// ToDO: create fake order to see how it works
-// ToDO: return the fake pre loaded order
-// ToDO: return two pre loaded orders
-// ToDO: get one order by it's id
 // ToDO: make orders by app or entree id (big task, rlly many small tasks)
+
+//

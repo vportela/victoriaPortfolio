@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -27,12 +28,14 @@ public class OrderController {
     }
 
     @GetMapping("orders/entree")
-    public List<Entree> getListOfEntree() {
-        return entreeService.getListOfEntrees();
+    public Entree getEntreeThroughRequestBody(@RequestBody Integer id) {
+        return orderService.getEntreeThroughRequestBody(id);
     }
 
     @PostMapping("orders")
     public Order addNewOrder(@RequestBody Order requestBody) {
         return orderService.createOrder(requestBody);
     }
+
+
 }

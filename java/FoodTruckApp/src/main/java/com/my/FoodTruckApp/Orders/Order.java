@@ -19,5 +19,3 @@ public class Order {
 }
 
 // ToDO: make orders by app or entree id (big task, rlly many small tasks)
-
-//

@@ -1,6 +1,7 @@
 package com.my.FoodTruckApp.Orders;
 
 import com.my.FoodTruckApp.Entree.Entree;
+import com.my.FoodTruckApp.Entree.EntreeId;
 import com.my.FoodTruckApp.Entree.EntreeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -36,9 +37,9 @@ public class OrderService {
 
 //figure out how to request an entree through the request body.
 
-    public Entree getEntreeThroughRequestBody(@RequestBody Integer id) {
+    public Entree getEntreeThroughRequestBody(@RequestBody EntreeId id) {
         ArrayList<Entree> entrees = entreeRepository.getAllEntrees();
-        Optional<Entree> optionalEntreeById = entrees.stream().filter(entree -> entree.getId() == id).findFirst();
+        Optional<Entree> optionalEntreeById = entrees.stream().filter(entree -> entree.getId() == id.getEntreeIdField()).findFirst();
 
         if (optionalEntreeById.isPresent()) {
             Entree foundEntreeByRequestId = optionalEntreeById.get();

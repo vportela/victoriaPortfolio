@@ -1,6 +1,7 @@
 package com.my.FoodTruckApp.Orders;
 
 import com.my.FoodTruckApp.Entree.Entree;
+import com.my.FoodTruckApp.Entree.EntreeId;
 import com.my.FoodTruckApp.Entree.EntreeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -28,7 +29,7 @@ public class OrderController {
     }
 
     @GetMapping("orders/entree")
-    public Entree getEntreeThroughRequestBody(@RequestBody Integer id) {
+    public Entree getEntreeThroughRequestBody(@RequestBody EntreeId id) {
         return orderService.getEntreeThroughRequestBody(id);
     }
 

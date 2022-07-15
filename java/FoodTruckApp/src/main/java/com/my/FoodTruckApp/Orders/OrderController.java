@@ -18,25 +18,26 @@ public class OrderController {
     private  final OrderService orderService;
     private final EntreeService entreeService;
 
-    @GetMapping("orders")
+    @GetMapping("/orders")
     public List<Order> getListOfOrders() {
         return orderService.getListOfOrders();
     }
 
-    @GetMapping("orders/{id}")
+    @GetMapping("/orders/{id}")
     public Order getOrderById(@PathVariable Integer id) {
         return orderService.getOrderById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-    @GetMapping("orders/entree")
-    public Entree getEntreeThroughRequestBody(@RequestBody EntreeId id) {
+    @GetMapping("/orders/entree")
+    public List<Entree> getEntreeThroughRequestBody(@RequestBody EntreeId id) { //if you are getting something by id it should be a path variable not a requestbody
         return orderService.getEntreeThroughRequestBody(id);
     }
 
-    @PostMapping("orders")
-    public Order addNewOrder(@RequestBody Order requestBody) {
-        return orderService.createOrder(requestBody);
+    @PostMapping("/orders/{id}")
+    public Order addNewOrder(@RequestBody  Order requestBody , @PathVariable Integer id) { //you cannot recieve two things from the request body
+        return orderService.createOrder(requestBody, id);
     }
+
 
 
 }

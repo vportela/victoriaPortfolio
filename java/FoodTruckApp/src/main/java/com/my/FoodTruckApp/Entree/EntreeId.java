@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class EntreeId {
-    private Integer EntreeIdField;
+    private Integer entreeIdField;
 }
 

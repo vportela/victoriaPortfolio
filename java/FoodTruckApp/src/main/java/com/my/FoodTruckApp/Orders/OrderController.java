@@ -33,9 +33,9 @@ public class OrderController {
         return orderService.getEntreeThroughRequestBody(id);
     }
 
-    @PostMapping("/orders/{id}/{id2}")
-    public Order addNewOrder(@RequestBody  Order requestBody , @PathVariable Integer id , @PathVariable Integer id2) { //you cannot recieve two things from the request body
-        return orderService.createOrder(requestBody, id, id2);
+    @PostMapping("/orders/{id}/{id2}/{id3}")
+    public Order addNewOrder(@RequestBody  Order requestBody , @PathVariable Integer id , @PathVariable Integer id2, @PathVariable Integer id3) { //you cannot recieve two things from the request body
+        return orderService.createOrder(requestBody, id, id2, id3);
     }
 
 

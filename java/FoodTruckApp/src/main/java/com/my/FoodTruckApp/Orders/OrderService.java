@@ -57,23 +57,25 @@ public class OrderService {
     }
 
 
-    public Order createOrder( Order requestBody, Integer id) { //do not use EntreeId it is stinky.
+    public Order createOrder( Order requestBody, Integer id, Integer id2) { //do not use EntreeId it is stinky.
         List<Order> orders = orderRepository.getListOfOrders();
         System.out.println("creating a new order with requestbody: " + requestBody);
         Integer orderId = orders.get(orders.size() - 1).getId() + 1;
 
-        Optional<Entree> entree = entreeService.getEntreeById(id);
-//        Optional<Appetizer> appetizer = appetizerService.getAppetizerById(id2);
+        Optional<Entree> entree = entreeService.getEntreeById(id2);
+        Optional<Appetizer> appetizer = appetizerService.getAppetizerById(id);
 
 
-        if (entree.isPresent()) {
+        if (entree.isPresent() && appetizer.isPresent()) {
             Entree foundEntreeByRequestId = entree.get();
+            Appetizer foundAppetizerByRequestId = appetizer.get();
             ArrayList<Entree> foundEntreeById = new ArrayList<>(Arrays.asList(foundEntreeByRequestId));
+            ArrayList<Appetizer> foundAppetizerById = new ArrayList<>(Arrays.asList(foundAppetizerByRequestId));
 
             Order order = new Order (
                     orderId,
                     foundEntreeById,
-                    requestBody.getAppetizers()
+                    foundAppetizerById
             );
             orders.add(order);
             return order;

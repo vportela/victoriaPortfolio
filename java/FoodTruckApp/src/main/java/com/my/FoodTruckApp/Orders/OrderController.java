@@ -33,11 +33,40 @@ public class OrderController {
         return orderService.getEntreeThroughRequestBody(id);
     }
 
-    @PostMapping("/orders/{id}/{id2}/{id3}")
-    public Order addNewOrder(@RequestBody  Order requestBody , @PathVariable Integer id , @PathVariable Integer id2, @PathVariable Integer id3) { //you cannot recieve two things from the request body
+    @PostMapping("/orders/{id}/{id2}/{id3}") //this like sort of works but is limited in how useful it is.
+    public Order addNewOrder(@RequestBody  Order requestBody , @PathVariable Integer id , @PathVariable Integer id2,
+                             @PathVariable Integer id3) { //you cannot recieve two things from the request body
         return orderService.createOrder(requestBody, id, id2, id3);
     }
 
+    @PostMapping("/orders/blank") //creating a blank order to fill with patches later on (also not a great solution)
+    public Order addNewBlankOrder(@RequestBody  Order requestBody) {
+        return orderService.createBlankOrder(requestBody);
+    }
+
+    @PatchMapping("/orders/{id}/entrees/{id2}/{id3}")
+    public Order addEntreesToOrder(@RequestBody Order requestBody, @PathVariable Integer id, @PathVariable Integer id2,
+                                   @PathVariable Integer id3) {
+        return orderService.orderEntrees(requestBody, id, id2, id3);
+    }
+
+    //ok what if there was a post mapping for entrees, and a post mapping for appetizers? but they both go
+    //into the same order????
+
+    //ToDo: leave the new order alone and start to work on the other ones, for now new order is good enough for
+    // working on the next parts of the project.
+
+    //Todo: look into a way to have either unlimited or a long/unreasonable amount of path variables
+    // in a way where you don't have to pass in each one manually.
+
+//    @PutMapping("/orders/{id}")
+//    public Order changeOrder(@RequestBody Order requestBody, @PathVariable Integer id) {
+//        return orderService.changeOrder(requestBody, id);
+//    }
+
+    //experiment: an API that creates the blank order, a patch API that adds entrees to the order, and one that
+    //adds apps to the order.
+    //this will provide some organization even though it seems like it would be ridiculously over-complicated...
 
 
 }

@@ -17,6 +17,5 @@ public class Order {
     private List<Appetizer> appetizers;
 
 }
-//ToDo: orderId should just read as ID, entreesOrdered should just say ordered. because you write entree.entreesOrdered
-// which is redundant. just write Id or ordered etc.
-// ToDO: make orders by app or entree id (big task, rlly many small tasks)
+// ToDo: make the path variables optional
+// ToDo: add optional path variables for entrees and appetizers

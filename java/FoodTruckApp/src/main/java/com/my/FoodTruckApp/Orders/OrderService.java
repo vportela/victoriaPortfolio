@@ -83,10 +83,53 @@ public class OrderService {
             return order;
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-
-
-
     }
+
+    public Order createBlankOrder( Order requestBody) { //do not use EntreeId it is stinky.
+        List<Order> orders = orderRepository.getListOfOrders();
+        System.out.println("creating a new order with requestbody: " + requestBody);
+        Integer orderId = orders.get(orders.size() - 1).getId() + 1;
+        List<Entree> entree = requestBody.getEntrees();
+        List<Appetizer> appetizers = requestBody.getAppetizers();
+
+            Order order = new Order (
+                    orderId,
+                    entree,
+                    appetizers
+            );
+            orders.add(order);
+            return order;
+    }
+
+    public Order orderEntrees(Order requestBody, Integer id, Integer id2, Integer id3) {
+
+        Optional<Order> optionalFoundOrder = getOrderById(id);
+
+        if (optionalFoundOrder.isPresent()) {
+            Order foundOrder = optionalFoundOrder.get();
+            return foundOrder;
+        } throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+    }
+
+
+
+
+
+
+
+//    public Order changeOrder(@RequestBody Order requestBody, @PathVariable Integer id) {
+//        Optional<Order> optionalOrders = getOrderById(id);
+//
+//        if(optionalOrders.isPresent()) {
+//            Order foundOrder = optionalOrders.get();
+//            if (requestBody.getEntrees() == null) {
+//                System.out.println("before change: " + foundOrder);
+//                return foundOrder;
+//            }
+//        }
+//        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+//
+//    }
 
 //    public void deleteOrderById(@PathVariable Integer id) {
 //        List<Order> listOfOrders =  orderRepository.getListOfOrders();

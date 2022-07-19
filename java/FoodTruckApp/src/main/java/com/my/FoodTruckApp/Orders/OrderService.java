@@ -42,79 +42,34 @@ public class OrderService {
         return orderById;
     }
 
-//figure out how to request an entree through the request body.
-
-    public List<Entree> getEntreeThroughRequestBody(EntreeId id) {
-        ArrayList<Entree> entrees = entreeRepository.getAllEntrees();
-        Optional<Entree> optionalEntreeById = entrees.stream().filter(entree -> entree.getId() == id.getEntreeIdField()).findFirst();
-
-        if (optionalEntreeById.isPresent()) {
-            Entree foundEntreeByRequestId = optionalEntreeById.get();
-            ArrayList<Entree> listOfFoundEntreeByRequestId = new ArrayList<>(Arrays.asList(foundEntreeByRequestId));
-            return listOfFoundEntreeByRequestId;
-        }
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-    }
-
-
-    public Order createOrder( Order requestBody, Integer id, Integer id2, Integer id3) { //do not use EntreeId it is stinky.
+    public Order createOrder(NewOrderRequestBody newOrderRequestBody ) {
         List<Order> orders = orderRepository.getListOfOrders();
-        System.out.println("creating a new order with requestbody: " + requestBody);
+        System.out.println("creating a new order with requestbody: " + newOrderRequestBody);
         Integer orderId = orders.get(orders.size() - 1).getId() + 1;
 
-        Optional<Entree> entree = entreeService.getEntreeById(id2);
-        Optional<Entree> entree2 = entreeService.getEntreeById(id3);
-        Optional<Appetizer> appetizer = appetizerService.getAppetizerById(id);
+//        Optional<Entree> entree = entreeService.getEntreeById(id2);
+//        Optional<Entree> entree2 = entreeService.getEntreeById(id3);
+//        Optional<Appetizer> appetizer = appetizerService.getAppetizerById(id);
 
+//        newOrderRequestBody.getAppetizerIds();
 
-        if (entree.isPresent() && appetizer.isPresent()) {
-            Entree foundEntreeByRequestId = entree.get();
-            Entree foundEntreeByRequestId2 = entree2.get();
-            Appetizer foundAppetizerByRequestId = appetizer.get();
-            ArrayList<Entree> foundEntreeById = new ArrayList<>(Arrays.asList(foundEntreeByRequestId, foundEntreeByRequestId2));
-            ArrayList<Appetizer> foundAppetizerById = new ArrayList<>(Arrays.asList(foundAppetizerByRequestId));
-
-            Order order = new Order (
-                    orderId,
-                    foundEntreeById,
-                    foundAppetizerById
-            );
-            orders.add(order);
-            return order;
-        }
+//        if (entree.isPresent() && appetizer.isPresent()) {
+//            Entree foundEntreeByRequestId = entree.get();
+//            Entree foundEntreeByRequestId2 = entree2.get();
+//            Appetizer foundAppetizerByRequestId = appetizer.get();
+//            ArrayList<Entree> foundEntreeById = new ArrayList<>(Arrays.asList(foundEntreeByRequestId, foundEntreeByRequestId2));
+//            ArrayList<Appetizer> foundAppetizerById = new ArrayList<>(Arrays.asList(foundAppetizerByRequestId));
+//
+//            Order order = new Order (
+//                    orderId,
+//                    foundEntreeById,
+//                    foundAppetizerById
+//            );
+//            orders.add(order);
+//            return order;
+//        }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
-
-    public Order createBlankOrder( Order requestBody) { //do not use EntreeId it is stinky.
-        List<Order> orders = orderRepository.getListOfOrders();
-        System.out.println("creating a new order with requestbody: " + requestBody);
-        Integer orderId = orders.get(orders.size() - 1).getId() + 1;
-        List<Entree> entree = requestBody.getEntrees();
-        List<Appetizer> appetizers = requestBody.getAppetizers();
-
-            Order order = new Order (
-                    orderId,
-                    entree,
-                    appetizers
-            );
-            orders.add(order);
-            return order;
-    }
-
-    public Order orderEntrees(Order requestBody, Integer id, Integer id2, Integer id3) {
-
-        Optional<Order> optionalFoundOrder = getOrderById(id);
-
-        if (optionalFoundOrder.isPresent()) {
-            Order foundOrder = optionalFoundOrder.get();
-            return foundOrder;
-        } throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-    }
-
-
-
-
-
 
 
 //    public Order changeOrder(@RequestBody Order requestBody, @PathVariable Integer id) {

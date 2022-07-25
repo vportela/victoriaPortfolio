@@ -103,31 +103,36 @@ it in double quotes. so instead of user or table it will be written as "user" or
 ### UPDATE
   - updating a specific row's first_name
     - ```UPDATE person SET first_name = 'bobby' WHERE last_name = 'beepboop';```
-    - // last_name
+  - // last_name
     - ```UPDATE person SET last_name = 'lil-man' WHERE first_name = 'victoria';```
-    - // age
+  - // age
     - ```UPDATE person SET age = '27' WHERE last_name = 'lil-man';```
-    - // is_happy
+  - // is_happy
     - ```UPDATE person SET is_happy = true WHERE age = 22;```
   - updating multiple cols in a single row once
   - udpating multiple cols in MULTIPLE rows once
 ### DELETE
   - delete row
-  - by first_Name
-- ```DELETE FROM person WHERE first_name = 'bobby';```
-  - by last_name
-  - ```DELETE FROM person WHERE last_name = 'meowmeow';```
-  - delete ALL rows in the table
-  - ```DELETE FROM person;```
-  - delete all rows who's age is bigger than 59
+    - by first_Name
+      - ```DELETE FROM person WHERE first_name = 'bobby';```
+    - by last_name
+      - ```DELETE FROM person WHERE last_name = 'meowmeow';```
+    - delete ALL rows in the table
+      - ```DELETE FROM person;```
+    - delete all rows who's age is bigger than 59
+      - (well they are already all deleted so :p )
+      - ``` DELETE FROM person WHERE age > 59;```
 
 
--- CRUD on person's columns
-- UPDATE:
-  -- add a new column to the existing table (ex: add an ID col)
-  -- rename an existing column. Ex: is_happy = is_hungry
-  --  make a col NULLABLE (first_name)
-  -- make a col NOT nullable (is_happy)
-  -- (hard) change the data type of an existing col. Ex: change is_happy (bool) to a varchar(255)
-  -- Delete:
+## CRUD on person's columns
+### UPDATE:
+- add a new column to the existing table (ex: add an ID col)
+  - ```ALTER TABLE person ADD id INTEGER; ```
+- rename an existing column. Ex: is_happy = is_hungry
+  - ```ALTER TABLE person RENAME COLUMN is_happy TO is_hungry;```
+- make a col NULLABLE (first_name)
+  - 
+- make a col NOT nullable (is_happy)
+- (hard) change the data type of an existing col. Ex: change is_happy (bool) to a varchar(255)
+- Delete:
   - delete an entire col

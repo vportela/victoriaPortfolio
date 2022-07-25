@@ -1,7 +1,7 @@
-package com.my.FoodTruckApp.Orders;
+package com.my.foodTruckApp.Orders;
 
-import com.my.FoodTruckApp.Appetizer.Appetizer;
-import com.my.FoodTruckApp.Entree.Entree;
+import com.my.foodTruckApp.Appetizer.Appetizer;
+import com.my.foodTruckApp.Entree.Entree;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

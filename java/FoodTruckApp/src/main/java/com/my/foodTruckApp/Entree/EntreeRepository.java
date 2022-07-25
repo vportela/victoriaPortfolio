@@ -1,5 +1,5 @@
 
-package com.my.FoodTruckApp.Entree;
+package com.my.foodTruckApp.Entree;
 import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.Arrays;

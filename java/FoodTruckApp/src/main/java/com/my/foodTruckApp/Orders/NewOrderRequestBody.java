@@ -1,4 +1,4 @@
-package com.my.FoodTruckApp.Orders;
+package com.my.foodTruckApp.Orders;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

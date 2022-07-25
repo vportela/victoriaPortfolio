@@ -1,20 +1,14 @@
-package com.my.FoodTruckApp.Orders;
+package com.my.foodTruckApp.Orders;
 
-import com.my.FoodTruckApp.Appetizer.Appetizer;
-import com.my.FoodTruckApp.Appetizer.AppetizerService;
-import com.my.FoodTruckApp.Entree.Entree;
-import com.my.FoodTruckApp.Entree.EntreeId;
-import com.my.FoodTruckApp.Entree.EntreeRepository;
-import com.my.FoodTruckApp.Entree.EntreeService;
+import com.my.foodTruckApp.Appetizer.AppetizerService;
+import com.my.foodTruckApp.Entree.Entree;
+import com.my.foodTruckApp.Entree.EntreeRepository;
+import com.my.foodTruckApp.Entree.EntreeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,6 +40,12 @@ public class OrderService {
         List<Order> orders = orderRepository.getListOfOrders();
         System.out.println("creating a new order with requestbody: " + newOrderRequestBody);
         Integer orderId = orders.get(orders.size() - 1).getId() + 1;
+
+        List<Integer> entrees = newOrderRequestBody.getEntreeIds();
+        //for each entree in the request body, get the entree by it's id.
+        entreeService.getEntreeById(entrees);
+
+        //using the ids passed in through the request body, find the entrees.
 
 //        Optional<Entree> entree = entreeService.getEntreeById(id2);
 //        Optional<Entree> entree2 = entreeService.getEntreeById(id3);

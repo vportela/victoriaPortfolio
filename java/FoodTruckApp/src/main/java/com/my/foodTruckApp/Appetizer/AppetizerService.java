@@ -1,4 +1,4 @@
-package com.my.FoodTruckApp.Appetizer;
+package com.my.foodTruckApp.Appetizer;
 
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;

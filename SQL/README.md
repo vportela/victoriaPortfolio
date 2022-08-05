@@ -1,4 +1,4 @@
-- postgres, mySQL, SQLite, mongoDB etc are relational database management systems.
+CR- postgres, mySQL, SQLite, mongoDB etc are relational database management systems.
 Usually when people ask about what database youre using, they mean what management system.
 
 - companies that offer databases:

@@ -43,7 +43,7 @@ public class OrderService {
 
         List<Integer> entrees = newOrderRequestBody.getEntreeIds();
         //for each entree in the request body, get the entree by it's id.
-        entreeService.getEntreeById(entrees);
+//        entreeService.getEntreeById(entrees);
 
         //using the ids passed in through the request body, find the entrees.
 

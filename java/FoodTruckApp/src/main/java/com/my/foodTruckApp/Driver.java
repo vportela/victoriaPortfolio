@@ -1,17 +1,20 @@
 package com.my.foodTruckApp;
 
+import org.springframework.stereotype.Service;
+
 import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 
+@Service
 public class Driver {
 
-    String url = "jdbc:postgresql://localhost/test_dummy";
-    String user = "victoriaportela";
-    String password = "password";
+    String url = "jdbc:postgresql://localhost/food_truck";
+    String user = "vp";
+    String password = "";
 
-    private static final String createTableSQL = "CREATE TABLE test_table " +
+    private static final String createTableSQL = "CREATE TABLE test_table_new " +
             "(id INTEGER PRIMARY KEY, " +
             "name TEXT, " +
             "email VARCHAR(50))";

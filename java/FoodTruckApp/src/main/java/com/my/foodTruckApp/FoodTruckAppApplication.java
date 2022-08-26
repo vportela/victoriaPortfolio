@@ -15,6 +15,6 @@ public class FoodTruckAppApplication {
 		Appetizer myAppetizer = new Appetizer(1, "chicken", "tasty chicken for eating", 4);
 		System.out.println("myAppetizer" + myAppetizer);
 	}
-
+//dont use hard coded data anymore, use postman
 
 }

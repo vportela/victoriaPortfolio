@@ -11,8 +11,6 @@ public class CustomerController {
 
     private final CustomerService customerService;
 
-    private final CustomerRepository customerRepository;
-
     @PostMapping("/customers")
     public String createNewCustomer(@RequestBody CustomerRequestBody customerRequestBody) {
         System.out.println("creating a new customer");

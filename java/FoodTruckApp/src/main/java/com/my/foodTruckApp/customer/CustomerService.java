@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequiredArgsConstructor
 public class CustomerService {
 
-    private final CustomerRepository customerRepository;
     private final JdbcTemplate jdbcTemplate;
 
     //-------- create new customer ---------

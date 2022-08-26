@@ -13,7 +13,7 @@ public class CustomerController {
 
     @PostMapping("/customers")
     public String createNewCustomer(@RequestBody CustomerRequestBody customerRequestBody) {
-        System.out.println("creating a new customer");
+        log.info("creating a new customer");
         return customerService.createNewCustomer(customerRequestBody);
     }
 

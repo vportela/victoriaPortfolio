@@ -14,7 +14,7 @@ public class CustomerService {
     //-------- create new customer ---------
 
     public String createNewCustomer(@RequestBody CustomerRequestBody customerRequestBody) {
-        String sql = "INSERT INTO customer(id, first_name,last_name) VALUES(DEFAULT, ?, ?)";
+        String sql = "INSERT INTO customer(first_name,last_name) VALUES(?, ?)";
         Integer rows = jdbcTemplate.update(sql, customerRequestBody.getCustomerFirstName(), customerRequestBody.getCustomerLastName());
         if(rows > 0) {
             System.out.println("A new customer has been inserted (REQUEST BODY)");

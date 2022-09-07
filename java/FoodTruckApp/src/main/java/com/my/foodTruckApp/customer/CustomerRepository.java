@@ -3,6 +3,7 @@ package com.my.foodTruckApp.customer;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,4 +26,20 @@ public class CustomerRepository {
         return "CREATING A CUSTOMER WORKED";
     }
 
+    //--------- get customer by Id ---------
+
+    public Customer getCustomerById(Integer id) {
+        Customer Sql = "SELECT * FROM customer WHERE id = ?";
+        try {
+            Customer customerById =
+                jdbcTemplate.queryForObject
+                    (
+                        sql,
+                        new BeanPropertyRowMapper<>(Customer.class),
+                        id
+                    );
+            return customerById;
+
+        } catch ()
+    }
 }

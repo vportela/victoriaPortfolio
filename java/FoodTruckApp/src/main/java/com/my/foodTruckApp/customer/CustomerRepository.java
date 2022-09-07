@@ -16,7 +16,7 @@ public class CustomerRepository {
 
     //-------- create new customer ---------
 
-    public String createNewCustomer(@RequestBody CustomerRequestBody customerRequestBody) {
+    public String createNewCustomer(CustomerRequestBody customerRequestBody) {
         String sql = "INSERT INTO customer(first_name,last_name) VALUES(?, ?)";
         Integer rows = jdbcTemplate.update(sql, customerRequestBody.getCustomerFirstName(), customerRequestBody.getCustomerLastName());
         if(rows > 0) {

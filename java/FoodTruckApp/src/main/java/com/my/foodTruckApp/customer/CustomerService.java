@@ -14,9 +14,14 @@ public class CustomerService {
 
     //-------- create new customer ---------
 
-    public String createNewCustomer(@RequestBody CustomerRequestBody customerRequestBody) {
-
+    public String createNewCustomer(CustomerRequestBody customerRequestBody) {
         return customerRepository.createNewCustomer(customerRequestBody);
+    }
+
+    //------------- get customer by id -----------
+
+    public Customer gettingCustomerById(Integer id) {
+        return customerRepository.getCustomerById(id);
     }
 
 }

@@ -12,9 +12,14 @@ public class CustomerController {
     private final CustomerService customerService;
 
     @PostMapping("/customers")
-    public String createNewCustomer(@RequestBody CustomerRequestBody customerRequestBody) {
+    public String createNewCustomer(@RequestBody CustomerRequestBody customerRequestBody)
+    {
         log.info("creating a new customer");
         return customerService.createNewCustomer(customerRequestBody);
     }
 
+    @GetMapping("/customers/{id}")
+    public Customer gettingCustomerById(@PathVariable Integer id) {
+        return customerService.gettingCustomerById(id);
+    }
 }

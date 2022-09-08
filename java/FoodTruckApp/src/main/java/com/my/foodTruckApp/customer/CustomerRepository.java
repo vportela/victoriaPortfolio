@@ -3,10 +3,13 @@ package com.my.foodTruckApp.customer;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 @RequiredArgsConstructor
@@ -29,7 +32,7 @@ public class CustomerRepository {
     //--------- get customer by Id ---------
 
     public Customer getCustomerById(Integer id) {
-        Customer Sql = "SELECT * FROM customer WHERE id = ?";
+        String Sql = "SELECT * FROM customer WHERE id = ?";
         try {
             Customer customerById =
                 jdbcTemplate.queryForObject
@@ -40,6 +43,11 @@ public class CustomerRepository {
                     );
             return customerById;
 
-        } catch ()
+        } catch (EmptyResultDataAccessException emptyResultDataAccessException) {
+            log.error("No customer found with the id: " + id);
+            throw new ResponseStatusException(
+                HttpStatus.NOT_FOUND,
+                "No customer found with the id: " + id
+            );
     }
 }

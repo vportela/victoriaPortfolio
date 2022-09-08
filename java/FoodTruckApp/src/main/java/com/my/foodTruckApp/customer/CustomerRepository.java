@@ -23,7 +23,7 @@ public class CustomerRepository {
     public String createNewCustomer(CustomerRequestBody customerRequestBody) {
         String sql = "INSERT INTO customer(first_name,last_name) VALUES(?, ?)";
         Integer rows = jdbcTemplate.update(sql, customerRequestBody.getCustomerFirstName(), customerRequestBody.getCustomerLastName());
-        if(rows > 0) {
+        if (rows > 0) {
             log.info("A new customer has been inserted (REQUEST BODY)");
         }
         return "CREATING A CUSTOMER WORKED";
@@ -32,7 +32,7 @@ public class CustomerRepository {
     //--------- get customer by Id ---------
 
     public Customer getCustomerById(Integer id) {
-        String Sql = "SELECT * FROM customer WHERE id = ?";
+        String sql = "SELECT * FROM customer WHERE id = ?";
         try {
             Customer customerById =
                 jdbcTemplate.queryForObject
@@ -46,8 +46,9 @@ public class CustomerRepository {
         } catch (EmptyResultDataAccessException emptyResultDataAccessException) {
             log.error("No customer found with the id: " + id);
             throw new ResponseStatusException(
-                HttpStatus.NOT_FOUND,
-                "No customer found with the id: " + id
+                    HttpStatus.NOT_FOUND,
+                    "No customer found with the id: " + id
             );
+        }
     }
 }

@@ -18,6 +18,10 @@ public class CustomerService {
         return customerRepository.createNewCustomer(customerRequestBody);
     }
 
+    //------------- get customer by id -----------
 
+    public Customer gettingCustomerById(Integer id) {
+        return customerRepository.getCustomerById(id);
+    }
 
 }

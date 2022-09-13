@@ -51,4 +51,8 @@ public class CustomerRepository {
             );
         }
     }
+
+    public Customer getAllCustomers() {
+        
+    }
 }

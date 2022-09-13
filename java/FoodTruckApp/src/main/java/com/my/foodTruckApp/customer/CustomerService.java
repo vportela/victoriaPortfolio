@@ -28,7 +28,7 @@ public class CustomerService {
 
     //-------------- get all customers ----------------
 
-    public <List>Customer gettingAllCustomers() {
+    public List<Customer> gettingAllCustomers() {
         return customerRepository.getAllCustomers();
     }
 

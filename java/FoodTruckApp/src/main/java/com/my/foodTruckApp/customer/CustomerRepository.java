@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -52,7 +54,7 @@ public class CustomerRepository {
         }
     }
 
-    public Customer getAllCustomers() {
+    public List<Customer> getAllCustomers() {
         
     }
 }

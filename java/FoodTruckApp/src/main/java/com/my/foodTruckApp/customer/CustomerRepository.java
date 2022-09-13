@@ -55,6 +55,8 @@ public class CustomerRepository {
     }
 
     public List<Customer> getAllCustomers() {
-        
+        String sql = "SELECT * FROM customer";
+        List<Customer> customers = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Customer.class));
+        return customers;
     }
 }

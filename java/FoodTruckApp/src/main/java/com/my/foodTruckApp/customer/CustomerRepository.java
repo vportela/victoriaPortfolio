@@ -59,4 +59,13 @@ public class CustomerRepository {
         List<Customer> customers = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Customer.class));
         return customers;
     }
+
+    public void deleteCustomerById(Integer id) {
+        String sql = "DELETE FROM customer WHERE id = ?";
+        try {
+            sql,
+            new BeanPropertyRowMapper<>(),
+            id
+        };
+    }
 }

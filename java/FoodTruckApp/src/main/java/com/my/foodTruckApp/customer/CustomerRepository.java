@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -50,5 +52,11 @@ public class CustomerRepository {
                     "No customer found with the id: " + id
             );
         }
+    }
+
+    public List<Customer> getAllCustomers() {
+        String sql = "SELECT * FROM customer";
+        List<Customer> customers = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Customer.class));
+        return customers;
     }
 }

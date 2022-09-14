@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @Slf4j
@@ -21,5 +23,10 @@ public class CustomerController {
     @GetMapping("/customers/{id}")
     public Customer gettingCustomerById(@PathVariable Integer id) {
         return customerService.gettingCustomerById(id);
+    }
+
+    @GetMapping("/customers")
+    public List<Customer> gettingAllCustomers() {
+        return customerService.gettingAllCustomers();
     }
 }

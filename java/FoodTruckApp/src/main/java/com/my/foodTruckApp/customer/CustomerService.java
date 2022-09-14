@@ -5,6 +5,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CustomerService {
@@ -22,6 +24,12 @@ public class CustomerService {
 
     public Customer gettingCustomerById(Integer id) {
         return customerRepository.getCustomerById(id);
+    }
+
+    //-------------- get all customers ----------------
+
+    public List<Customer> gettingAllCustomers() {
+        return customerRepository.getAllCustomers();
     }
 
 }

@@ -36,13 +36,11 @@ public class CustomerRepository {
     public Customer getCustomerById(Integer id) {
         String sql = "SELECT * FROM customer WHERE id = ?";
         try {
-            Customer customerById =
-                jdbcTemplate.queryForObject
-                    (
-                        sql,
-                        new BeanPropertyRowMapper<>(Customer.class),
-                        id
-                    );
+            Customer customerById = jdbcTemplate.queryForObject(
+                sql,
+                new BeanPropertyRowMapper<>(Customer.class),
+                id
+            );
             return customerById;
 
         } catch (EmptyResultDataAccessException emptyResultDataAccessException) {
@@ -56,16 +54,21 @@ public class CustomerRepository {
 
     public List<Customer> getAllCustomers() {
         String sql = "SELECT * FROM customer";
-        List<Customer> customers = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Customer.class));
+        List<Customer> customers = jdbcTemplate.query(
+            sql,
+            new BeanPropertyRowMapper<>(Customer.class)
+        );
         return customers;
     }
 
     public void deleteCustomerById(Integer id) {
-//        String findSqlQuery = "SELECT FROM customer WHERE id = ?";
-        String deleteSqlQuery = "DELETE FROM customer WHERE id = ?";
-       jdbcTemplate.update(deleteSqlQuery, id, new BeanPropertyRowMapper<>(Customer.class));
-       log.info("deleted customer with id: " + id);
-       return;
 
+//        String findSql = "SELECT FROM customer WHERE id = ?";
+        String deleteSql = "DELETE FROM customer WHERE id = ?";
+        jdbcTemplate.update(deleteSql, id);
+        log.info("deleted customer with id: " + id);
+
+        // TODO: you need to throw a 404 when trying to delete something by an ID that has
+//            already been deleted, it is possible to do this without try/catch, so look it up.
     }
 }

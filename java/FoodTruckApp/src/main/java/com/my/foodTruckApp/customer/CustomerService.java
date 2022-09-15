@@ -35,6 +35,6 @@ public class CustomerService {
     //------------ delete customer by id -------------
 
     public void deleteCustomerById(Integer id) {
-        return customerRepository.deleteCustomerById;
+        customerRepository.deleteCustomerById(id);
     }
 }

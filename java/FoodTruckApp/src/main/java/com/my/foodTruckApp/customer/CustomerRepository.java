@@ -61,11 +61,11 @@ public class CustomerRepository {
     }
 
     public void deleteCustomerById(Integer id) {
-        String sql = "DELETE FROM customer WHERE id = ?";
-        try {
-            sql,
-            new BeanPropertyRowMapper<>(),
-            id
-        };
+//        String findSqlQuery = "SELECT FROM customer WHERE id = ?";
+        String deleteSqlQuery = "DELETE FROM customer WHERE id = ?";
+       jdbcTemplate.update(deleteSqlQuery, id, new BeanPropertyRowMapper<>(Customer.class));
+       log.info("deleted customer with id: " + id);
+       return;
+
     }
 }

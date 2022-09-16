@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -37,9 +36,9 @@ public class CustomerRepository {
         String sql = "SELECT * FROM customer WHERE id = ?";
         try {
             Customer customerById = jdbcTemplate.queryForObject(
-                sql,
-                new BeanPropertyRowMapper<>(Customer.class),
-                id
+                    sql,
+                    new BeanPropertyRowMapper<>(Customer.class),
+                    id
             );
             return customerById;
 
@@ -55,20 +54,19 @@ public class CustomerRepository {
     public List<Customer> getAllCustomers() {
         String sql = "SELECT * FROM customer";
         List<Customer> customers = jdbcTemplate.query(
-            sql,
-            new BeanPropertyRowMapper<>(Customer.class)
+                sql,
+                new BeanPropertyRowMapper<>(Customer.class)
         );
         return customers;
     }
 
-    public void deleteCustomerById(Integer id) {
-
-//        String findSql = "SELECT FROM customer WHERE id = ?";
+    public void deleteCustomerById(Integer id) throws ResponseStatusException {
         String deleteSql = "DELETE FROM customer WHERE id = ?";
         jdbcTemplate.update(deleteSql, id);
         log.info("deleted customer with id: " + id);
 
-        // TODO: you need to throw a 404 when trying to delete something by an ID that has
-//            already been deleted, it is possible to do this without try/catch, so look it up.
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+                "ERROR - no customer found with the id: " + id);
+
     }
 }

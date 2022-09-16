@@ -3,7 +3,7 @@ package com.my.foodTruckApp.customer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -34,7 +34,7 @@ public class CustomerService {
 
     //------------ delete customer by id -------------
 
-    public void deleteCustomerById(Integer id) {
+    public void deleteCustomerById(Integer id) throws ResponseStatusException {
         customerRepository.deleteCustomerById(id);
     }
 }

@@ -3,6 +3,7 @@ package com.my.foodTruckApp.customer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -14,8 +15,7 @@ public class CustomerController {
     private final CustomerService customerService;
 
     @PostMapping("/customers")
-    public String createNewCustomer(@RequestBody CustomerRequestBody customerRequestBody)
-    {
+    public String createNewCustomer(@RequestBody CustomerRequestBody customerRequestBody) {
         log.info("creating a new customer");
         return customerService.createNewCustomer(customerRequestBody);
     }
@@ -31,7 +31,7 @@ public class CustomerController {
     }
 
     @DeleteMapping("/customers/{id}")
-    public void deleteCustomer(@PathVariable Integer id) {
+    public void deleteCustomer(@PathVariable Integer id) throws ResponseStatusException {
         customerService.deleteCustomerById(id);
     }
 }

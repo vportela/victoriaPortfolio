@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -36,13 +35,11 @@ public class CustomerRepository {
     public Customer getCustomerById(Integer id) {
         String sql = "SELECT * FROM customer WHERE id = ?";
         try {
-            Customer customerById =
-                jdbcTemplate.queryForObject
-                    (
-                        sql,
-                        new BeanPropertyRowMapper<>(Customer.class),
-                        id
-                    );
+            Customer customerById = jdbcTemplate.queryForObject(
+                    sql,
+                    new BeanPropertyRowMapper<>(Customer.class),
+                    id
+            );
             return customerById;
 
         } catch (EmptyResultDataAccessException emptyResultDataAccessException) {
@@ -56,7 +53,29 @@ public class CustomerRepository {
 
     public List<Customer> getAllCustomers() {
         String sql = "SELECT * FROM customer";
-        List<Customer> customers = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Customer.class));
+        List<Customer> customers = jdbcTemplate.query(
+                sql,
+                new BeanPropertyRowMapper<>(Customer.class)
+        );
         return customers;
     }
+
+    public void deleteCustomerById(Integer id) throws ResponseStatusException {
+
+        getCustomerById(id);
+
+        String deleteSql = "DELETE FROM customer WHERE id = ?";
+        jdbcTemplate.update(deleteSql, id);
+        log.info("deleted customer with id: " + id);
+    }
+    // ---- find the customer who's id matches the pathVariable id
+    // ---- if you cannot retrieve the customer with the matching id
+    // ---- they dont exist
+    // ---- throw a 404
+    //delete the customer by their id
+    // if the customer that has that id does not exist
+
+
+    //throw a 404
+
 }

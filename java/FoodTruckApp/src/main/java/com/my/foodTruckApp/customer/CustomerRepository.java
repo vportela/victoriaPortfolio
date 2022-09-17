@@ -61,12 +61,21 @@ public class CustomerRepository {
     }
 
     public void deleteCustomerById(Integer id) throws ResponseStatusException {
+
+        getCustomerById(id);
+
         String deleteSql = "DELETE FROM customer WHERE id = ?";
         jdbcTemplate.update(deleteSql, id);
         log.info("deleted customer with id: " + id);
-
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND,
-                "ERROR - no customer found with the id: " + id);
-
     }
+    // ---- find the customer who's id matches the pathVariable id
+    // ---- if you cannot retrieve the customer with the matching id
+    // ---- they dont exist
+    // ---- throw a 404
+    //delete the customer by their id
+    // if the customer that has that id does not exist
+
+
+    //throw a 404
+
 }

@@ -21,13 +21,15 @@ public class CustomerRepository {
 
     //-------- create new customer ---------
 
-    public String createNewCustomer(CustomerRequestBody customerRequestBody) {
+    public Customer createNewCustomer(CustomerRequestBody customerRequestBody) {
         String sql = "INSERT INTO customer(first_name,last_name) VALUES(?, ?)";
+
         Integer rows = jdbcTemplate.update(sql, customerRequestBody.getCustomerFirstName(), customerRequestBody.getCustomerLastName());
         if (rows > 0) {
             log.info("A new customer has been inserted (REQUEST BODY)");
         }
-        return "CREATING A CUSTOMER WORKED";
+
+        return createNewCustomer(customerRequestBody);
     }
 
     //--------- get customer by Id ---------

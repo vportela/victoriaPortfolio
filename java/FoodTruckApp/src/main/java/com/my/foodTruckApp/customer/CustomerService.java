@@ -16,7 +16,7 @@ public class CustomerService {
 
     //-------- create new customer ---------
 
-    public String createNewCustomer(CustomerRequestBody customerRequestBody) {
+    public Customer createNewCustomer(CustomerRequestBody customerRequestBody) {
         return customerRepository.createNewCustomer(customerRequestBody);
     }
 

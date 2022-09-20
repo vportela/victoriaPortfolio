@@ -22,15 +22,24 @@ public class CustomerRepository {
     //-------- create new customer ---------
 
     public Customer createNewCustomer(CustomerRequestBody customerRequestBody) {
-        String sql = "INSERT INTO customer(first_name,last_name) VALUES(?, ?)";
-
-        Integer rows = jdbcTemplate.update(sql, customerRequestBody.getCustomerFirstName(), customerRequestBody.getCustomerLastName());
-        if (rows > 0) {
+        try {
+            String sql = "INSERT INTO customer(first_name,last_name) VALUES(?, ?)";
+            Customer customer = jdbcTemplate.queryForObject(
+                    sql,
+                    new BeanPropertyRowMapper<>(Customer.class),
+                    customerRequestBody.getCustomerFirstName(),
+                    customerRequestBody.getCustomerLastName()
+            );
+            return customer;
+        } catch (ResponseStatusException responseStatusException) {
             log.info("A new customer has been inserted (REQUEST BODY)");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                    "customer could not be created"
+            );
         }
 
-        return createNewCustomer(customerRequestBody);
     }
+
 
     //--------- get customer by Id ---------
 

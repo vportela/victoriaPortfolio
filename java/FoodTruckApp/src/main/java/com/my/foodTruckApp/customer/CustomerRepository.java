@@ -23,14 +23,23 @@ public class CustomerRepository {
 
     public Customer createNewCustomer(CustomerRequestBody customerRequestBody) {
         try {
-            String sql = "INSERT INTO customer(first_name,last_name) VALUES(?, ?)";
-            Customer customer = jdbcTemplate.queryForObject(
-                    sql,
+            String createCustomer = "INSERT INTO customer(first_name,last_name) VALUES(?, ?)";
+            String retrieveCustomer = "SELECT * FROM customer WHERE first_name = VALUE(?) " +
+                    "AND last_name = VALUE(?) ";
+            //I don't think this is legitimate sql....
+            Customer customerCreated = jdbcTemplate.queryForObject(
+                    createCustomer,
                     new BeanPropertyRowMapper<>(Customer.class),
                     customerRequestBody.getCustomerFirstName(),
                     customerRequestBody.getCustomerLastName()
             );
-            return customer;
+            Customer customerRetrieved = jdbcTemplate.queryForObject(
+                    retrieveCustomer,
+                    new BeanPropertyRowMapper<>(Customer.class),
+                    customerRequestBody.getCustomerFirstName(),
+                    customerRequestBody.getCustomerLastName()
+            );
+            return customerRetrieved;
         } catch (ResponseStatusException responseStatusException) {
             log.info("A new customer has been inserted (REQUEST BODY)");
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
@@ -40,10 +49,11 @@ public class CustomerRepository {
 
     }
 
-    // create a new customer
+    // goal: create a new customer
+    //enter customer name (first/last) into our request body
     // take request body
     // insert it into the table customer
-    //return Customer type of customer
+    //return the customer with type Customer
     //if customer cannot be created, throw an exception
 
 

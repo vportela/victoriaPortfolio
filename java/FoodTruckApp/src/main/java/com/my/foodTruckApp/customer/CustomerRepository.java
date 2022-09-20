@@ -40,6 +40,12 @@ public class CustomerRepository {
 
     }
 
+    // create a new customer
+    // take request body
+    // insert it into the table customer
+    //return Customer type of customer
+    //if customer cannot be created, throw an exception
+
 
     //--------- get customer by Id ---------
 

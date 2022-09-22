@@ -21,32 +21,25 @@ public class CustomerRepository {
 
     //-------- create new customer ---------
 
+    /**
+     * GOAL: Create a new customer
+     * -- enter customer name (first/last) into our request body
+     * -- take request body
+     * -- insert it into the table customer
+     * -- return the customer with type Customer
+     * -- if customer cannot be created, throw an exception
+     */
     public Customer createNewCustomer(CustomerRequestBody customerRequestBody) {
-        try {
-            String createCustomer = "INSERT INTO customer(first_name,last_name) VALUES(?, ?) returning *";
-            Customer newCustomer = jdbcTemplate.queryForObject(
-                    createCustomer,
-                    new BeanPropertyRowMapper<>(Customer.class),
-                    customerRequestBody.getCustomerFirstName(),
-                    customerRequestBody.getCustomerLastName()
-            );
+        String createCustomerSql = "INSERT INTO customer(first_name,last_name) VALUES(?, ?) returning *";
+        Customer newCustomer = jdbcTemplate.queryForObject(
+                createCustomerSql,
+                new BeanPropertyRowMapper<>(Customer.class),
+                customerRequestBody.getCustomerFirstName(),
+                customerRequestBody.getCustomerLastName()
+        );
 
-            return newCustomer;
-        } catch (ResponseStatusException responseStatusException) {
-            log.info("A new customer has been inserted (REQUEST BODY)");
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-                    "customer could not be created"
-            );
-        }
-
+        return newCustomer;
     }
-
-    // goal: create a new customer
-    //enter customer name (first/last) into our request body
-    // take request body
-    // insert it into the table customer
-    //return the customer with type Customer
-    //if customer cannot be created, throw an exception
 
 
     //--------- get customer by Id ---------

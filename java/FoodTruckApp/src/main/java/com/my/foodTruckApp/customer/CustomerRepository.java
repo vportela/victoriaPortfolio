@@ -21,14 +21,26 @@ public class CustomerRepository {
 
     //-------- create new customer ---------
 
-    public String createNewCustomer(CustomerRequestBody customerRequestBody) {
-        String sql = "INSERT INTO customer(first_name,last_name) VALUES(?, ?)";
-        Integer rows = jdbcTemplate.update(sql, customerRequestBody.getCustomerFirstName(), customerRequestBody.getCustomerLastName());
-        if (rows > 0) {
-            log.info("A new customer has been inserted (REQUEST BODY)");
-        }
-        return "CREATING A CUSTOMER WORKED";
+    /**
+     * GOAL: Create a new customer
+     * -- enter customer name (first/last) into our request body
+     * -- take request body
+     * -- insert it into the table customer
+     * -- return the customer with type Customer
+     * -- if customer cannot be created, throw an exception
+     */
+    public Customer createNewCustomer(CustomerRequestBody customerRequestBody) {
+        String createCustomerSql = "INSERT INTO customer(first_name,last_name) VALUES(?, ?) returning *";
+        Customer newCustomer = jdbcTemplate.queryForObject(
+                createCustomerSql,
+                new BeanPropertyRowMapper<>(Customer.class),
+                customerRequestBody.getCustomerFirstName(),
+                customerRequestBody.getCustomerLastName()
+        );
+
+        return newCustomer;
     }
+
 
     //--------- get customer by Id ---------
 

@@ -1,6 +1,6 @@
 package com.my.foodTruckApp.Orders;
 
-import com.my.foodTruckApp.Appetizer.Appetizer;
+import com.my.foodTruckApp.AppetizerNoDb.AppetizerNoDb;
 import com.my.foodTruckApp.Entree.Entree;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +14,7 @@ import java.util.List;
 public class Order {
     private Integer id;
     private List<Entree> entrees;
-    private List<Appetizer> appetizers;
+    private List<AppetizerNoDb> appetizerNoDbs;
 
 }
 // ToDo: make the path variables optional

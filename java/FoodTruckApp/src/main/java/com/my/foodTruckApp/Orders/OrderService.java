@@ -1,7 +1,6 @@
 package com.my.foodTruckApp.Orders;
 
-import com.my.foodTruckApp.Appetizer.AppetizerService;
-import com.my.foodTruckApp.Entree.Entree;
+import com.my.foodTruckApp.AppetizerNoDb.AppetizerServiceNoDb;
 import com.my.foodTruckApp.Entree.EntreeRepository;
 import com.my.foodTruckApp.Entree.EntreeService;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +19,7 @@ public class OrderService {
     private final EntreeRepository entreeRepository;
     private final EntreeService entreeService;
 
-    private final AppetizerService appetizerService;
+    private final AppetizerServiceNoDb appetizerServiceNoDb;
 
     public List<Order> getListOfOrders() {
 
@@ -29,14 +28,14 @@ public class OrderService {
         return orders;
     }
 
-    public Optional<Order> getOrderById(Integer id){
+    public Optional<Order> getOrderById(Integer id) {
         List<Order> orders = orderRepository.getListOfOrders();
         System.out.println("getting order by id: " + id);
         Optional<Order> orderById = orders.stream().filter(order -> order.getId() == id).findFirst();
         return orderById;
     }
 
-    public Order createOrder(NewOrderRequestBody newOrderRequestBody ) {
+    public Order createOrder(NewOrderRequestBody newOrderRequestBody) {
         List<Order> orders = orderRepository.getListOfOrders();
         System.out.println("creating a new order with requestbody: " + newOrderRequestBody);
         Integer orderId = orders.get(orders.size() - 1).getId() + 1;

@@ -20,7 +20,10 @@ public class AppetizerRepository {
         Appetizer newAppetizer = jdbcTemplate.queryForObject(
                 newAppetizerSql,
                 new BeanPropertyRowMapper<>(Appetizer.class),
-                appetizerRequestBody.getAppetizerName()
+                appetizerRequestBody.getName(),
+                appetizerRequestBody.getDescription()
         );
+
+        return newAppetizer;
     }
 }

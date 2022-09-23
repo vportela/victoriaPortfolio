@@ -13,6 +13,6 @@ public class AppetizerService {
     // create
 
     public createNewAppetizer(AppetizerRequestBody appetizerRequestBody) {
-        return appetizerRepository.createNewAppetizer(customerRequestBody);
+        return appetizerRepository.createNewAppetizer(appetizerRequestBody);
     }
 }

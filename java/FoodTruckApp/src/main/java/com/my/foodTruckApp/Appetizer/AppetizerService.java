@@ -12,7 +12,7 @@ public class AppetizerService {
 
     // create
 
-    public createNewAppetizer(AppetizerRequestBody appetizerRequestBody) {
+    public creatingNewAppetizer(AppetizerRequestBody appetizerRequestBody) {
         return appetizerRepository.createNewAppetizer(appetizerRequestBody);
     }
 }

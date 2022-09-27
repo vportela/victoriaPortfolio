@@ -16,13 +16,14 @@ public class AppetizerRepository {
     // create
 
     public Appetizer createNewAppetizer(AppetizerRequestBody appetizerRequestBody) {
-        String newAppetizerSql = "INSERT INTO appetizer(name, description) VALUES(?,?) return *";
+        String newAppetizerSql = "INSERT INTO appetizer(name,price) VALUES(?, ?) returning *";
         Appetizer newAppetizer = jdbcTemplate.queryForObject(
                 newAppetizerSql,
                 new BeanPropertyRowMapper<>(Appetizer.class),
                 appetizerRequestBody.getName(),
-                appetizerRequestBody.getDescription()
+                appetizerRequestBody.getPrice()
         );
+        System.out.println("REQUEST BODY (repository): " + appetizerRequestBody);
 
         return newAppetizer;
     }

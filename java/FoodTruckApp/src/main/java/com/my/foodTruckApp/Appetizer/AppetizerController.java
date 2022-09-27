@@ -14,8 +14,9 @@ public class AppetizerController {
     private final AppetizerService appetizerService;
 
     @PostMapping("/appetizers")
-    public Appetizer creatingNewAppetizer(@RequestBody AppetizerRequestBody appetizerRequestBody) {
+    public Appetizer createNewAppetizer(@RequestBody AppetizerRequestBody appetizerRequestBody) {
         log.info("Creating a new Appetizer");
-        return appetizerService.creatingNewAppetizer(appetizerRequestBody);
+        System.out.println("requestbody: " + appetizerRequestBody);
+        return appetizerService.createNewAppetizer(appetizerRequestBody);
     }
 }

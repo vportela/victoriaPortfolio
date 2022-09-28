@@ -2,9 +2,12 @@ package com.my.foodTruckApp.Appetizer;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 @RequiredArgsConstructor
@@ -26,5 +29,24 @@ public class AppetizerRepository {
         System.out.println("REQUEST BODY (repository): " + appetizerRequestBody);
 
         return newAppetizer;
+    }
+
+    public Appetizer getAppetizerById(Integer id) {
+        String sql = "SELECT * FROM appetizer WHERE id = ? ";
+        try {
+            Appetizer appetizerById = jdbcTemplate.queryForObject(
+                    sql,
+                    new BeanPropertyRowMapper<>(Appetizer.class),
+                    id
+            );
+            return appetizerById;
+        } catch (EmptyResultDataAccessException emptyResultDataAccessException) {
+            log.error("No appetizer found with the id: " + id);
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND,
+                    "No appetizer found with the id: " + id
+            );
+
+        }
     }
 }

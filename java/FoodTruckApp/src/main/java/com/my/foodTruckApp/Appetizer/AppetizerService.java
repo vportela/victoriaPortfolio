@@ -17,4 +17,8 @@ public class AppetizerService {
         return appetizerRepository.createNewAppetizer(appetizerRequestBody);
     }
 
+    public Appetizer gettingAppetizerById(Integer id) {
+        return appetizerRepository.getAppetizerById(id);
+    }
+
 }

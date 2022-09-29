@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class AppetizerService {
@@ -19,6 +21,10 @@ public class AppetizerService {
 
     public Appetizer gettingAppetizerById(Integer id) {
         return appetizerRepository.getAppetizerById(id);
+    }
+
+    public List<Appetizer> gettingAllAppetizers() {
+        return appetizerRepository.getAllAppetizers();
     }
 
 }

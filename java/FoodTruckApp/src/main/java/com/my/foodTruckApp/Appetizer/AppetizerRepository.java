@@ -9,6 +9,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -48,5 +50,14 @@ public class AppetizerRepository {
             );
 
         }
+    }
+
+    public List<Appetizer> getAllAppetizers() {
+        String sql = "SELECT * FROM appetizer";
+        List<Appetizer> appetizers = jdbcTemplate.query(
+                sql,
+                new BeanPropertyRowMapper<>(Appetizer.class)
+        );
+        return appetizers;
     }
 }

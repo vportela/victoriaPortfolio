@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @Slf4j
@@ -21,5 +23,10 @@ public class AppetizerController {
     @GetMapping("/appetizers/{id}")
     public Appetizer gettingAppetizerById(@PathVariable Integer id) {
         return appetizerService.gettingAppetizerById(id);
+    }
+
+    @GetMapping("/appetizers")
+    public List<Appetizer> gettingAllAppetizers() {
+        return appetizerService.gettingAllAppetizers();
     }
 }

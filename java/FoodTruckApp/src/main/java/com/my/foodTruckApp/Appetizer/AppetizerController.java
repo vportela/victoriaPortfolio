@@ -3,6 +3,7 @@ package com.my.foodTruckApp.Appetizer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -28,5 +29,10 @@ public class AppetizerController {
     @GetMapping("/appetizers")
     public List<Appetizer> gettingAllAppetizers() {
         return appetizerService.gettingAllAppetizers();
+    }
+
+    @DeleteMapping("/appetizers/{id}")
+    public void deleteAppetizer(@PathVariable Integer id) throws ResponseStatusException {
+        appetizerService.deleteAppetizerById(id);
     }
 }

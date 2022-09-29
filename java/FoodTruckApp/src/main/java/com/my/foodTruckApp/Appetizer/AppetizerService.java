@@ -3,6 +3,7 @@ package com.my.foodTruckApp.Appetizer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -25,6 +26,10 @@ public class AppetizerService {
 
     public List<Appetizer> gettingAllAppetizers() {
         return appetizerRepository.getAllAppetizers();
+    }
+
+    public void deleteAppetizerById(Integer id) throws ResponseStatusException {
+        appetizerRepository.deleteAppetizerById(id);
     }
 
 }

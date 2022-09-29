@@ -60,4 +60,12 @@ public class AppetizerRepository {
         );
         return appetizers;
     }
+
+    public void deleteAppetizerById(Integer id) throws ResponseStatusException {
+        getAppetizerById(id);
+
+        String deleteSql = "DELETE FROM appetizer WHERE id = ?";
+        jdbcTemplate.update(deleteSql, id);
+        log.info("deleted appetizer with id: " + id);
+    }
 }

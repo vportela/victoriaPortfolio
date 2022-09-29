@@ -28,7 +28,7 @@ public class AppetizerRepository {
                 appetizerRequestBody.getName(),
                 appetizerRequestBody.getPrice()
         );
-        System.out.println("REQUEST BODY (repository): " + appetizerRequestBody);
+        log.info("REQUEST BODY (repository): " + appetizerRequestBody);
 
         return newAppetizer;
     }

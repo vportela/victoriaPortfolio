@@ -1,4 +1,4 @@
-package com.my.foodTruckApp.Entree;
+package com.my.foodTruckApp.Appetizer;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,10 +7,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Entree {
-    private Integer id;
-    private String title;
-    private String description;
+public class AppetizerRequestBody {
+    private String name;
     private Integer price;
 }
-

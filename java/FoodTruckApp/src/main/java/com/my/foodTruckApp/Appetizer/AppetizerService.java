@@ -13,7 +13,6 @@ public class AppetizerService {
     private final JdbcTemplate jdbcTemplate;
     private final AppetizerRepository appetizerRepository;
 
-    // create
 
     public Appetizer createNewAppetizer(AppetizerRequestBody appetizerRequestBody) {
         return appetizerRepository.createNewAppetizer(appetizerRequestBody);

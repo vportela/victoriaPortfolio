@@ -28,6 +28,7 @@ public class AppetizerService {
     }
 
     public void deleteAppetizerById(Integer id) throws ResponseStatusException {
+        appetizerRepository.getAppetizerById(id);
         appetizerRepository.deleteAppetizerById(id);
     }
 

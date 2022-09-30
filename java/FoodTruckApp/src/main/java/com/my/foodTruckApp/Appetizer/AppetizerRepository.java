@@ -18,7 +18,6 @@ public class AppetizerRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
-    // create
 
     public Appetizer createNewAppetizer(AppetizerRequestBody appetizerRequestBody) {
         String newAppetizerSql = "INSERT INTO appetizer(name,price) VALUES(?, ?) returning *";
@@ -62,7 +61,6 @@ public class AppetizerRepository {
     }
 
     public void deleteAppetizerById(Integer id) throws ResponseStatusException {
-        getAppetizerById(id);
 
         String deleteSql = "DELETE FROM appetizer WHERE id = ?";
         jdbcTemplate.update(deleteSql, id);

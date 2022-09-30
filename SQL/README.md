@@ -2,13 +2,13 @@ CR- postgres, mySQL, SQLite, mongoDB etc are relational database management syst
 Usually when people ask about what database youre using, they mean what management system.
 
 - companies that offer databases:
-  * Amazon (AWS)
-  * IBM
-  * Oracle
-  * etc
+    * Amazon (AWS)
+    * IBM
+    * Oracle
+    * etc
 
 - Database tables:
-containers inside of the database that contains the information
+  containers inside of the database that contains the information
 
   data lives inside of the table, which lives inside of the database.
 
@@ -17,12 +17,14 @@ containers inside of the database that contains the information
 -Terminal uses a bash SHELL but to write SQL you need to used a SQL shell.
 
 Terminal commands for SQL: (bash)
-- psql: get into a postgress shell 
+
+- psql: get into a postgress shell
 - brew services: gives us a list of our active services
 - brew services start [name of the service/application]
 - brew services stop [postgresql]
 
 - sql commands:
+
 ```sql
 
 -- specifically in the postgress shell
@@ -62,77 +64,97 @@ CREATE TABLE post(id INTEGER PRIMARY KEY, name VARCHAR(255), content TEXT,
 
 ```
 
-POSTGRESQL video notes: 
+POSTGRESQL video notes:
 
-what is postgres? 
+what is postgres?
+
 - it is a relational database: which is referring to the math under the hood that makes the database work.
-- in this case, it is using relational algebra. 
+- in this case, it is using relational algebra.
 - sql stands for structured query language.
-- POSTICO - gives a nice visual UI for writing SQL, good for beginners. 
+- POSTICO - gives a nice visual UI for writing SQL, good for beginners.
 - the convention for SQL is to CAPS key words and snake case everything else (things that you name yourself)
 - VARCHAR(255) is a text column that has a constraint on size (how long text can be) the number is the max length
 - if you try to name a table with what is technically a keyword like "user" or "table", you need to wrap
-it in double quotes. so instead of user or table it will be written as "user" or "table".
-- you should not pluralize tables. the table should be called *user* not *users* 
-
+  it in double quotes. so instead of user or table it will be written as "user" or "table".
+- you should not pluralize tables. the table should be called *user* not *users*
 
 # homework:
-### CRUD person rows
-- Create (multiple persons)
-  - ```INSERT INTO person (first_name, last_name, is_happy, age) VALUES ('victoria', 'portela', true, 26);```
-- try giving null to cols that aren't nullable (this should not work)
-  - yup did not work lol
-- creating rows with disordered cols
-  - ```INSERT INTO person (last_name, is_happy, age, first_name) VALUES ('inChrist', true, 25, 'brother');```
-- creating rows without specifying the cols
-  - ```INSERT INTO person VALUES ('big', 45, false, 'meowmeow'); -- works as long as its in the same order as table```
-- create multiple rows in 1 single command
-  - ```INSERT INTO person VALUES ('big', 22, true, 'meowstopholis'), ('small', 22, false, 'beepboop');```
-### READ
-- give me all persons in the table
-  - ```SELECT * FROM person;```
-#### getall persons with certain conditions:
-- everyone who's is_happy is NOT null
-  - ```SELECT * FROM person WHERE is_happy IS NOT NULL;```
-- everyone who's is_happy IS null
-  - ```SELECT * FROM person WHERE is_happy IS NULL;```
-- everyone who is older than 21
-  - ```SELECT * FROM person WHERE age > 21;```
-- everyone who's first_name is Victoria
-  - ```SELECT * FROM person WHERE first_name = 'victoria';```
-### UPDATE
-  - updating a specific row's first_name
-    - ```UPDATE person SET first_name = 'bobby' WHERE last_name = 'beepboop';```
-  - // last_name
-    - ```UPDATE person SET last_name = 'lil-man' WHERE first_name = 'victoria';```
-  - // age
-    - ```UPDATE person SET age = '27' WHERE last_name = 'lil-man';```
-  - // is_happy
-    - ```UPDATE person SET is_happy = true WHERE age = 22;```
-  - updating multiple cols in a single row once
-  - udpating multiple cols in MULTIPLE rows once
-### DELETE
-  - delete row
-    - by first_Name
-      - ```DELETE FROM person WHERE first_name = 'bobby';```
-    - by last_name
-      - ```DELETE FROM person WHERE last_name = 'meowmeow';```
-    - delete ALL rows in the table
-      - ```DELETE FROM person;```
-    - delete all rows who's age is bigger than 59
-      - (well they are already all deleted so :p )
-      - ``` DELETE FROM person WHERE age > 59;```
 
+### CRUD person rows
+
+- Create (multiple persons)
+    - ```INSERT INTO person (first_name, last_name, is_happy, age) VALUES ('victoria', 'portela', true, 26);```
+- try giving null to cols that aren't nullable (this should not work)
+    - yup did not work lol
+- creating rows with disordered cols
+    - ```INSERT INTO person (last_name, is_happy, age, first_name) VALUES ('inChrist', true, 25, 'brother');```
+- creating rows without specifying the cols
+    - ```INSERT INTO person VALUES ('big', 45, false, 'meowmeow'); -- works as long as its in the same order as table```
+- create multiple rows in 1 single command
+    - ```INSERT INTO person VALUES ('big', 22, true, 'meowstopholis'), ('small', 22, false, 'beepboop');```
+
+### READ
+
+- give me all persons in the table
+    - ```SELECT * FROM person;```
+
+#### getall persons with certain conditions:
+
+- everyone who's is_happy is NOT null
+    - ```SELECT * FROM person WHERE is_happy IS NOT NULL;```
+- everyone who's is_happy IS null
+    - ```SELECT * FROM person WHERE is_happy IS NULL;```
+- everyone who is older than 21
+    - ```SELECT * FROM person WHERE age > 21;```
+- everyone who's first_name is Victoria
+    - ```SELECT * FROM person WHERE first_name = 'victoria';```
+
+### UPDATE
+
+- updating a specific row's first_name
+    - ```UPDATE person SET first_name = 'bobby' WHERE last_name = 'beepboop';```
+- // last_name
+    - ```UPDATE person SET last_name = 'lil-man' WHERE first_name = 'victoria';```
+- // age
+    - ```UPDATE person SET age = '27' WHERE last_name = 'lil-man';```
+- // is_happy
+    - ```UPDATE person SET is_happy = true WHERE age = 22;```
+- updating multiple cols in a single row once
+- udpating multiple cols in MULTIPLE rows once
+
+### DELETE
+
+- delete row
+    - by first_Name
+        - ```DELETE FROM person WHERE first_name = 'bobby';```
+    - by last_name
+        - ```DELETE FROM person WHERE last_name = 'meowmeow';```
+    - delete ALL rows in the table
+        - ```DELETE FROM person;```
+    - delete all rows who's age is bigger than 59
+        - (well they are already all deleted so :p )
+        - ``` DELETE FROM person WHERE age > 59;```
 
 ## CRUD on person's columns
+
 ### UPDATE:
+
 - add a new column to the existing table (ex: add an ID col)
-  - ```ALTER TABLE person ADD id INTEGER; ```
+    - ```ALTER TABLE person ADD id INTEGER; ```
 - rename an existing column. Ex: is_happy = is_hungry
-  - ```ALTER TABLE person RENAME COLUMN is_happy TO is_hungry;```
+    - ```ALTER TABLE person RENAME COLUMN is_happy TO is_hungry;```
 - make a col NULLABLE (first_name)
   - 
 - make a col NOT nullable (is_happy)
 - (hard) change the data type of an existing col. Ex: change is_happy (bool) to a varchar(255)
 - Delete:
-  - delete an entire col
+    - delete an entire col
+
+## When you get .pid and postgres errors after a sudden restart or something etc do this to fix it.
+
+- cd usr/local/var/postgres/
+- then ls-la
+- locate the postmaster.pid file
+- rm postmaster.pid
+- brew services restart
+- test it by trying out psql

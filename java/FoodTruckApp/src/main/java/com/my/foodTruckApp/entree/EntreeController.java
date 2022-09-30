@@ -3,6 +3,9 @@ package com.my.foodTruckApp.entree;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,5 +23,15 @@ public class EntreeController {
     @GetMapping("/entrees/{id}")
     public Entree gettingEntreeById(@PathVariable Integer id) {
         return entreeService.gettingEntreeById(id);
+    }
+
+    @GetMapping("/entrees")
+    public List<Entree> gettingAllEntrees() {
+        return entreeService.gettingAllEntrees();
+    }
+
+    @DeleteMapping("/entrees/{id}")
+    public void deleteEntree(@PathVariable Integer id) throws ResponseStatusException {
+        entreeService.deleteEntreeById(id);
     }
 }

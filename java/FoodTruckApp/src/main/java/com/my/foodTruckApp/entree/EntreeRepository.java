@@ -9,6 +9,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -43,5 +45,21 @@ public class EntreeRepository {
                     "No entree found with this id: " + id
             );
         }
+    }
+
+    public List<Entree> getAllEntrees() {
+        String sql = "SELECT * from entree";
+        List<Entree> entrees = jdbcTemplate.query(
+                sql,
+                new BeanPropertyRowMapper<>(Entree.class)
+        );
+        return entrees;
+    }
+
+    public void deleteEntreeById(Integer id) throws ResponseStatusException {
+        String deleteSql = "DELETE FROM entree WHERE id = ? ";
+        jdbcTemplate.update(deleteSql, id);
+        log.info("deleted entree with id: " + id);
+
     }
 }

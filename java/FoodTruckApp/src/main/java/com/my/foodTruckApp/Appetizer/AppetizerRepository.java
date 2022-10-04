@@ -68,10 +68,13 @@ public class AppetizerRepository {
     }
 
     public void createAppetizerOrder(Integer orderId, Integer appetizerId) throws ResponseStatusException {
-        String appetizerSql = "INSERT INTO appetizer_ordered (order_id, appetizer_id) VALUES (?, ?)";
-        jdbcTemplate.update(
+        String appetizerSql = "INSERT INTO appetizer_ordered (order_id, appetizer_id) VALUES (?, ?) RETURNING * ";
+        AppetizerOrdered newAppetizerOrdered = jdbcTemplate.queryForObject(
                 appetizerSql,
-                new BeanPropertyRowMapper<>(Appetizer.class)
+                new BeanPropertyRowMapper<>(AppetizerOrdered.class),
+                orderId,
+                appetizerId
         );
+        System.out.println("newAppetizerOrdered: " + newAppetizerOrdered);
     }
 }

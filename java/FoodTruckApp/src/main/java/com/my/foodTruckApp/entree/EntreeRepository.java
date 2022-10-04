@@ -62,4 +62,15 @@ public class EntreeRepository {
         log.info("deleted entree with id: " + id);
 
     }
+
+    public void createEntreeOrder(Integer orderId, Integer entreeId) throws ResponseStatusException {
+        String entreeSql = "INSERT INTO entree_ordered (order_id, entree_id) VALUES (?, ?) RETURNING * ";
+        EntreeOrdered newEntreeOrdered = jdbcTemplate.queryForObject(
+                entreeSql,
+                new BeanPropertyRowMapper<>(EntreeOrdered.class),
+                orderId,
+                entreeId
+        );
+        System.out.println("newEntreeOrdered: " + newEntreeOrdered);
+    }
 }

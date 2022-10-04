@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @Data
 public class NewOrderRequestBody {
     private Integer customerId;
-    //    private Integer entreeIds;
+    private Integer entreeIds;
     private Integer appetizerIds;
 }

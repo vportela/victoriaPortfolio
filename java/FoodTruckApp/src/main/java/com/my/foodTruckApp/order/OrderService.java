@@ -2,6 +2,7 @@ package com.my.foodTruckApp.order;
 
 import com.my.foodTruckApp.Appetizer.Appetizer;
 import com.my.foodTruckApp.Appetizer.AppetizerRepository;
+import com.my.foodTruckApp.entree.Entree;
 import com.my.foodTruckApp.entree.EntreeRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,13 +20,15 @@ public class OrderService {
     public OrderDTO createOrder(NewOrderRequestBody newOrderRequestBody) {
         Order newOrder = orderRepository.createOrder(newOrderRequestBody);
 
-//        entreeRepository.createEntreeOrder(newOrder.getId(), newOrderRequestBody.getEntreeIds());
+        entreeRepository.createEntreeOrder(newOrder.getId(), newOrderRequestBody.getEntreeIds());
+        Entree entree = entreeRepository.getEntreeById(newOrderRequestBody.getEntreeIds());
         appetizerRepository.createAppetizerOrder(newOrder.getId(), newOrderRequestBody.getAppetizerIds());
         Appetizer appetizer = appetizerRepository.getAppetizerById(newOrderRequestBody.getAppetizerIds());
 
         return new OrderDTO(
                 newOrder.getId(),
                 newOrderRequestBody.getCustomerId(),
+                entree,
                 appetizer
         );
     }

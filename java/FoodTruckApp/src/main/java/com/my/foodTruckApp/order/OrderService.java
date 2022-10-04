@@ -20,10 +20,10 @@ public class OrderService {
     public OrderDTO createOrder(NewOrderRequestBody newOrderRequestBody) {
         Order newOrder = orderRepository.createOrder(newOrderRequestBody);
 
-        entreeRepository.createEntreeOrder(newOrder.getId(), newOrderRequestBody.getEntreeIds());
-        Entree entree = entreeRepository.getEntreeById(newOrderRequestBody.getEntreeIds());
-        appetizerRepository.createAppetizerOrder(newOrder.getId(), newOrderRequestBody.getAppetizerIds());
-        Appetizer appetizer = appetizerRepository.getAppetizerById(newOrderRequestBody.getAppetizerIds());
+        entreeRepository.createEntreeOrder(newOrder.getId(), newOrderRequestBody.getEntreeId());
+        Entree entree = entreeRepository.getEntreeById(newOrderRequestBody.getEntreeId());
+        appetizerRepository.createAppetizerOrder(newOrder.getId(), newOrderRequestBody.getAppetizerId());
+        Appetizer appetizer = appetizerRepository.getAppetizerById(newOrderRequestBody.getAppetizerId());
 
         return new OrderDTO(
                 newOrder.getId(),

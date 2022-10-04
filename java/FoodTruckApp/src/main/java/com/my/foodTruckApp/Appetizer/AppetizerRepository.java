@@ -75,6 +75,6 @@ public class AppetizerRepository {
                 orderId,
                 appetizerId
         );
-        System.out.println("newAppetizerOrdered: " + newAppetizerOrdered);
+        log.info("newAppetizerOrdered: " + newAppetizerOrdered);
     }
 }

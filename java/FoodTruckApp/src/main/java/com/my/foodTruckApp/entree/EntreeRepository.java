@@ -71,6 +71,6 @@ public class EntreeRepository {
                 orderId,
                 entreeId
         );
-        System.out.println("newEntreeOrdered: " + newEntreeOrdered);
+        log.info("newEntreeOrdered: " + newEntreeOrdered);
     }
 }

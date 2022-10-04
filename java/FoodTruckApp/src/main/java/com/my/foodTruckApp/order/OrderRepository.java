@@ -13,7 +13,7 @@ public class OrderRepository {
     private final JdbcTemplate jdbcTemplate;
 
     public Order createOrder(NewOrderRequestBody newOrderRequestBody) {
-        String sql = "INSERT INTO \"order\" (customer_id) VALUES (?) RETURNING *  ";
+        String sql = "INSERT INTO \"order\" (customer_id) VALUES (?) RETURNING * ";
         Order newOrder = jdbcTemplate.queryForObject(
                 sql,
                 new BeanPropertyRowMapper<>(Order.class),

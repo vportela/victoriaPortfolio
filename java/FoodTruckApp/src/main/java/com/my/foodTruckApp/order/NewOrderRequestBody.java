@@ -4,13 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class OrderRequestBody {
+public class NewOrderRequestBody {
     private Integer customerId;
-    private List<Integer> entreeIds;
-    private List<Integer> appetizerIds;
+    private Integer entreeIds;
+    private Integer appetizerIds;
 }

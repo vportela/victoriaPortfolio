@@ -66,4 +66,12 @@ public class AppetizerRepository {
         jdbcTemplate.update(deleteSql, id);
         log.info("deleted appetizer with id: " + id);
     }
+
+    public void createAppetizerOrder(Integer orderId, Integer appetizerId) throws ResponseStatusException {
+        String appetizerSql = "INSERT INTO appetizer_ordered (order_id, appetizer_id) VALUES (?, ?)";
+        jdbcTemplate.update(
+                appetizerSql,
+                new BeanPropertyRowMapper<>(Appetizer.class)
+        );
+    }
 }

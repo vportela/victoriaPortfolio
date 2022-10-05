@@ -67,7 +67,7 @@ public class AppetizerRepository {
         log.info("deleted appetizer with id: " + id);
     }
 
-    public void createAppetizerOrder(Integer orderId, Integer appetizerId) throws ResponseStatusException {
+    public AppetizerOrdered createAppetizerOrder(Integer orderId, Integer appetizerId) throws ResponseStatusException {
         String appetizerSql = "INSERT INTO appetizer_ordered (order_id, appetizer_id) VALUES (?, ?) RETURNING * ";
         AppetizerOrdered newAppetizerOrdered = jdbcTemplate.queryForObject(
                 appetizerSql,
@@ -76,5 +76,6 @@ public class AppetizerRepository {
                 appetizerId
         );
         log.info("newAppetizerOrdered: " + newAppetizerOrdered);
+        return newAppetizerOrdered;
     }
 }

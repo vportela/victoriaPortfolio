@@ -63,7 +63,7 @@ public class EntreeRepository {
 
     }
 
-    public void createEntreeOrder(Integer orderId, Integer entreeId) throws ResponseStatusException {
+    public EntreeOrdered createEntreeOrder(Integer orderId, Integer entreeId) throws ResponseStatusException {
         String entreeSql = "INSERT INTO entree_ordered (order_id, entree_id) VALUES (?, ?) RETURNING * ";
         EntreeOrdered newEntreeOrdered = jdbcTemplate.queryForObject(
                 entreeSql,
@@ -72,5 +72,6 @@ public class EntreeRepository {
                 entreeId
         );
         log.info("newEntreeOrdered: " + newEntreeOrdered);
+        return newEntreeOrdered;
     }
 }

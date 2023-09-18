@@ -63,3 +63,20 @@ They are foundational for algorithms and other concepts in computer science.
    * Visit the root node
 7. Level Order:
    * visit nodes level by level
+
+## Visual Representation:
+Consider this tree:
+    10
+   /  \
+  5    20
+ / \   / \
+2   8 15  25
+
+Root: 10
+Leaf Nodes: 2, 8, 15, 25
+
+### For Traversals:
+In-order: 2, 5, 8, 10, 15, 20, 25
+Pre-order: 10, 5, 2, 8, 20, 15, 25
+Post-order: 2, 8, 5, 15, 25, 20, 10
+Level Order: 10, 5, 20, 2, 8, 15, 25
